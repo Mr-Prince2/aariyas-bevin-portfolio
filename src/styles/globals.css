@@ -1,0 +1,50 @@
+@import './variables.css';
+
+/* Remove default browser spacing and fix the squeeze */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevents unwanted horizontal scroll */
+  background-color: var(--ink);
+  color: var(--white);
+}
+
+/* Ensure the root container doesn't limit the width */
+#root {
+  max-width: none !important;
+  display: block !important;
+  text-align: left !important;
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-size: var(--base-font);
+}
+
+/* Selection color for Japanese aesthetic */
+::selection {
+  background: var(--crimson);
+  color: var(--white);
+}
+
+/* Custom Scrollbar to remove default bulky bar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--crimson);
+}

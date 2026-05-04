@@ -1,0 +1,60 @@
+/* Container that holds both elements */
+.cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999; /* Higher than everything */
+}
+
+.cursor__dot, .cursor__ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.cursor__dot {
+  width: 10px;
+  height: 10px;
+  background: #c0392b; /* Using hardcode first to ensure it's not a variable issue */
+  border-radius: 50%;
+  margin-left: -5px;
+  margin-top: -5px;
+  transition: width 0.3s, height 0.3s, background 0.3s;
+}
+
+.cursor__ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid #c0392b;
+  border-radius: 50%;
+  margin-left: -18px;
+  margin-top: -18px;
+  opacity: 0.8;
+  transition: all 0.3s ease-out;
+}
+
+/* Hover States */
+.cursor--hover {
+  width: 14px !important;
+  height: 14px !important;
+  background: #d4af37 !important; /* Gold */
+  box-shadow: 0 0 10px #d4af37;
+}
+
+.ring--hover {
+  width: 50px !important;
+  height: 50px !important;
+  margin-left: -25px !important;
+  margin-top: -25px !important;
+  border-color: #d4af37 !important;
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .cursor-wrapper { display: none; }
+}

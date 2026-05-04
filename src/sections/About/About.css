@@ -1,0 +1,109 @@
+#about { 
+  padding: 8rem 4rem; 
+  background-color: var(--ink); /* Ensures no white gaps */
+}
+
+.section-header {
+  display: flex; 
+  align-items: baseline; 
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.section-num {
+  font-family: 'Space Mono', monospace; 
+  font-size: 0.7rem;
+  color: var(--crimson); 
+  letter-spacing: 0.3em;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif; 
+  font-size: clamp(1.5rem, 5vw, 2.5rem); /* Responsive font size */
+  font-weight: 600;
+  color: var(--white);
+}
+
+.section-title-jp {
+  font-family: 'Noto Serif JP', serif; 
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.1); 
+  letter-spacing: 0.3em; 
+  margin-left: auto;
+}
+
+/* Grid Layout */
+.about-grid { 
+  display: grid; 
+  grid-template-columns: 1.2fr 0.8fr; 
+  gap: 5rem; 
+  align-items: flex-start; 
+}
+
+.about-text { 
+  line-height: 2; 
+  color: var(--text-dim); 
+  font-size: 1.05rem; 
+}
+
+.about-text strong { color: var(--white); font-weight: 500; }
+.about-text em { color: var(--jade-light); font-style: normal; border-bottom: 1px solid rgba(82, 183, 136, 0.2); }
+
+.red-accent-line {
+  width: 50px;
+  height: 2px;
+  background: var(--crimson);
+  margin: 2rem 0;
+}
+
+/* The Profile Card */
+.about-card {
+  background: rgba(255,255,255,0.02); 
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 2.5rem; 
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.about-card::before {
+  content: ''; 
+  position: absolute; 
+  top: 0; 
+  left: 0;
+  width: 2px; 
+  height: 100%; 
+  background: linear-gradient(to bottom, var(--crimson), transparent);
+}
+
+.about-card-header {
+  font-family: 'Noto Serif JP', serif; 
+  font-size: 3.5rem;
+  color: rgba(192,57,43,0.15); 
+  line-height: 1;
+  margin-bottom: 1rem; 
+  display: block;
+}
+
+.info-row {
+  display: flex; 
+  justify-content: space-between; 
+  padding: 1rem 0; 
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.info-label { 
+  font-size: 0.7rem; 
+  color: var(--text-dim); 
+  text-transform: uppercase; 
+  letter-spacing: 0.1em;
+}
+
+.info-value { font-size: 0.9rem; color: var(--white); }
+.info-value.accent { color: var(--gold); }
+
+/* Responsive View[cite: 4] */
+@media (max-width: 900px) {
+  #about { padding: 4rem 2rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .section-title-jp { display: none; }
+}
