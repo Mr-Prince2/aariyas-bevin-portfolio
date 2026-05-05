@@ -12,10 +12,12 @@ import Skills        from '@sections/Skills/Skills'
 import Projects      from '@sections/Projects/Projects'
 import Divider       from '@sections/Divider/Divider'
 import Contact       from '@sections/Contact/Contact'
+import useFadeUp from './hooks/useFadeUp';
 import './App.css'
 import './styles/globals.css'
 
 function App() {
+  useFadeUp();
   useEffect(() => {
     // Hide the default cursor site-wide
     document.body.style.cursor = 'none'
