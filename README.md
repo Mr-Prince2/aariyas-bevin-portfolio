@@ -19,7 +19,7 @@ A minimalist, high-performance portfolio built with **React** and **Framer Motio
 - **Dynamic Skill Bars:** Animated proficiency tracking triggered on scroll.
 - **Themed UI:** Dark-mode interface with Crimson (縁) and Gold (金) accents.
 
-![Aariyas Bevin Portfolio Preview](src\assets\preview.jpeg)
+![Aariyas Bevin Portfolio Preview](src/assets/preview.jpeg)
 
 ## 🚀 Getting Started
 

@@ -8,17 +8,17 @@ const Projects = () => {
       featured: true,
       category: "⚡ Final Year Project",
       title: "Tharani Sengol",
-      desc: "",
+      desc: "THARANI SENGOL is a comprehensive, government-integrated digital platform engineered to combat illegal mining and unauthorized earth transportation. By leveraging GPS tracking, geo-fencing technology, and automated compliance verification, the system ensures that every phase of excavation and transit aligns strictly with government-issued permits.",
       stack: ["YOLOv9", "ResNet-50", "MiDaS", "FastAPI", "React.js", "Leaflet.js", "PostGIS", "Jetson Nano"],
       icon: "道",
       thumbClass: "project-thumb-1"
     },
     {
       id: "02",
-      category: "Project • 2",
-      title: "Project 2 title",
-      desc: "Project 2 description goes here. This is a placeholder for the second project in the portfolio. It can be about any topic, such as a web app, a machine learning model, or a data visualization.",
-      stack: ["NLP", "Python", "PostgreSQL", "React"],
+      category: "AI Finance Tracker (Web App)",
+      title: "Kuber",
+      desc: "An intelligent finance tracking application that uses AI to provide insights and recommendations.",
+      stack: ["Next.js", "Clerk", "Prisma", "Supabase", "Arcject", "Inngest", "Resend", "Gemini API"],
       icon: "知",
       thumbClass: "project-thumb-2"
     },

@@ -13,7 +13,7 @@ const About = () => {
       <div className="about-grid">
         <div className="about-text fade-up">
           <p>
-            I'm <strong>Aariyas Bevin</strong>, a third-year B.Tech student in <em>Artificial Intelligence & Data Science</em>, where code meets creativity and logic dances with art.
+            I'm <strong>Aariyas Bevin</strong>, a final-year B.Tech student in <em>Artificial Intelligence & Data Science</em>, where code meets creativity and logic dances with art.
           </p>
           <p>
             My world exists at the intersection of <strong>animated web development</strong> and <em>Japanese culture</em> — I believe interfaces should not just function, but breathe.
