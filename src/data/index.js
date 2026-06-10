@@ -8,7 +8,7 @@ export const personalInfo = {
   name:              'Aariyas Bevin',
   nameJP:            'アーリヤス・ベヴィン',
   degree:            'B.Tech AI & Data Science',
-  year:              '3rd Year',
+  year:              'Final Year',
   focus:             'Animated Web Development',
   passion:           'Japanese Culture · Anime',
   philosophy:        'ものづくり',

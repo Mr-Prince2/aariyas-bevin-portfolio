@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import './Hero.css';
 
+
 const Hero = () => {
   // Roles for the typing effect as defined in script.js[cite: 3]
   const roles = [
