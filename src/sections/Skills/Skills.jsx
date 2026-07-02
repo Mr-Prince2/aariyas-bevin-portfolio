@@ -52,6 +52,7 @@ const Skills = () => {
           </div>
         ))}
       </div>
+  
 
       {/* SKILL PROGRESS BARS SECTION */}
       <div className="skill-bar-section fade-up">

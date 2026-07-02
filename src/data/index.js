@@ -134,7 +134,7 @@ export const projects = [
   {
     id: 3,
     icon: '語',
-    category: 'Automated transit data collection software.',
+    category: 'Automated transit data collection software',
     title: 'Vazhi',
     desc: 'Vazhi is a mobile application developed for KSCSTE–NATPAC (Government of Kerala) designed to automatically capture real-time, large-scale citizen travel behavior data and transit metrics to facilitate smarter transport infrastructure planning.',
     stack: ['React Native', 'Expo', 'EAS', 'OpenStreetView'],
