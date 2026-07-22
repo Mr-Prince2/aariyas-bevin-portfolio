@@ -2,18 +2,10 @@ import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import './Contact.css';
 
-// ─── EmailJS config ────────────────────────────────────────────────────────
-// Replace these three values with your own from https://emailjs.com
-// Then add them to your .env file as shown below:
-//
-//   VITE_EMAILJS_SERVICE_ID=service_xxxxxxx
-//   VITE_EMAILJS_TEMPLATE_ID=template_xxxxxxx
-//   VITE_EMAILJS_PUBLIC_KEY=xxxxxxxxxxxxxxxxxxxx
-//
+
 const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-// ──────────────────────────────────────────────────────────────────────────
 
 const INITIAL_FORM = { from_name: '', from_email: '', message: '' };
 

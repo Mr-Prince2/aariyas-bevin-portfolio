@@ -2,10 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import './SectionHeader.css'
 
-/**
- * Reusable animated section heading.
- * Props: num (e.g. "01"), title (English), titleJP (Japanese)
- */
+
 function SectionHeader({ num, title, titleJP }) {
   return (
     <motion.div

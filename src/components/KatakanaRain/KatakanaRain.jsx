@@ -20,12 +20,10 @@ function KatakanaRain() {
 
     const draw = () => {
 
-      // Instead of clearing the screen, we paint a translucent black rectangle.
-      // This creates the "trail" effect behind falling characters.
-      ctx.fillStyle = 'rgba(10, 10, 15, 0.03)' // Match your --ink color
+      ctx.fillStyle = 'rgba(10, 10, 15, 0.03)'
       ctx.fillRect(0, 0, width, height)
 
-      ctx.fillStyle = '#c03a2b08' // Your --crimson color
+      ctx.fillStyle = '#c03a2b08' 
       ctx.font = `${fontSize}px "Space Mono"`
 
       for (let i = 0; i < drops.length; i++) {

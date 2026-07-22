@@ -1,15 +1,11 @@
 import React from 'react'
 import './Button.css'
 
-/**
- * Shared button / link component.
- * variant: 'primary' (crimson fill) | 'secondary' (ghost gold)
- * If href is provided, renders an <a> tag, otherwise a <button>.
- */
+
 function Button({ children, variant = 'primary', href, onClick, type = 'button', fullWidth = false }) {
   const className = [
     'btn',
-    'interactive', // <--- Add this to trigger the Gold Cursor state
+    'interactive', 
     `btn--${variant}`,
     fullWidth ? 'btn--full' : '',
   ].filter(Boolean).join(' ')

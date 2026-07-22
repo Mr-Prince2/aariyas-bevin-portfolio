@@ -3,7 +3,6 @@ import { marqueeItems } from '@data'
 import './Marquee.css'
 
 function Marquee() {
-  // Duplicate items so the loop is seamless
   const items = [...marqueeItems, ...marqueeItems]
 
   return (
