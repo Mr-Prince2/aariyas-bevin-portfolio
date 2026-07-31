@@ -1,0 +1,207 @@
+/* --- Desktop (Default) View --- */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(10, 10, 15, 0.95), transparent);
+  backdrop-filter: blur(2px);
+}
+
+
+/* This selector beats the browser's default -webkit-any-link */
+a.nav-logo {
+  /* Layout & Reset */
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none !important; 
+  
+  /* Color - Use a hex code first to test if variables are the issue */
+  color: #ffffff !important; 
+  
+  /* Font styling[cite: 1] */
+  font-family: 'Cinzel', serif !important;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  
+  /* Placement[cite: 4] */
+  margin: 0;
+  padding: 0;
+  transition: transform 0.3s ease;
+}
+
+/* Ensure the hover doesn't trigger the browser underline[cite: 4] */
+a.nav-logo:hover {
+  text-decoration: none !important;
+  color: var(--gold, #d4af37) !important;
+}
+
+/* Target the dot[cite: 1] */
+a.nav-logo span {
+  color: #c0392b !important; /* Crimson hex[cite: 4] */
+  margin: 0 0.2rem;
+  animation: pulse 2s infinite;
+}
+
+
+/* Hide hamburger on desktop */
+.hamburger {
+  display: none; 
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  
+  /* CRITICAL: This constrains the red line to the link's width */
+  position: relative; 
+  padding: 5px 0; /* Adds a small hit area for easier clicking */
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; /* Anchors it to the bottom of the link text[cite: 4] */
+  left: 0;
+  width: 0;
+  height: 2px; /* Slightly thicker for better visibility[cite: 1] */
+  background: var(--crimson);
+  transition: width 0.3s ease; /* Smooth expansion[cite: 4] */
+}
+
+.nav-links a:hover {
+  color: var(--white);
+}
+
+.nav-links a:hover::after {
+  width: 100%; /* Now stays within the bounds of the anchor tag[cite: 4] */
+}
+.nav-kanji {
+  font-family: 'Noto Serif JP', serif; font-size: 1.4rem;
+  color: rgba(192,57,43,0.4); letter-spacing: 0.1em;
+}
+
+/* --- Mobile View (Breakpoints) --- */
+@media (max-width: 900px) {
+  nav {
+    padding: 1.5rem 2rem;
+  }
+
+  /* Show hamburger only on mobile */
+  .hamburger {
+    display: block;
+    z-index: 101;
+  }
+
+  /* Transform horizontal links into a hidden side drawer[cite: 4] */
+  .nav-links {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 70%;
+    background-color: var(--ink);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%); /* Hidden by default */
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Class triggered by React state to slide menu in */
+  .nav-open {
+    transform: translateX(0%);
+  }
+
+  .nav-links li {
+    margin: 1.5rem 0;
+  }
+
+
+/* 2. DESKTOP NAV STYLES */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(10, 10, 15, 0.95), transparent);
+  backdrop-filter: blur(2px);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  flex: 2;
+  justify-content: center;
+}
+
+.nav-links a {
+  position: relative; /* Fixes the red line overflow issue */
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+/* 3. MOBILE MEDIA QUERY[cite: 4] */
+@media (max-width: 900px) {
+  nav {
+    padding: 1.5rem 2rem;
+  }
+
+  .nav-links {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 70%;
+    background-color: var(--ink);
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+  }
+
+  .nav-open {
+    transform: translateX(0%);
+  }
+
+  .nav-kanji {
+    display: none;
+  }
+}
+
+/* KANJI ACCENT (Right side)[cite: 1] */
+.nav-kanji {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.4rem;
+  color: rgba(192, 57, 43, 0.4); /* Faded crimson[cite: 4] */
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  user-select: none;
+}
+
+
+}

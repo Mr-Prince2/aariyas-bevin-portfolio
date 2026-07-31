@@ -1,0 +1,30 @@
+/* ====== DIVIDER ====== */
+.divider {
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0 4rem; 
+  margin: 4rem 0; /* Increased margin for better section breathing */
+  color: rgba(212, 175, 55, 0.3); 
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.9rem; 
+  letter-spacing: 0.5em;
+  white-space: nowrap;
+}
+
+.divider::before, 
+.divider::after {
+  content: ''; 
+  flex: 1; 
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.2), transparent);
+}
+
+@media (max-width: 768px) {
+  .divider {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    padding: 0 2rem;
+  }
+}

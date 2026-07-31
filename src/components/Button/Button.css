@@ -1,0 +1,51 @@
+.btn {
+  display: inline-block;
+  padding: 0.875rem 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s var(--ease-expo), box-shadow 0.35s;
+  white-space: nowrap;
+  cursor: none;
+}
+
+.btn--full { width: 100%; text-align: center; }
+
+/* ── Primary ── */
+.btn--primary {
+  background: var(--crimson);
+  color: var(--white);
+  border: 1px solid var(--crimson);
+}
+
+/* Shimmer sweep on hover */
+.btn--primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 65%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.55s;
+}
+.btn--primary:hover::before       { transform: translateX(100%); }
+.btn--primary:hover               { transform: translateY(-2px); box-shadow: 0 10px 32px var(--crimson-glow); }
+.btn--primary:active              { transform: translateY(0); }
+
+/* ── Secondary ── */
+.btn--secondary {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid rgba(212, 175, 55, 0.38);
+  transition: all 0.3s ease;
+}
+.btn--secondary:hover { color: var(--white); border-color: var(--gold); background: var(--gold); transform: translateY(-2px); }
+.btn--secondary:active { transform: translateY(0); }

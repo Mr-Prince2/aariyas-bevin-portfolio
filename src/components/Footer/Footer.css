@@ -1,0 +1,53 @@
+/* ====== FOOTER ====== */
+.main-footer {
+  padding: 3rem 4rem; 
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  position: relative; 
+  z-index: 2;
+  background: transparent;
+}
+
+.footer-copy { 
+  font-family: 'Space Mono', monospace; 
+  font-size: 0.7rem; 
+  color: var(--text-dim); 
+  letter-spacing: 0.05em;
+}
+
+.heart-accent {
+  color: var(--crimson);
+  margin: 0 0.2rem;
+  font-family: 'Noto Serif JP', serif;
+  opacity: 0.8;
+}
+
+.footer-kanji { 
+  font-family: 'Noto Serif JP', serif; 
+  color: rgba(192, 57, 43, 0.3); 
+  font-size: 1.1rem; 
+  letter-spacing: 0.3em;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect for a little "Easter egg" */
+.main-footer:hover .footer-kanji {
+  color: rgba(192, 57, 43, 0.6);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .main-footer {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  
+  .footer-kanji {
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+  }
+}

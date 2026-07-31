@@ -1,0 +1,19 @@
+:root {
+  /* Colors */
+  --ink: #0a0a0f;
+  --paper: #f5f0e8;
+  --crimson: #c0392b;
+  --gold: #d4af37;
+  --jade-light: #52b788;
+  --white: #ffffff;
+  --text-dim: #a0a0b0;
+
+  /* Fonts */
+  --font-jp: 'Noto Serif JP', serif;
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Zen Kaku Gothic New', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --base-font: 0.5rem;
+  --heading-font: 2rem;
+  --nav-font: 0.7rem;
+}

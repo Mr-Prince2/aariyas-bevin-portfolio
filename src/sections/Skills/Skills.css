@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Space+Mono:wght@400;700&display=swap');
+
+#skills {
+  --washi: #0B0B0B;
+  --washi-card: #131313;
+  --sumi: #F2EEE6;
+  --sumi-soft: rgba(242, 238, 230, 0.62);
+  --sumi-faint: rgba(242, 238, 230, 0.34);
+  --hairline: rgba(242, 238, 230, 0.12);
+  --ai: #F2EEE6;
+  --ai-soft: rgba(242, 238, 230, 0.08);
+  --shu: #B33A2E;
+  --moss: rgba(242, 238, 230, 0.5);
+
+  background: var(--washi);
+  color: var(--sumi);
+  padding: 7rem 6vw 8rem;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+#skills::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(rgba(242,238,230,0.04) 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
+}
+
+.skills-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* HEADER */
+.sk-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.75rem;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.sk-header.is-visible { opacity: 1; transform: translateY(0); }
+
+.sk-header-left { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.sk-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  color: var(--sumi-faint);
+  text-transform: uppercase;
+}
+
+.sk-title-row { display: flex; align-items: baseline; gap: 1.1rem; }
+
+.sk-title {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  letter-spacing: 0.02em;
+  color: var(--sumi);
+}
+
+.sk-title-jp {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.1rem;
+  color: var(--sumi-faint);
+  letter-spacing: 0.3em;
+}
+
+.sk-seal {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  background: var(--shu);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-4deg);
+  box-shadow: 0 2px 0 rgba(38,36,30,0.08);
+}
+.sk-seal span {
+  font-family: 'Shippori Mincho', serif;
+  color: #F2EEE6;
+  font-size: 1.6rem;
+  transform: rotate(4deg);
+}
+
+.sk-rule {
+  height: 1px;
+  background: var(--hairline);
+  margin-bottom: 4rem;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+.sk-rule.is-visible { transform: scaleX(1); }
+
+/* OLD SKILL CARDS */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 6rem;
+}
+
+.skill-card {
+  flex: 1 1 300px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 2.5rem;
+  position: relative; 
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(18px);
+}
+.skill-card.is-visible { opacity: 1; transform: translateY(0); }
+
+.skill-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(192, 57, 43, 0.3);
+  box-shadow: 0 15px 30px rgba(192, 57, 43, 0.1), inset 0 0 0 1px rgba(192, 57, 43, 0.05);
+}
+
+.skill-icon {
+  font-family: 'Noto Serif JP', serif; 
+  font-size: 2.5rem;
+  color: var(--white);
+  text-shadow: 0 0 15px rgba(192, 57, 43, 0.4);
+  margin-bottom: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  background: rgba(192, 57, 43, 0.1);
+  border-radius: 16px;
+  border: 1px solid rgba(192, 57, 43, 0.3);
+  transition: all 0.4s ease;
+}
+
+.skill-card:hover .skill-icon {
+  transform: scale(1.1) rotate(5deg);
+  background: rgba(192, 57, 43, 0.15);
+  box-shadow: 0 0 15px rgba(192, 57, 43, 0.2);
+}
+
+.skill-name {
+  font-family: 'Cinzel', serif; 
+  font-size: 1.4rem;
+  color: var(--sumi); 
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.skill-desc { 
+  font-size: 0.9rem; 
+  color: var(--sumi-soft);
+  line-height: 1.6; 
+  margin-bottom: 2rem; 
+  flex-grow: 1;
+}
+
+/* TAGS */
+.skill-tags { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 0.6rem; 
+  margin-top: auto;
+}
+
+.tag {
+  padding: 0.35rem 0.8rem; 
+  border-radius: 20px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  font-family: 'Space Mono', monospace; 
+  font-size: 0.7rem;
+  letter-spacing: 0.1em; 
+  color: rgba(212, 175, 55, 0.9);
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  background: rgba(212, 175, 55, 0.2);
+  transform: translateY(-2px);
+}
+
+.tag.crimson { 
+  background: rgba(192, 57, 43, 0.1);
+  border-color: rgba(192, 57, 43, 0.3); 
+  color: rgba(192, 57, 43, 0.9); 
+}
+.tag.crimson:hover { background: rgba(192, 57, 43, 0.2); }
+
+.tag.jade { 
+  background: rgba(82, 183, 136, 0.1);
+  border-color: rgba(82, 183, 136, 0.3); 
+  color: rgba(82, 183, 136, 0.9); 
+}
+.tag.jade:hover { background: rgba(82, 183, 136, 0.2); }
+
+.tag.mist { 
+  background: rgba(139, 143, 168, 0.1);
+  border-color: rgba(139, 143, 168, 0.3); 
+  color: rgba(139, 143, 168, 0.9); 
+}
+.tag.mist:hover { background: rgba(139, 143, 168, 0.2); }
+
+/* CATEGORIES */
+.sk-cat-section {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.sk-cat-section.is-visible { opacity: 1; transform: translateY(0); }
+
+.sk-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.sk-cat-row {
+  display: flex;
+  gap: 1.4rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.sk-cat-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1rem;
+  color: var(--sumi-faint);
+  flex-shrink: 0;
+  padding-top: 0.15rem;
+}
+
+.sk-cat-body { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.sk-cat-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+}
+
+.sk-cat-list {
+  font-size: 0.82rem;
+  color: var(--sumi-soft);
+  line-height: 1.6;
+}
+.sk-cat-list span:not(:last-child)::after {
+  content: '・';
+  color: var(--sumi-faint);
+  padding: 0 0.3em;
+}
+
+@media (max-width: 900px) {
+  #skills { padding: 5rem 6vw 6rem; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .sk-title-jp { display: none; }
+}
