@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
 import Cursor        from '@components/Cursor/Cursor'
-import KatakanaRain  from '@components/KatakanaRain/KatakanaRain'
+import CyberGrid     from '@components/CyberGrid/CyberGrid'
 import SakuraPetals  from '@components/SakuraPetals/SakuraPetals'
 import Navbar        from '@components/Navbar/Navbar'
 import Marquee       from '@components/Marquee/Marquee'
@@ -13,21 +13,46 @@ import Projects      from '@sections/Projects/Projects'
 import Divider       from '@sections/Divider/Divider'
 import Contact       from '@sections/Contact/Contact'
 import useFadeUp from './hooks/useFadeUp';
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './App.css'
 import './styles/globals.css'
+
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   useFadeUp();
   useEffect(() => {
     // Hide the default cursor site-wide
     document.body.style.cursor = 'none'
-    return () => { document.body.style.cursor = '' }
+
+    // Initialize Lenis for smooth, cinematic scrolling
+    const lenis = new Lenis({
+      duration: 1.5, // Slower scrolling duration
+      lerp: 0.05,    // Lower lerp for heavier momentum
+      smoothWheel: true,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    return () => { 
+      document.body.style.cursor = '' 
+      lenis.destroy();
+      gsap.ticker.remove(lenis.raf);
+    }
   }, [])
 
   return (
     <div className="app">
       {/* ── Background layers (z-index 0–1) ── */}
-      <KatakanaRain />
+      <CyberGrid />
       <SakuraPetals />
 
       {/* ── Custom cursor (z-index 9998–9999) ── */}

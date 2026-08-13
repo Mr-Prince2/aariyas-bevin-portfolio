@@ -1,0 +1,27 @@
+.scroll-bg-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0; /* Keep it behind page content */
+  pointer-events: none;
+  background-color: var(--ink); /* Base background color */
+}
+
+.bg-panel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  will-change: opacity; /* Optimize for performance */
+}
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  /* Adds a base darkening filter so it blends well and text remains readable */
+  background: linear-gradient(to top, rgba(10, 10, 15, 0.4) 0%, rgba(10, 10, 15, 0.1) 100%); 
+  z-index: 1;
+}

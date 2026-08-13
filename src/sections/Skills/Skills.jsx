@@ -1,78 +1,94 @@
 import React, { useEffect, useRef } from 'react';
-import { skills, skillBars } from '../../data'; 
+import { skills, skillCategories } from '../../data';
 import './Skills.css';
+
+const kanjiNumeral = (i) => ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'][i] || String(i + 1);
 
 const Skills = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const barObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const bars = sectionRef.current.querySelectorAll('.skill-bar-fill');
-          bars.forEach(bar => {
-            bar.style.width = bar.dataset.pct + '%';
-          });
-        }
-      });
-    }, { threshold: 0.3 });
+    const els = sectionRef.current?.querySelectorAll('[data-reveal]');
+    if (!els?.length) return;
 
-    if (sectionRef.current) {
-      barObserver.observe(sectionRef.current);
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      els.forEach((el) => el.classList.add('is-visible'));
+      return;
     }
 
-    return () => {
-      if (sectionRef.current) barObserver.unobserve(sectionRef.current);
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: '50px 0px 50px 0px' }
+    );
+
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   return (
     <section id="skills" ref={sectionRef}>
-      <div className="section-header fade-up">
-        <span className="section-num">02 —</span>
-        <h2 className="section-title">Skills</h2>
-        <span className="section-title-jp">技能</span>
-      </div>
-
-      {/* SKILL CARDS GRID */}
-      <div className="skills-grid">
-        {skills?.map((card, i) => (
-          <div key={i} className="skill-card fade-up">
-            <span className="skill-icon">{card.icon}</span>
-            <div className="skill-name">{card.name}</div>
-            <div className="skill-desc">{card.desc}</div>
-            <div className="skill-tags">
-              {/* Maps directly to the structured label and type schema in index.js */}
-              {card.tags?.map((tag, tagIndex) => (
-                <span key={tagIndex} className={`tag ${tag.type || ''}`}>
-                  {tag.label}
-                </span>
-              ))}
+      <div className="skills-inner">
+        <div className="sk-header" data-reveal>
+          <div className="sk-header-left">
+            <span className="sk-eyebrow">02 // CYBER MATRIX</span>
+            <div className="sk-title-row">
+              <h2 className="sk-title">Skills</h2>
+              <span className="hud-tag">
+                <span className="hud-tag-dot" />
+                MOD.ACTIVE
+              </span>
+              <span className="sk-title-jp">技能</span>
             </div>
           </div>
-        ))}
-      </div>
-  
+          <div className="sk-seal" aria-hidden="true"><span>技</span></div>
+        </div>
 
-      {/* SKILL PROGRESS BARS SECTION */}
-      <div className="skill-bar-section fade-up">
-        <div className="red-line" style={{ margin: '3rem 0 2rem' }}></div>
-        <div className="skill-bar-grid" id="skill-bars">
-          {skillBars?.map((bar, i) => (
-            <div key={i} className="skill-bar-item">
-              <div className="skill-bar-header">
-                <span className="skill-bar-name">{bar.name}</span>
-                <span className="skill-bar-pct">{bar.pct}%</span>
+        <div className="sk-rule" data-reveal />
+
+        <div className="skills-grid">
+          {skills?.map((card, i) => (
+            <div key={i} className="skill-card cyber-card" data-reveal>
+              <div className="skill-card-telemetry">
+                <span>[ SK-0{i + 1} ]</span>
               </div>
-              <div className="skill-bar-track">
-                <div 
-                  className="skill-bar-fill" 
-                  data-pct={bar.pct} 
-                  style={{ width: '0%' }} 
-                />
+              <span className="skill-icon" aria-hidden="true">{card.icon}</span>
+              <div className="skill-name">{card.name}</div>
+              <div className="skill-desc">{card.desc}</div>
+              <div className="skill-tags">
+                {card.tags?.map((tag, tagIndex) => (
+                  <span key={tagIndex} className={`tag ${tag.type || ''}`}>
+                    {tag.label}
+                  </span>
+                ))}
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="sk-cat-section" data-reveal>
+          <div className="sk-cat-grid">
+            {skillCategories.map((cat, i) => (
+              <div className="sk-cat-row" key={i}>
+                <span className="sk-cat-num">{kanjiNumeral(i)}</span>
+                <div className="sk-cat-body">
+                  <h3 className="sk-cat-title">{cat.title}</h3>
+                  <div className="sk-cat-list">
+                    {cat.skills.map((s, si) => (
+                      <span key={si}>{s}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -97,13 +97,27 @@ export const skills = [
   },
 ]
 
-export const skillBars = [
-  { name: 'HTML / CSS',    pct: 92 },
-  { name: 'JavaScript',    pct: 85 },
-  { name: 'React.js',      pct: 80 },
-  { name: 'Python / ML',   pct: 70 },
-  { name: 'FastAPI',       pct: 65 },
-  { name: 'Web Animation', pct: 88 },
+export const skillCategories = [
+  {
+    title: 'Frontend & Mobile',
+    skills: ['HTML', 'CSS', 'JS', 'REACT', 'REACT-NATIVE', 'EXPO', 'TAILWIND']
+  },
+  {
+    title: 'Animation & 3D',
+    skills: ['GSAP', 'THREEJS', 'FRAMER MOTION']
+  },
+  {
+    title: 'Backend & BaaS',
+    skills: ['NODEJS', 'EXPRESSJS', 'FASTAPI', 'FIREBASE', 'SUPABASE', 'VERCEL']
+  },
+  {
+    title: 'Data Science & ML',
+    skills: ['PYTHON', 'TENSORFLOW', 'SCIKIT-LEARN', 'PANDAS']
+  },
+  {
+    title: 'Research & Design',
+    skills: ['HCI', 'EXPLAINABLE AI', 'FIGMA']
+  }
 ]
 
 export const projects = [

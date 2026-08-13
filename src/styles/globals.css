@@ -36,7 +36,7 @@ body {
   color: var(--white);
 }
 
-/* Custom Scrollbar to remove default bulky bar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -46,5 +46,140 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--crimson), var(--gold));
+  border-radius: 3px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FUTURISTIC CYBER-JAPANESE HUD UTILITIES & ANIMATIONS
+   ───────────────────────────────────────────────────────────── */
+
+/* Reusable Cyber Card with HUD brackets */
+.cyber-card {
+  position: relative;
+  background: rgba(15, 15, 22, 0.7);
+  border: 1px solid rgba(192, 57, 43, 0.2);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.cyber-card:hover {
+  border-color: rgba(192, 57, 43, 0.6);
+  box-shadow: 0 0 25px rgba(192, 57, 43, 0.15), inset 0 0 15px rgba(212, 175, 55, 0.05);
+}
+
+/* Cyber Corner Brackets */
+.cyber-card::before,
+.cyber-card::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--gold);
+  border-style: solid;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+/* Top-Left & Bottom-Right Brackets */
+.cyber-card::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+
+.cyber-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+.cyber-card:hover::before,
+.cyber-card:hover::after {
+  opacity: 1;
+  width: 14px;
+  height: 14px;
+  border-color: var(--crimson);
+  box-shadow: 0 0 8px var(--crimson);
+}
+
+/* HUD Badge */
+.hud-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+}
+
+.hud-tag-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
   background: var(--crimson);
+  box-shadow: 0 0 6px var(--crimson);
+  animation: pulseDot 1.5s infinite alternate;
+}
+
+@keyframes pulseDot {
+  0% { opacity: 0.4; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.3); }
+}
+
+/* Sci-fi Laser Line Divider */
+.cyber-laser-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--crimson), var(--gold), transparent);
+  margin: 1.5rem 0;
+  position: relative;
+  opacity: 0.6;
+}
+
+.cyber-laser-divider::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 5px;
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
+}
+
+/* Cyber Notch Button Styling */
+.btn-primary, .btn-secondary {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+  position: relative;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::after {
+  left: 100%;
 }

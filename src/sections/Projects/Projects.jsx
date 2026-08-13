@@ -6,17 +6,20 @@ const Projects = () => {
   return (
     <section id="projects">
       <div className="section-header fade-up">
-        <span className="section-num">03 —</span>
+        <span className="section-num">03 //</span>
         <h2 className="section-title">Projects</h2>
+        <span className="hud-tag">
+          <span className="hud-tag-dot" />
+          SYS.REPOS // SELECTED
+        </span>
         <span className="section-title-jp">作品</span>
       </div>
 
       <div className="projects-grid">
-        {/* Safe optional chaining (?.) helps ensure an unintended typo doesn't crash the build */}
         {projects?.map((project, index) => (
           <div 
             key={project.id} 
-            className={`project-card ${project.featured ? 'project-featured' : ''} fade-up`}
+            className={`project-card cyber-card ${project.featured ? 'project-featured' : ''} fade-up`}
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             {/* Dynamic Card Background Gradient pulled directly from data */}
@@ -25,9 +28,10 @@ const Projects = () => {
                 className="project-thumb-bg" 
                 style={{ background: project.gradient }}
               />
+              <div className="project-thumb-scanlines" />
               <div className="project-thumb-icon">{project.icon}</div>
               <div className="project-thumb-num">
-                {project.id < 10 ? `0${project.id}` : project.id} {project.featured && '/ Featured'}
+                {project.id < 10 ? `0${project.id}` : project.id} {project.featured && '/ FEATURED_SYSTEM'}
               </div>
             </div>
 
@@ -43,11 +47,10 @@ const Projects = () => {
               </div>
 
               <div className="project-links">
-                {/* Safe GitHub Redirection: Hides button if link is '#' or empty */}
                 {project.github && project.github !== '#' && (
                   <a 
                     href={project.github} 
-                    className="project-link interactive" 
+                    className="project-link btn-primary interactive" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
@@ -58,11 +61,10 @@ const Projects = () => {
                   </a>
                 )}
 
-                {/* Safe Live Demo Redirection: Hides button if link is '#' or empty */}
                 {project.demo && project.demo !== '#' && (
                   <a 
                     href={project.demo} 
-                    className="project-link interactive" 
+                    className="project-link btn-secondary interactive" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
