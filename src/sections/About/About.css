@@ -59,27 +59,21 @@
 
 /* The Profile Card */
 .about-card {
-  background: rgba(255,255,255,0.02); 
-  border: 1px solid rgba(255,255,255,0.06);
   padding: 2.5rem; 
   position: relative;
-  backdrop-filter: blur(10px);
 }
 
-.about-card::before {
-  content: ''; 
-  position: absolute; 
-  top: 0; 
-  left: 0;
-  width: 2px; 
-  height: 100%; 
-  background: linear-gradient(to bottom, var(--crimson), transparent);
+.about-card-badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
 }
 
 .about-card-header {
   font-family: 'Noto Serif JP', serif; 
   font-size: 3.5rem;
-  color: rgba(192,57,43,0.15); 
+  color: rgba(192,57,43,0.25); 
+  text-shadow: 0 0 15px rgba(192,57,43,0.3);
   line-height: 1;
   margin-bottom: 1rem; 
   display: block;

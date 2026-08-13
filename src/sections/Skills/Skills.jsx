@@ -26,7 +26,7 @@ const Skills = () => {
           }
         });
       },
-      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+      { threshold: 0.05, rootMargin: '50px 0px 50px 0px' }
     );
 
     els.forEach((el) => observer.observe(el));
@@ -38,9 +38,13 @@ const Skills = () => {
       <div className="skills-inner">
         <div className="sk-header" data-reveal>
           <div className="sk-header-left">
-            <span className="sk-eyebrow">02</span>
+            <span className="sk-eyebrow">02 // CYBER MATRIX</span>
             <div className="sk-title-row">
               <h2 className="sk-title">Skills</h2>
+              <span className="hud-tag">
+                <span className="hud-tag-dot" />
+                MOD.ACTIVE
+              </span>
               <span className="sk-title-jp">技能</span>
             </div>
           </div>
@@ -51,7 +55,10 @@ const Skills = () => {
 
         <div className="skills-grid">
           {skills?.map((card, i) => (
-            <div key={i} className="skill-card" data-reveal>
+            <div key={i} className="skill-card cyber-card" data-reveal>
+              <div className="skill-card-telemetry">
+                <span>[ SK-0{i + 1} ]</span>
+              </div>
               <span className="skill-icon" aria-hidden="true">{card.icon}</span>
               <div className="skill-name">{card.name}</div>
               <div className="skill-desc">{card.desc}</div>

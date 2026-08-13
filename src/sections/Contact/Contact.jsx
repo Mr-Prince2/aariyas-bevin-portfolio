@@ -81,8 +81,12 @@ const Contact = () => {
     <>
       <section id="contact">
         <div className="section-header fade-up">
-          <span className="section-num">04 —</span>
+          <span className="section-num">04 //</span>
           <h2 className="section-title">Contact</h2>
+          <span className="hud-tag">
+            <span className="hud-tag-dot" />
+            TRANSMISSION // READY
+          </span>
           <span className="section-title-jp">連絡</span>
         </div>
 
@@ -123,7 +127,7 @@ const Contact = () => {
           {/* ── Right: form ── */}
           <form
             ref={formRef}
-            className="contact-form-side fade-up fade-up-delay-2"
+            className="contact-form-side cyber-card fade-up fade-up-delay-2"
             onSubmit={handleSubmit}
             noValidate
           >

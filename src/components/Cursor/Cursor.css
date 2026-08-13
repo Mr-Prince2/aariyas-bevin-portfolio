@@ -17,41 +17,80 @@
   pointer-events: none;
 }
 
+/* Inner Cyber Core Dot */
 .cursor__dot {
-  width: 10px;
-  height: 10px;
-  background: #c0392b; /* Using hardcode first to ensure it's not a variable issue */
+  width: 8px;
+  height: 8px;
+  background: var(--crimson, #c0392b);
   border-radius: 50%;
-  margin-left: -5px;
-  margin-top: -5px;
-  transition: width 0.3s, height 0.3s, background 0.3s;
+  margin-left: -4px;
+  margin-top: -4px;
+  box-shadow: 0 0 10px var(--crimson, #c0392b);
+  transition: width 0.3s, height 0.3s, background 0.3s, box-shadow 0.3s;
 }
 
+/* Sci-Fi Reticle HUD Ring */
 .cursor__ring {
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid #c0392b;
+  width: 40px;
+  height: 40px;
+  border: 1px dashed rgba(192, 57, 43, 0.7);
   border-radius: 50%;
-  margin-left: -18px;
-  margin-top: -18px;
-  opacity: 0.8;
+  margin-left: -20px;
+  margin-top: -20px;
+  opacity: 0.85;
   transition: all 0.3s ease-out;
+  animation: reticleSpin 12s linear infinite;
+}
+
+.cursor__ring::before,
+.cursor__ring::after {
+  content: '';
+  position: absolute;
+  background: var(--crimson, #c0392b);
+}
+
+/* Crosshair Reticle Ticks */
+.cursor__ring::before {
+  top: 50%;
+  left: -4px;
+  width: 48px;
+  height: 1px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, var(--crimson), transparent 40%, transparent 60%, var(--crimson));
+}
+
+.cursor__ring::after {
+  left: 50%;
+  top: -4px;
+  height: 48px;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, var(--crimson), transparent 40%, transparent 60%, var(--crimson));
+}
+
+@keyframes reticleSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* Hover States */
 .cursor--hover {
-  width: 14px !important;
-  height: 14px !important;
-  background: #d4af37 !important; /* Gold */
-  box-shadow: 0 0 10px #d4af37;
+  width: 12px !important;
+  height: 12px !important;
+  margin-left: -6px !important;
+  margin-top: -6px !important;
+  background: var(--gold, #d4af37) !important;
+  box-shadow: 0 0 16px var(--gold, #d4af37);
 }
 
 .ring--hover {
-  width: 50px !important;
-  height: 50px !important;
-  margin-left: -25px !important;
-  margin-top: -25px !important;
-  border-color: #d4af37 !important;
+  width: 56px !important;
+  height: 56px !important;
+  margin-left: -28px !important;
+  margin-top: -28px !important;
+  border-color: var(--gold, #d4af37) !important;
+  border-style: solid !important;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
   opacity: 1;
 }
 

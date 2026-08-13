@@ -62,7 +62,11 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="hero-eyebrow"
           >
-            Welcome to my world
+            <span className="hud-tag">
+              <span className="hud-tag-dot" />
+              SYS.ONLINE // NEO-TOKYO CORE
+            </span>
+            <span>Welcome to my world</span>
           </motion.div>
 
           <motion.h1 
@@ -122,6 +126,15 @@ const Hero = () => {
         </div>
 
         <div className="hero-right">
+          {/* Cyber Enso Arc Ring behind kanji */}
+          <div className="cyber-enso-ring" aria-hidden="true">
+            <svg viewBox="0 0 300 300" className="enso-svg">
+              <circle cx="150" cy="150" r="130" fill="none" stroke="rgba(192,57,43,0.2)" strokeWidth="2" />
+              <circle cx="150" cy="150" r="110" fill="none" stroke="rgba(212,175,55,0.25)" strokeWidth="1" strokeDasharray="8 6" />
+              <circle cx="150" cy="150" r="90" fill="none" stroke="rgba(192,57,43,0.3)" strokeWidth="1.5" strokeDasharray="140 30" />
+            </svg>
+          </div>
+
           <motion.div 
             style={{ y: 'calc(-50%)' }} 
             className="hero-kanji-stack"
@@ -130,7 +143,9 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        <div className="scroll-hint">Scroll</div>
+        <div className="scroll-hint">
+          <span>Scroll</span>
+        </div>
       </div>
     </section>
   );

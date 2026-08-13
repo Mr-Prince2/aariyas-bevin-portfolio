@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
 import Cursor        from '@components/Cursor/Cursor'
-/* KatakanaRain removed for performance/smoothness */
+import CyberGrid     from '@components/CyberGrid/CyberGrid'
 import SakuraPetals  from '@components/SakuraPetals/SakuraPetals'
 import Navbar        from '@components/Navbar/Navbar'
 import Marquee       from '@components/Marquee/Marquee'
@@ -52,6 +52,7 @@ function App() {
   return (
     <div className="app">
       {/* ── Background layers (z-index 0–1) ── */}
+      <CyberGrid />
       <SakuraPetals />
 
       {/* ── Custom cursor (z-index 9998–9999) ── */}

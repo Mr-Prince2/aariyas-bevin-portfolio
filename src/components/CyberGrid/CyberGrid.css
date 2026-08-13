@@ -1,0 +1,112 @@
+.cyber-grid-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Perspective Cyber Grid Floor */
+.cyber-grid-floor {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  top: 40%;
+  left: -50%;
+  background-image: 
+    linear-gradient(to right, rgba(192, 57, 43, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: perspective(600px) rotateX(75deg);
+  animation: gridMove 20s linear infinite;
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 40%, transparent 100%);
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 1000px;
+  }
+}
+
+/* Animated Sci-Fi Scanline */
+.cyber-scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(10, 10, 15, 0.3) 50%,
+    rgba(10, 10, 15, 0.3)
+  );
+  background-size: 100% 4px;
+  opacity: 0.25;
+}
+
+/* Telemetry Sidebars */
+.cyber-telemetry-left,
+.cyber-telemetry-right {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  color: var(--text-dim);
+  opacity: 0.4;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.cyber-telemetry-left {
+  left: 1.5rem;
+}
+
+.cyber-telemetry-right {
+  right: 1.5rem;
+}
+
+.telemetry-tag {
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+}
+
+.telemetry-kanji {
+  writing-mode: vertical-rl;
+  font-family: var(--font-jp);
+  color: var(--gold);
+  font-size: 0.75rem;
+}
+
+.telemetry-bar {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--crimson), transparent);
+  animation: telemetryGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes telemetryGlow {
+  0% { opacity: 0.3; height: 40px; }
+  100% { opacity: 1; height: 70px; }
+}
+
+@media (max-width: 1024px) {
+  .cyber-telemetry-left,
+  .cyber-telemetry-right {
+    display: none;
+  }
+}

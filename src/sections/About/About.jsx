@@ -5,8 +5,12 @@ const About = () => {
   return (
     <section id="about">
       <div className="section-header fade-up">
-        <span className="section-num">01 —</span>
+        <span className="section-num">01 //</span>
         <h2 className="section-title">About Me</h2>
+        <span className="hud-tag">
+          <span className="hud-tag-dot" />
+          SYS.CARD // 01
+        </span>
         <span className="section-title-jp">私について</span>
       </div>
 
@@ -19,14 +23,17 @@ const About = () => {
             My world exists at the intersection of <strong>animated web development</strong> and <em>Japanese culture</em> — I believe interfaces should not just function, but breathe.
           </p>
           
-          <div className="red-accent-line"></div>
+          <div className="cyber-laser-divider"></div>
           
           <p>
             Deeply influenced by the philosophy of <em>monozukuri</em> (ものづくり), I approach every project as a craft. From pixel-perfect UI to AI-powered systems, I build with intention.
           </p>
         </div>
 
-        <div className="about-card fade-up">
+        <div className="about-card cyber-card fade-up">
+          <div className="about-card-badge">
+            <span className="hud-tag">ID: AB-88 // NEO-TOKYO</span>
+          </div>
           <span className="about-card-header">自己</span>
           <div className="info-row">
             <span className="info-label">Name</span>
@@ -42,7 +49,7 @@ const About = () => {
           </div>
           <div className="info-row">
             <span className="info-label">Philosophy</span>
-            <span className="info-value accent">ものづくり</span>
+            <span className="info-value accent">ものづくり (Monozukuri)</span>
           </div>
         </div>
       </div>
