@@ -83,10 +83,6 @@ const Contact = () => {
         <div className="section-header fade-up">
           <span className="section-num">04 //</span>
           <h2 className="section-title">Contact</h2>
-          <span className="hud-tag">
-            <span className="hud-tag-dot" />
-            TRANSMISSION // READY
-          </span>
           <span className="section-title-jp">連絡</span>
         </div>
 

@@ -8,10 +8,6 @@ const Projects = () => {
       <div className="section-header fade-up">
         <span className="section-num">03 //</span>
         <h2 className="section-title">Projects</h2>
-        <span className="hud-tag">
-          <span className="hud-tag-dot" />
-          SYS.REPOS // SELECTED
-        </span>
         <span className="section-title-jp">作品</span>
       </div>
 
@@ -31,7 +27,7 @@ const Projects = () => {
               <div className="project-thumb-scanlines" />
               <div className="project-thumb-icon">{project.icon}</div>
               <div className="project-thumb-num">
-                {project.id < 10 ? `0${project.id}` : project.id} {project.featured && '/ FEATURED_SYSTEM'}
+                {project.id < 10 ? `0${project.id}` : project.id} {project.featured && '/ FEATURED'}
               </div>
             </div>
 

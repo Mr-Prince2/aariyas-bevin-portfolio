@@ -41,10 +41,6 @@ const Skills = () => {
             <span className="sk-eyebrow">02 // CYBER MATRIX</span>
             <div className="sk-title-row">
               <h2 className="sk-title">Skills</h2>
-              <span className="hud-tag">
-                <span className="hud-tag-dot" />
-                MOD.ACTIVE
-              </span>
               <span className="sk-title-jp">技能</span>
             </div>
           </div>

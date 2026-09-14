@@ -7,10 +7,6 @@ const About = () => {
       <div className="section-header fade-up">
         <span className="section-num">01 //</span>
         <h2 className="section-title">About Me</h2>
-        <span className="hud-tag">
-          <span className="hud-tag-dot" />
-          SYS.CARD // 01
-        </span>
         <span className="section-title-jp">私について</span>
       </div>
 
@@ -31,9 +27,6 @@ const About = () => {
         </div>
 
         <div className="about-card cyber-card fade-up">
-          <div className="about-card-badge">
-            <span className="hud-tag">ID: AB-88 // NEO-TOKYO</span>
-          </div>
           <span className="about-card-header">自己</span>
           <div className="info-row">
             <span className="info-label">Name</span>
