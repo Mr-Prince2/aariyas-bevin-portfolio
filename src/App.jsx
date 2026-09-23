@@ -4,6 +4,7 @@ import Cursor        from '@components/Cursor/Cursor'
 import CyberGrid     from '@components/CyberGrid/CyberGrid'
 import SakuraPetals  from '@components/SakuraPetals/SakuraPetals'
 import Navbar        from '@components/Navbar/Navbar'
+import ScrollProgress from '@components/ScrollProgress/ScrollProgress'
 import Marquee       from '@components/Marquee/Marquee'
 import Footer        from '@components/Footer/Footer'
 import Hero          from '@sections/Hero/Hero'
@@ -23,34 +24,46 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   useFadeUp();
+
   useEffect(() => {
     // Hide the default cursor site-wide
-    document.body.style.cursor = 'none'
+    document.body.style.cursor = 'none';
 
     // Initialize Lenis for smooth, cinematic scrolling
     const lenis = new Lenis({
-      duration: 1.5, // Slower scrolling duration
-      lerp: 0.05,    // Lower lerp for heavier momentum
+      duration: 1.2,
+      lerp: 0.08,
       smoothWheel: true,
+      touchMultiplier: 1.8,
     });
 
     lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const tickerCallback = (time) => {
       lenis.raf(time * 1000);
-    });
+    };
 
+    gsap.ticker.add(tickerCallback);
     gsap.ticker.lagSmoothing(0);
 
+    // Refresh triggers once fonts & layouts settle
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 400);
+
     return () => { 
-      document.body.style.cursor = '' 
+      document.body.style.cursor = '';
+      clearTimeout(timer);
       lenis.destroy();
-      gsap.ticker.remove(lenis.raf);
-    }
-  }, [])
+      gsap.ticker.remove(tickerCallback);
+    };
+  }, []);
 
   return (
     <div className="app">
+      {/* ── Cyber Scroll Progress Bar (z-index 1001) ── */}
+      <ScrollProgress />
+
       {/* ── Background layers (z-index 0–1) ── */}
       <CyberGrid />
       <SakuraPetals />
@@ -79,17 +92,17 @@ function App() {
         position="bottom-right"
         toastOptions={{
           style: {
-            background:  'var(--ash)',
-            color:       'var(--white)',
+            background:  'var(--ash, #121218)',
+            color:       'var(--white, #ffffff)',
             border:      '1px solid rgba(192,57,43,0.4)',
-            fontFamily:  'var(--font-mono)',
+            fontFamily:  'var(--font-mono, monospace)',
             fontSize:    '0.72rem',
             letterSpacing: '0.05em',
           },
         }}
       />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

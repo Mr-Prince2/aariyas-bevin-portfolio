@@ -1,21 +1,112 @@
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projects } from '../../data'; 
 import './Projects.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Projects = () => {
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const gridRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Header reveal
+      gsap.from(headerRef.current, {
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: 'power3.out',
+      });
+
+      // 2. Staggered project cards reveal
+      const cards = gridRef.current?.querySelectorAll('.project-card');
+      if (cards && cards.length > 0) {
+        gsap.from(cards, {
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 0,
+          y: 60,
+          scale: 0.95,
+          stagger: 0.15,
+          duration: 0.85,
+          ease: 'power2.out',
+        });
+
+        // 3D Card tilt effect on hover
+        cards.forEach((card) => {
+          const handleMouseMove = (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            gsap.to(card, {
+              rotationY: x * 0.04,
+              rotationX: -y * 0.04,
+              transformPerspective: 900,
+              duration: 0.3,
+              ease: 'power1.out',
+            });
+            const thumbBg = card.querySelector('.project-thumb-bg');
+            if (thumbBg) {
+              gsap.to(thumbBg, {
+                x: -x * 0.05,
+                y: -y * 0.05,
+                duration: 0.4,
+                ease: 'power1.out',
+              });
+            }
+          };
+
+          const handleMouseLeave = () => {
+            gsap.to(card, {
+              rotationY: 0,
+              rotationX: 0,
+              duration: 0.5,
+              ease: 'power2.out',
+            });
+            const thumbBg = card.querySelector('.project-thumb-bg');
+            if (thumbBg) {
+              gsap.to(thumbBg, {
+                x: 0,
+                y: 0,
+                duration: 0.5,
+                ease: 'power2.out',
+              });
+            }
+          };
+
+          card.addEventListener('mousemove', handleMouseMove);
+          card.addEventListener('mouseleave', handleMouseLeave);
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="projects">
-      <div className="section-header fade-up">
+    <section id="projects" ref={sectionRef}>
+      <div className="section-header" ref={headerRef}>
         <span className="section-num">03 //</span>
         <h2 className="section-title">Projects</h2>
         <span className="section-title-jp">作品</span>
       </div>
 
-      <div className="projects-grid">
-        {projects?.map((project, index) => (
+      <div className="projects-grid" ref={gridRef}>
+        {projects?.map((project) => (
           <div 
             key={project.id} 
-            className={`project-card cyber-card ${project.featured ? 'project-featured' : ''} fade-up`}
-            style={{ animationDelay: `${index * 0.1}s` }}
+            className={`project-card cyber-card ${project.featured ? 'project-featured' : ''}`}
           >
             {/* Dynamic Card Background Gradient pulled directly from data */}
             <div className="project-thumb">

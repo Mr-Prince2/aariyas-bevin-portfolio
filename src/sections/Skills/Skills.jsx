@@ -1,42 +1,142 @@
 import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { skills, skillCategories } from '../../data';
 import './Skills.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const kanjiNumeral = (i) => ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'][i] || String(i + 1);
 
 const Skills = () => {
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const ruleRef = useRef(null);
+  const gridRef = useRef(null);
+  const catRef = useRef(null);
 
   useEffect(() => {
-    const els = sectionRef.current?.querySelectorAll('[data-reveal]');
-    if (!els?.length) return;
+    const ctx = gsap.context(() => {
+      // 1. Header reveal
+      gsap.from(headerRef.current, {
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: 'power3.out',
+      });
 
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) {
-      els.forEach((el) => el.classList.add('is-visible'));
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
+      // 2. Japanese Divider Rule expand
+      if (ruleRef.current) {
+        gsap.fromTo(
+          ruleRef.current,
+          { scaleX: 0 },
+          {
+            scrollTrigger: {
+              trigger: ruleRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+            scaleX: 1,
+            duration: 1.1,
+            ease: 'power2.inOut',
           }
-        });
-      },
-      { threshold: 0.05, rootMargin: '50px 0px 50px 0px' }
-    );
+        );
+      }
 
-    els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+      // 3. Staggered Skill Cards
+      const cards = gridRef.current?.querySelectorAll('.skill-card');
+      if (cards && cards.length > 0) {
+        gsap.from(cards, {
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 0,
+          y: 50,
+          scale: 0.94,
+          stagger: 0.12,
+          duration: 0.8,
+          ease: 'power2.out',
+        });
+
+        // 3D Tilt interaction for each skill card
+        cards.forEach((card) => {
+          const handleMouseMove = (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            gsap.to(card, {
+              rotationY: x * 0.05,
+              rotationX: -y * 0.05,
+              transformPerspective: 800,
+              duration: 0.3,
+              ease: 'power1.out',
+            });
+            const icon = card.querySelector('.skill-icon');
+            if (icon) {
+              gsap.to(icon, {
+                x: x * 0.08,
+                y: y * 0.08,
+                duration: 0.3,
+                ease: 'power1.out',
+              });
+            }
+          };
+
+          const handleMouseLeave = () => {
+            gsap.to(card, {
+              rotationY: 0,
+              rotationX: 0,
+              duration: 0.5,
+              ease: 'power2.out',
+            });
+            const icon = card.querySelector('.skill-icon');
+            if (icon) {
+              gsap.to(icon, {
+                x: 0,
+                y: 0,
+                duration: 0.5,
+                ease: 'power2.out',
+              });
+            }
+          };
+
+          card.addEventListener('mousemove', handleMouseMove);
+          card.addEventListener('mouseleave', handleMouseLeave);
+        });
+      }
+
+      // 4. Staggered Skill Category Rows
+      const rows = catRef.current?.querySelectorAll('.sk-cat-row');
+      if (rows && rows.length > 0) {
+        gsap.from(rows, {
+          scrollTrigger: {
+            trigger: catRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 0,
+          x: -30,
+          stagger: 0.1,
+          duration: 0.7,
+          ease: 'power2.out',
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <section id="skills" ref={sectionRef}>
       <div className="skills-inner">
-        <div className="sk-header" data-reveal>
+        <div className="sk-header" ref={headerRef}>
           <div className="sk-header-left">
             <span className="sk-eyebrow">02 // CYBER MATRIX</span>
             <div className="sk-title-row">
@@ -47,11 +147,11 @@ const Skills = () => {
           <div className="sk-seal" aria-hidden="true"><span>技</span></div>
         </div>
 
-        <div className="sk-rule" data-reveal />
+        <div className="sk-rule" ref={ruleRef} />
 
-        <div className="skills-grid">
+        <div className="skills-grid" ref={gridRef}>
           {skills?.map((card, i) => (
-            <div key={i} className="skill-card cyber-card" data-reveal>
+            <div key={i} className="skill-card cyber-card">
               <div className="skill-card-telemetry">
                 <span>[ SK-0{i + 1} ]</span>
               </div>
@@ -69,7 +169,7 @@ const Skills = () => {
           ))}
         </div>
 
-        <div className="sk-cat-section" data-reveal>
+        <div className="sk-cat-section" ref={catRef}>
           <div className="sk-cat-grid">
             {skillCategories.map((cat, i) => (
               <div className="sk-cat-row" key={i}>

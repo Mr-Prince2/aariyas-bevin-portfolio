@@ -1,0 +1,57 @@
+.scroll-progress-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 1001;
+  pointer-events: none;
+}
+
+.scroll-progress-bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--crimson) 0%, #e67e22 50%, var(--gold) 100%);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.08s linear;
+  box-shadow: 0 0 10px rgba(192, 57, 43, 0.7);
+}
+
+.scroll-progress-glow {
+  position: absolute;
+  top: -2px;
+  width: 10px;
+  height: 7px;
+  background: var(--gold);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 12px var(--gold), 0 0 20px var(--crimson);
+  transition: left 0.08s linear;
+  opacity: 0.9;
+}
+
+.scroll-progress-indicator {
+  position: fixed;
+  top: 4.8rem;
+  right: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: rgba(212, 175, 55, 0.6);
+  pointer-events: none;
+  z-index: 99;
+  background: rgba(10, 10, 15, 0.6);
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 900px) {
+  .scroll-progress-indicator {
+    display: none;
+  }
+}

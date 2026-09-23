@@ -5,12 +5,13 @@
   justify-content: center;
   gap: 1.5rem;
   padding: 0 4rem; 
-  margin: 4rem 0; /* Increased margin for better section breathing */
-  color: rgba(212, 175, 55, 0.3); 
+  margin: 5rem 0;
+  color: rgba(212, 175, 55, 0.5); 
   font-family: 'Noto Serif JP', serif;
-  font-size: 0.9rem; 
-  letter-spacing: 0.5em;
+  font-size: 0.95rem; 
+  letter-spacing: 0.4em;
   white-space: nowrap;
+  will-change: transform, opacity;
 }
 
 .divider::before, 
@@ -18,13 +19,25 @@
   content: ''; 
   flex: 1; 
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, var(--crimson), var(--gold), transparent);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.divider-text {
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.divider:hover .divider-text {
+  color: var(--gold);
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
 }
 
 @media (max-width: 768px) {
   .divider {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     letter-spacing: 0.2em;
     padding: 0 2rem;
+    margin: 3.5rem 0;
   }
 }

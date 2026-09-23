@@ -1,7 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Contact.css';
 
+gsap.registerPlugin(ScrollTrigger);
 
 const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -19,9 +22,59 @@ const STATUS = {
 
 const Contact = () => {
   const formRef                 = useRef(null);
+  const sectionRef              = useRef(null);
+  const headerRef               = useRef(null);
+  const leftRef                 = useRef(null);
+  const formCardRef             = useRef(null);
   const [formData, setFormData] = useState(INITIAL_FORM);
   const [status,   setStatus]   = useState(STATUS.IDLE);
   const [errMsg,   setErrMsg]   = useState('');
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Header reveal
+      gsap.from(headerRef.current, {
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: 'power3.out',
+      });
+
+      // 2. Left side info
+      gsap.from(leftRef.current, {
+        scrollTrigger: {
+          trigger: leftRef.current,
+          start: 'top 82%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 0,
+        x: -40,
+        duration: 0.85,
+        ease: 'power2.out',
+      });
+
+      // 3. Right side form card
+      gsap.from(formCardRef.current, {
+        scrollTrigger: {
+          trigger: formCardRef.current,
+          start: 'top 82%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 0,
+        x: 40,
+        scale: 0.96,
+        duration: 0.9,
+        ease: 'power3.out',
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -79,8 +132,8 @@ const Contact = () => {
 
   return (
     <>
-      <section id="contact">
-        <div className="section-header fade-up">
+      <section id="contact" ref={sectionRef}>
+        <div className="section-header" ref={headerRef}>
           <span className="section-num">04 //</span>
           <h2 className="section-title">Contact</h2>
           <span className="section-title-jp">連絡</span>
@@ -89,7 +142,7 @@ const Contact = () => {
         <div className="contact-inner">
 
           {/* ── Left: copy + links ── */}
-          <div className="contact-left fade-up">
+          <div className="contact-left" ref={leftRef}>
             <h3 className="contact-headline">
               Let&rsquo;s build something <em>beautiful</em> together.
             </h3>
@@ -122,8 +175,11 @@ const Contact = () => {
 
           {/* ── Right: form ── */}
           <form
-            ref={formRef}
-            className="contact-form-side cyber-card fade-up fade-up-delay-2"
+            ref={(el) => {
+              formRef.current = el;
+              formCardRef.current = el;
+            }}
+            className="contact-form-side cyber-card"
             onSubmit={handleSubmit}
             noValidate
           >

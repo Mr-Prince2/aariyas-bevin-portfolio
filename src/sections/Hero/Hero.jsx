@@ -10,7 +10,9 @@ gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
   const containerRef = useRef(null);
   const contentRef = useRef(null);
-  // Roles for the typing effect
+  const kanjiRef = useRef(null);
+  const hintRef = useRef(null);
+
   const roles = [
     'Animated Web Developer',
     'AI Engineer',
@@ -19,36 +21,57 @@ const Hero = () => {
   ];
 
   useEffect(() => {
-    let tl;
-
-    const initGSAP = () => {
-      if (tl) tl.kill();
-      
-      tl = gsap.timeline({
+    const ctx = gsap.context(() => {
+      // Timeline for parallax and fade-out as user scrolls past Hero
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'top top',
-          endTrigger: '#about',
           end: 'bottom top',
-          scrub: 1.5,
-        }
+          scrub: 1.2,
+        },
       });
 
-      // Fade out the text content as we scroll down
-      tl.to(contentRef.current, {
-        opacity: 0,
-        y: -150,
-        duration: 0.4,
-        ease: 'power2.inOut'
-      }, 0);
-    };
+      // Text content lifts and fades
+      tl.to(
+        contentRef.current,
+        {
+          opacity: 0,
+          y: -120,
+          ease: 'none',
+        },
+        0
+      );
 
-    initGSAP();
-    
-    return () => {
-      if (tl) tl.kill();
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
+      // Kanji stack moves slower (parallax depth effect)
+      if (kanjiRef.current) {
+        tl.to(
+          kanjiRef.current,
+          {
+            y: 180,
+            opacity: 0.05,
+            ease: 'none',
+          },
+          0
+        );
+      }
+
+      // Scroll hint fades out promptly on scroll start
+      if (hintRef.current) {
+        tl.to(
+          hintRef.current,
+          {
+            opacity: 0,
+            y: 40,
+            duration: 0.2,
+            ease: 'power1.out',
+          },
+          0
+        );
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -57,8 +80,7 @@ const Hero = () => {
         <div className="hero-content">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="hero-eyebrow"
           >
@@ -67,8 +89,7 @@ const Hero = () => {
 
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
             className="hero-name"
           >
@@ -77,8 +98,7 @@ const Hero = () => {
 
           <motion.span 
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="hero-name-jp"
           >
@@ -87,8 +107,7 @@ const Hero = () => {
 
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="hero-role"
           >
@@ -111,8 +130,7 @@ const Hero = () => {
 
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="hero-cta"
           >
@@ -122,15 +140,14 @@ const Hero = () => {
         </div>
 
         <div className="hero-right">
-          <motion.div 
-            style={{ y: 'calc(-50%)' }} 
-            className="hero-kanji-stack"
-          >
-            創造<br />美<br />技術
-          </motion.div>
+          <div ref={kanjiRef} className="hero-kanji-wrapper">
+            <div className="hero-kanji-stack">
+              創造<br />美<br />技術
+            </div>
+          </div>
         </div>
 
-        <div className="scroll-hint">
+        <div className="scroll-hint" ref={hintRef}>
           <span>Scroll</span>
         </div>
       </div>

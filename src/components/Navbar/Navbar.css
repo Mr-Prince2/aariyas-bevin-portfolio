@@ -8,52 +8,79 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to bottom, rgba(10, 10, 15, 0.95), transparent);
-  backdrop-filter: blur(2px);
+  background: linear-gradient(to bottom, rgba(10, 10, 15, 0.9), transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-bottom: 1px solid transparent;
 }
 
+/* Scrolled state for richer cyber depth */
+nav.nav-scrolled {
+  padding: 1rem 4rem;
+  background: rgba(10, 10, 15, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(192, 57, 43, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(192, 57, 43, 0.08);
+}
 
-/* This selector beats the browser's default -webkit-any-link */
+/* Logo */
 a.nav-logo {
-  /* Layout & Reset */
   display: flex !important;
   align-items: center !important;
   text-decoration: none !important; 
-  
-  /* Color - Use a hex code first to test if variables are the issue */
   color: #ffffff !important; 
-  
-  /* Font styling[cite: 1] */
   font-family: 'Cinzel', serif !important;
   font-size: 1.2rem;
   font-weight: 900;
   letter-spacing: 0.3em;
-  
-  /* Placement[cite: 4] */
   margin: 0;
   padding: 0;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-/* Ensure the hover doesn't trigger the browser underline[cite: 4] */
 a.nav-logo:hover {
   text-decoration: none !important;
   color: var(--gold, #d4af37) !important;
+  transform: scale(1.05);
 }
 
-/* Target the dot[cite: 1] */
 a.nav-logo span {
-  color: #c0392b !important; /* Crimson hex[cite: 4] */
+  color: var(--crimson, #c0392b) !important;
   margin: 0 0.2rem;
-  animation: pulse 2s infinite;
+  animation: pulseDot 1.8s infinite alternate;
 }
 
-
-/* Hide hamburger on desktop */
+/* Hamburger for mobile */
 .hamburger {
-  display: none; 
+  display: none;
+  cursor: pointer;
 }
 
+.hamburger div {
+  width: 25px;
+  height: 2px;
+  background-color: var(--white);
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.toggle .line1 {
+  transform: rotate(-45deg) translate(-5px, 5px);
+  background-color: var(--crimson);
+}
+
+.hamburger.toggle .line2 {
+  opacity: 0;
+}
+
+.hamburger.toggle .line3 {
+  transform: rotate(45deg) translate(-5px, -5px);
+  background-color: var(--crimson);
+}
+
+/* Nav links */
 .nav-links {
   display: flex;
   gap: 2.5rem;
@@ -63,145 +90,93 @@ a.nav-logo span {
 .nav-links a {
   color: var(--text-dim);
   text-decoration: none;
-  font-size: 0.8rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  transition: color 0.3s;
-  
-  /* CRITICAL: This constrains the red line to the link's width */
+  transition: color 0.3s ease;
   position: relative; 
-  padding: 5px 0; /* Adds a small hit area for easier clicking */
+  padding: 6px 0;
 }
 
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: 0; /* Anchors it to the bottom of the link text[cite: 4] */
+  bottom: 0;
   left: 0;
   width: 0;
-  height: 2px; /* Slightly thicker for better visibility[cite: 1] */
-  background: var(--crimson);
-  transition: width 0.3s ease; /* Smooth expansion[cite: 4] */
+  height: 2px;
+  background: linear-gradient(90deg, var(--crimson), var(--gold));
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 8px var(--crimson);
 }
 
 .nav-links a:hover {
   color: var(--white);
 }
 
-.nav-links a:hover::after {
-  width: 100%; /* Now stays within the bounds of the anchor tag[cite: 4] */
-}
-.nav-kanji {
-  font-family: 'Noto Serif JP', serif; font-size: 1.4rem;
-  color: rgba(192,57,43,0.4); letter-spacing: 0.1em;
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
 }
 
-/* --- Mobile View (Breakpoints) --- */
+.nav-links a.active {
+  color: var(--gold);
+}
+
+/* Japanese Kanji Seal on the right */
+.nav-kanji {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.4rem;
+  color: rgba(192, 57, 43, 0.45);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  user-select: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+nav.nav-scrolled .nav-kanji {
+  color: rgba(212, 175, 55, 0.6);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+/* --- Mobile View --- */
 @media (max-width: 900px) {
-  nav {
-    padding: 1.5rem 2rem;
+  nav, nav.nav-scrolled {
+    padding: 1.2rem 2rem;
   }
 
-  /* Show hamburger only on mobile */
   .hamburger {
     display: block;
-    z-index: 101;
+    z-index: 102;
   }
 
-  /* Transform horizontal links into a hidden side drawer[cite: 4] */
   .nav-links {
     position: fixed;
     right: 0;
     top: 0;
     height: 100vh;
-    width: 70%;
-    background-color: var(--ink);
+    width: 75%;
+    max-width: 320px;
+    background: rgba(10, 10, 15, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transform: translateX(100%); /* Hidden by default */
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-  }
-
-  /* Class triggered by React state to slide menu in */
-  .nav-open {
-    transform: translateX(0%);
-  }
-
-  .nav-links li {
-    margin: 1.5rem 0;
-  }
-
-
-/* 2. DESKTOP NAV STYLES */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-  padding: 1.5rem 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(to bottom, rgba(10, 10, 15, 0.95), transparent);
-  backdrop-filter: blur(2px);
-}
-
-.nav-links {
-  display: flex;
-  gap: 2.5rem;
-  list-style: none;
-  flex: 2;
-  justify-content: center;
-}
-
-.nav-links a {
-  position: relative; /* Fixes the red line overflow issue */
-  color: var(--text-dim);
-  text-decoration: none;
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  transition: color 0.3s;
-}
-
-/* 3. MOBILE MEDIA QUERY[cite: 4] */
-@media (max-width: 900px) {
-  nav {
-    padding: 1.5rem 2rem;
-  }
-
-  .nav-links {
-    position: fixed;
-    right: 0;
-    top: 0;
-    height: 100vh;
-    width: 70%;
-    background-color: var(--ink);
-    flex-direction: column;
+    gap: 2rem;
     transform: translateX(100%);
-    transition: transform 0.5s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
+    border-left: 1px solid rgba(192, 57, 43, 0.3);
+    z-index: 101;
   }
 
-  .nav-open {
+  .nav-links.nav-open {
     transform: translateX(0%);
   }
 
   .nav-kanji {
     display: none;
   }
-}
-
-/* KANJI ACCENT (Right side)[cite: 1] */
-.nav-kanji {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 1.4rem;
-  color: rgba(192, 57, 43, 0.4); /* Faded crimson[cite: 4] */
-  letter-spacing: 0.1em;
-  pointer-events: none;
-  user-select: none;
-}
-
-
 }

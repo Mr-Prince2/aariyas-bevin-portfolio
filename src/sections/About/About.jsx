@@ -1,17 +1,111 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './About.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const About = () => {
+  const sectionRef = useRef(null);
+  const cardRef = useRef(null);
+  const textRef = useRef(null);
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Header reveal
+      gsap.from(headerRef.current, {
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 0,
+        y: 40,
+        duration: 0.9,
+        ease: 'power3.out',
+      });
+
+      // 2. Text paragraphs staggered cascade
+      const paragraphs = textRef.current?.querySelectorAll('p, .cyber-laser-divider');
+      if (paragraphs && paragraphs.length > 0) {
+        gsap.from(paragraphs, {
+          scrollTrigger: {
+            trigger: textRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 0,
+          y: 35,
+          stagger: 0.18,
+          duration: 0.8,
+          ease: 'power2.out',
+        });
+      }
+
+      // 3. Cyber Card 3D entrance
+      if (cardRef.current) {
+        gsap.from(cardRef.current, {
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: 'top 82%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 0,
+          scale: 0.92,
+          y: 50,
+          rotationY: 12,
+          duration: 1,
+          ease: 'power3.out',
+        });
+
+        // 4. Subtle 3D Card mouse tilt interaction
+        const card = cardRef.current;
+        const handleMouseMove = (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          gsap.to(card, {
+            rotationY: x * 0.04,
+            rotationX: -y * 0.04,
+            transformPerspective: 900,
+            duration: 0.4,
+            ease: 'power1.out',
+          });
+        };
+
+        const handleMouseLeave = () => {
+          gsap.to(card, {
+            rotationY: 0,
+            rotationX: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+          });
+        };
+
+        card.addEventListener('mousemove', handleMouseMove);
+        card.addEventListener('mouseleave', handleMouseLeave);
+
+        return () => {
+          card.removeEventListener('mousemove', handleMouseMove);
+          card.removeEventListener('mouseleave', handleMouseLeave);
+        };
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="about">
-      <div className="section-header fade-up">
+    <section id="about" ref={sectionRef}>
+      <div className="section-header" ref={headerRef}>
         <span className="section-num">01 //</span>
         <h2 className="section-title">About Me</h2>
         <span className="section-title-jp">私について</span>
       </div>
 
       <div className="about-grid">
-        <div className="about-text fade-up">
+        <div className="about-text" ref={textRef}>
           <p>
             I'm <strong>Aariyas Bevin</strong>, a final-year B.Tech student in <em>Artificial Intelligence & Data Science</em>, where code meets creativity and logic dances with art.
           </p>
@@ -26,7 +120,8 @@ const About = () => {
           </p>
         </div>
 
-        <div className="about-card cyber-card fade-up">
+        <div className="about-card cyber-card" ref={cardRef}>
+          <div className="cyber-card-scanline" />
           <span className="about-card-header">自己</span>
           <div className="info-row">
             <span className="info-label">Name</span>
