@@ -135,10 +135,12 @@ const Hero = () => {
             className="hero-cta"
           >
             <a href="#projects" className="btn-primary">
+              <span className="btn-hanko" aria-hidden="true">書</span>
               <span className="btn-text">View Projects</span>
               <span className="btn-glyph" aria-hidden="true">→</span>
             </a>
             <a href="#contact" className="btn-secondary">
+              <span className="btn-hanko" aria-hidden="true">道</span>
               <span className="btn-text">Say Hello</span>
               <span className="btn-glyph" aria-hidden="true">✦</span>
             </a>

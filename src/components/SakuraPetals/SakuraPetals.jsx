@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useMemo } from 'react';
 import './SakuraPetals.css';
 
 // Authentic notched cherry blossom petal vector paths
@@ -14,72 +14,38 @@ const PETAL_PATHS = [
 const ANIMATION_VARIANTS = [
   'sakura-fall-drift-right',
   'sakura-fall-drift-left',
-  'sakura-fall-sway',
+  'sakura-fall-sway-wide',
+  'sakura-fall-sway-gentle',
 ];
 
+const TOTAL_PETALS = 28;
+
 const SakuraPetals = () => {
-  useEffect(() => {
-    const container = document.getElementById('sakura-container');
-    if (!container) return;
-
-    let activeCount = 0;
-    const MAX_PETALS = 32;
-
-    const spawnPetal = (initialY = null) => {
-      if (!container || activeCount >= MAX_PETALS) return;
-
-      const petal = document.createElement('div');
-      petal.className = 'sakura-petal';
-
-      // Pick random petal geometry, gradient, and animation
-      const pathIndex = Math.floor(Math.random() * PETAL_PATHS.length);
-      const gradIndex = (Math.floor(Math.random() * 3)) + 1;
-      const animName = ANIMATION_VARIANTS[Math.floor(Math.random() * ANIMATION_VARIANTS.length)];
-
-      const width = 13 + Math.random() * 9; // 13px - 22px
+  // Precompute static petal parameters so there are zero runtime DOM allocations or pauses
+  const petals = useMemo(() => {
+    return Array.from({ length: TOTAL_PETALS }, (_, i) => {
+      const width = 13 + ((i * 3.7) % 10); // 13px - 23px
       const height = width * 1.2;
-      const startLeft = Math.random() * 100;
-      const duration = 8 + Math.random() * 8; // 8s - 16s gentle fall
-      const delay = initialY !== null ? 0 : Math.random() * 1.5;
+      const left = ((i * 100) / TOTAL_PETALS + (i % 3) * 2.5) % 100;
+      const duration = 10 + ((i * 2.1) % 8); // 10s - 18s smooth continuous fall
+      // Negative delays stagger the continuous loops across the entire height of the viewport on initial load
+      const delay = -((i * 1.45) % 18); 
+      const animName = ANIMATION_VARIANTS[i % ANIMATION_VARIANTS.length];
+      const pathIndex = i % PETAL_PATHS.length;
+      const gradIndex = (i % 3) + 1;
 
-      petal.style.width = `${width}px`;
-      petal.style.height = `${height}px`;
-      petal.style.left = `${startLeft}vw`;
-      petal.style.top = initialY !== null ? `${initialY}vh` : '-30px';
-      petal.style.animationName = animName;
-      petal.style.animationDuration = `${duration}s`;
-      petal.style.animationDelay = `${delay}s`;
-
-      petal.innerHTML = `
-        <svg viewBox="0 0 30 36" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-          <path d="${PETAL_PATHS[pathIndex]}" fill="url(#sakura-grad-${gradIndex})" />
-        </svg>
-      `;
-
-      container.appendChild(petal);
-      activeCount++;
-
-      setTimeout(() => {
-        if (petal.parentNode) {
-          petal.remove();
-          activeCount--;
-        }
-      }, (duration + delay + 1) * 1000);
-    };
-
-    // Pre-populate a few ambient petals across the screen on load
-    for (let i = 0; i < 7; i++) {
-      spawnPetal(Math.random() * 85);
-    }
-
-    const interval = setInterval(() => spawnPetal(), 750);
-
-    return () => {
-      clearInterval(interval);
-      // Clean up any remaining petal nodes on unmount
-      const existing = container.querySelectorAll('.sakura-petal');
-      existing.forEach((p) => p.remove());
-    };
+      return {
+        id: i,
+        width,
+        height,
+        left,
+        duration,
+        delay,
+        animName,
+        path: PETAL_PATHS[pathIndex],
+        gradIndex,
+      };
+    });
   }, []);
 
   return (
@@ -87,7 +53,6 @@ const SakuraPetals = () => {
       {/* Shared SVG gradients for soft cherry blossom color tones */}
       <svg width="0" height="0" className="sakura-defs-svg">
         <defs>
-          {/* 1. Tender blush with crimson base */}
           <linearGradient id="sakura-grad-1" x1="0%" y1="100%" x2="0%" y2="0%">
             <stop offset="0%" stopColor="#d95364" stopOpacity="0.88" />
             <stop offset="35%" stopColor="#fca3b5" stopOpacity="0.82" />
@@ -95,7 +60,6 @@ const SakuraPetals = () => {
             <stop offset="100%" stopColor="#fff5f7" stopOpacity="0.94" />
           </linearGradient>
 
-          {/* 2. Soft pastel rose */}
           <linearGradient id="sakura-grad-2" x1="20%" y1="100%" x2="80%" y2="0%">
             <stop offset="0%" stopColor="#c84656" stopOpacity="0.9" />
             <stop offset="45%" stopColor="#f79bb0" stopOpacity="0.85" />
@@ -103,7 +67,6 @@ const SakuraPetals = () => {
             <stop offset="100%" stopColor="#ffffff" stopOpacity="0.95" />
           </linearGradient>
 
-          {/* 3. Whisper pink with warm undertone */}
           <linearGradient id="sakura-grad-3" x1="0%" y1="90%" x2="100%" y2="10%">
             <stop offset="0%" stopColor="#df6475" stopOpacity="0.85" />
             <stop offset="50%" stopColor="#ffb9c7" stopOpacity="0.82" />
@@ -111,6 +74,26 @@ const SakuraPetals = () => {
           </linearGradient>
         </defs>
       </svg>
+
+      {/* Persistent continuous-loop petals: zero pauses, uninterrupted natural drift */}
+      {petals.map((p) => (
+        <div
+          key={p.id}
+          className="sakura-petal"
+          style={{
+            width: `${p.width}px`,
+            height: `${p.height}px`,
+            left: `${p.left}vw`,
+            animationName: p.animName,
+            animationDuration: `${p.duration}s`,
+            animationDelay: `${p.delay}s`,
+          }}
+        >
+          <svg viewBox="0 0 30 36" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+            <path d={p.path} fill={`url(#sakura-grad-${p.gradIndex})`} />
+          </svg>
+        </div>
+      ))}
     </div>
   );
 };
