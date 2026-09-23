@@ -157,191 +157,82 @@ body {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   CALLIGRAPHY / SHODŌ (書道) ARTISAN BUTTONS
-   Inspired by traditional Japanese ink brush strokes (Sumi-e)
-   and vermilion seal stamps (Hanko).
-   Zero gold/yellow — pure Cinnabar, Sumi Ink, and Washi Paper.
+   RETRO-BRUTALISM BUTTON SYSTEM (THEME-BLENDED)
+   Blends the Japanese Sumi ink, cinnabar crimson, and washi paper
+   palette with sharp retro-brutalist geometry, 0px border-radius,
+   hard offset slab shadows, and mechanical press physics.
    ───────────────────────────────────────────────────────────── */
 .btn-primary, .btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  padding: 0.92rem 2.4rem;
-  font-family: 'Noto Serif JP', var(--font-display), 'Cinzel', serif;
+  gap: 0.65rem;
+  padding: 0.85rem 2.2rem;
+  font-family: 'Space Mono', monospace;
   font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
   position: relative;
-  overflow: hidden;
   cursor: pointer;
   white-space: nowrap;
+  border-radius: 0;
+  outline: none;
 
-  /* Calligraphic Stroke Contour:
-     A firm brush entry anchor (tome) on left,
-     and a sweeping tapered brush release (harai) on right */
-  border-radius: 3px 22px 2px 10px;
-
-  /* Organic ink edge border */
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
-  border-right: 1px solid rgba(255, 255, 255, 0.18);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  border-left: 3.5px solid #c0392b;
-
-  /* Ink wash bleed shadow */
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(0, 0, 0, 0.3);
-
-  /* Easing curves crafted for brush stroke momentum */
+  /* Snappy mechanical keycap press interaction */
   transition: 
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.35s ease,
-    color 0.3s ease,
-    letter-spacing 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.12s cubic-bezier(0, 0, 0.2, 1), 
+    box-shadow 0.12s cubic-bezier(0, 0, 0.2, 1), 
+    background-color 0.15s ease, 
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
-/* Ensure text and glyphs sit above the kinetic ink wash */
-.btn-primary > *, .btn-secondary > * {
-  position: relative;
-  z-index: 2;
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
-}
-
-/* The Wet Ink Brush Stroke (Sweeps across from left to right like an authentic brush) */
-.btn-primary::before, .btn-secondary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Calligraphic Brush Stroke Underline (Paints swiftly along bottom on hover) */
+/* Clear decorative overlay sweeps */
+.btn-primary::before, .btn-secondary::before,
 .btn-primary::after, .btn-secondary::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 6%;
-  width: 88%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.9) 70%, transparent 100%);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.08s;
-  z-index: 3;
-  pointer-events: none;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+  content: none !important;
 }
 
-/* Hover: Trigger ink sweep, bristle flourish, and brush lift */
-.btn-primary:hover, .btn-secondary:hover {
-  letter-spacing: 0.22em;
-  transform: translateY(-2px);
-}
-
-.btn-primary:hover::before, .btn-secondary:hover::before {
-  transform: scaleX(1);
-}
-
-.btn-primary:hover::after, .btn-secondary:hover::after {
-  transform: scaleX(1);
-}
-
-/* Active Press: Firm calligraphic stamp press */
-.btn-primary:active, .btn-secondary:active {
-  transform: translateY(1px) scale(0.98);
-  transition: transform 0.08s ease, box-shadow 0.08s ease;
-}
-
-/* ── Primary: Shuboku / Vermilion Cinnabar Ink (朱墨) ── */
+/* ── Retro-Brutalist Primary (Theme Crimson Body + Hard Ink Slab) ── */
 .btn-primary {
-  background: linear-gradient(135deg, #9e2216 0%, #6d140c 100%);
+  background-color: var(--crimson, #c0392b);
   color: #ffffff !important;
-  border-left-color: #e74c3c;
-  box-shadow: 0 4px 16px rgba(158, 34, 22, 0.45), 0 2px 6px rgba(0, 0, 0, 0.5);
-}
-
-.btn-primary::before {
-  background: linear-gradient(90deg, #b8281d 0%, #d63031 60%, #85180f 100%);
+  border: 2px solid #e74c3c;
+  box-shadow: 4px 4px 0px #000000;
 }
 
 .btn-primary:hover {
+  background-color: #d63031;
+  border-color: #ff6b6b;
   color: #ffffff !important;
-  border-left-color: #ff6b6b;
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 6px 24px rgba(192, 57, 43, 0.6), 0 0 14px rgba(231, 76, 60, 0.35);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000;
 }
 
 .btn-primary:active {
-  box-shadow: 0 2px 8px rgba(158, 34, 22, 0.7);
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px #000000;
 }
 
-/* ── Secondary: Kuro-Sumi / Deep Charcoal Sumi Ink Wash (黒墨) ── */
+/* ── Retro-Brutalist Secondary (Theme Ink Body + Hard Crimson Slab) ── */
 .btn-secondary {
-  background: linear-gradient(135deg, #161622 0%, #0a0a10 100%);
-  color: #f5f0e8 !important;
-  border-left-color: rgba(231, 76, 60, 0.85);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7), inset 0 0 8px rgba(0, 0, 0, 0.5);
-}
-
-.btn-secondary::before {
-  background: linear-gradient(90deg, #242436 0%, #2f2f45 50%, #1a1a28 100%);
+  background-color: #12121a;
+  color: var(--paper, #f5f0e8) !important;
+  border: 2px solid var(--crimson, #c0392b);
+  box-shadow: 4px 4px 0px var(--crimson, #c0392b);
 }
 
 .btn-secondary:hover {
+  background-color: #1a1a26;
+  border-color: #e74c3c;
   color: #ffffff !important;
-  border-left-color: #ff6b6b;
-  border-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.8), 0 0 12px rgba(192, 57, 43, 0.3);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #e74c3c;
 }
 
 .btn-secondary:active {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-}
-
-/* Calligraphic Vermilion Hanko Seal Stamp (印鑑 / 朱肉) */
-.btn-hanko {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  font-family: 'Noto Serif JP', serif;
-  font-size: 0.7rem;
-  font-weight: 700;
-  line-height: 1;
-  color: #ffffff;
-  background: #b8281d;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 2px;
-  flex-shrink: 0;
-  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.4);
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-}
-
-.btn-primary:hover .btn-hanko,
-.btn-secondary:hover .btn-hanko {
-  transform: scale(1.15) rotate(-3deg);
-  box-shadow: 0 0 8px rgba(231, 76, 60, 0.7);
-}
-
-/* Micro-glyph / Arrow Animation */
-.btn-glyph {
-  display: inline-block;
-  font-size: 0.95em;
-  line-height: 1;
-  transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-}
-
-.btn-primary:hover .btn-glyph,
-.btn-secondary:hover .btn-glyph,
-.btn-primary:hover svg,
-.btn-secondary:hover svg {
-  transform: translateX(5px) scale(1.15) !important;
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px var(--crimson, #c0392b);
 }

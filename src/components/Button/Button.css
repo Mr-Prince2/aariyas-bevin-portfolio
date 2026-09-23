@@ -1,134 +1,91 @@
+/* ─────────────────────────────────────────────────────────────
+   RETRO-BRUTALISM BUTTON COMPONENT (.btn)
+   Theme-blended Japanese Sumi ink, cinnabar crimson, and washi paper.
+   Sharp 0px geometry, hard-edge offset slab shadows, and tactile mechanical snap.
+   ───────────────────────────────────────────────────────────── */
+
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  padding: 0.92rem 2.4rem;
-  font-family: 'Noto Serif JP', var(--font-display), 'Cinzel', serif;
+  gap: 0.65rem;
+  padding: 0.85rem 2.2rem;
+  font-family: 'Space Mono', monospace;
   font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
   position: relative;
-  overflow: hidden;
   cursor: pointer;
   white-space: nowrap;
+  border-radius: 0;
+  outline: none;
 
-  border-radius: 3px 22px 2px 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
-  border-right: 1px solid rgba(255, 255, 255, 0.18);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  border-left: 3.5px solid #c0392b;
-
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(0, 0, 0, 0.3);
-
+  /* Snappy mechanical keycap press interaction */
   transition: 
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.35s ease,
-    color 0.3s ease,
-    letter-spacing 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.12s cubic-bezier(0, 0, 0.2, 1),
+    box-shadow 0.12s cubic-bezier(0, 0, 0.2, 1),
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
-.btn--full { width: 100%; text-align: center; }
+.btn--full { 
+  width: 100%; 
+  text-align: center; 
+}
 
 .btn > * {
   position: relative;
   z-index: 2;
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
 }
 
-/* The Wet Ink Brush Stroke */
-.btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Calligraphic Brush Stroke Underline */
+/* Remove decorative calligraphy / brush pseudo-elements */
+.btn::before,
 .btn::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 6%;
-  width: 88%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.9) 70%, transparent 100%);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.08s;
-  z-index: 3;
-  pointer-events: none;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+  content: none !important;
+  display: none !important;
 }
 
-.btn:hover {
-  letter-spacing: 0.22em;
-  transform: translateY(-2px);
-}
-
-.btn:hover::before {
-  transform: scaleX(1);
-}
-
-.btn:hover::after {
-  transform: scaleX(1);
-}
-
-.btn:active {
-  transform: translateY(1px) scale(0.98);
-  transition: transform 0.08s ease, box-shadow 0.08s ease;
-}
-
-/* ── Primary ── */
+/* ── Primary Retro-Brutalist (Theme Crimson Body + Hard Ink Slab) ── */
 .btn--primary {
-  background: linear-gradient(135deg, #9e2216 0%, #6d140c 100%);
-  color: #ffffff;
-  border-left-color: #e74c3c;
-  box-shadow: 0 4px 16px rgba(158, 34, 22, 0.45), 0 2px 6px rgba(0, 0, 0, 0.5);
-}
-
-.btn--primary::before {
-  background: linear-gradient(90deg, #b8281d 0%, #d63031 60%, #85180f 100%);
+  background-color: var(--crimson, #c0392b);
+  color: #ffffff !important;
+  border: 2px solid #e74c3c;
+  box-shadow: 4px 4px 0px #000000;
 }
 
 .btn--primary:hover {
-  color: #ffffff;
-  border-left-color: #ff6b6b;
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 6px 24px rgba(192, 57, 43, 0.6), 0 0 14px rgba(231, 76, 60, 0.35);
+  background-color: #d63031;
+  border-color: #ff6b6b;
+  color: #ffffff !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000;
 }
 
 .btn--primary:active {
-  box-shadow: 0 2px 8px rgba(158, 34, 22, 0.7);
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px #000000;
 }
 
-/* ── Secondary ── */
+/* ── Secondary Retro-Brutalist (Theme Ink Body + Hard Crimson Slab) ── */
 .btn--secondary {
-  background: linear-gradient(135deg, #161622 0%, #0a0a10 100%);
-  color: #f5f0e8;
-  border-left-color: rgba(231, 76, 60, 0.85);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7), inset 0 0 8px rgba(0, 0, 0, 0.5);
-}
-
-.btn--secondary::before {
-  background: linear-gradient(90deg, #242436 0%, #2f2f45 50%, #1a1a28 100%);
+  background-color: #12121a;
+  color: var(--paper, #f5f0e8) !important;
+  border: 2px solid var(--crimson, #c0392b);
+  box-shadow: 4px 4px 0px var(--crimson, #c0392b);
 }
 
 .btn--secondary:hover {
-  color: #ffffff;
-  border-left-color: #ff6b6b;
-  border-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.8), 0 0 12px rgba(192, 57, 43, 0.3);
+  background-color: #1a1a26;
+  border-color: #e74c3c;
+  color: #ffffff !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #e74c3c;
 }
 
 .btn--secondary:active {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px var(--crimson, #c0392b);
 }
