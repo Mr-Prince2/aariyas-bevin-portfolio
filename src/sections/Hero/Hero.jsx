@@ -134,8 +134,14 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="hero-cta"
           >
-            <a href="#projects" className="btn-primary">View Projects</a>
-            <a href="#contact" className="btn-secondary">Say Hello</a>
+            <a href="#projects" className="btn-primary">
+              <span className="btn-text">View Projects</span>
+              <span className="btn-glyph" aria-hidden="true">→</span>
+            </a>
+            <a href="#contact" className="btn-secondary">
+              <span className="btn-text">Say Hello</span>
+              <span className="btn-glyph" aria-hidden="true">✦</span>
+            </a>
           </motion.div>
         </div>
 
