@@ -43,51 +43,7 @@ const Projects = () => {
           ease: 'power2.out',
         });
 
-        // 3D Card tilt effect on hover
-        cards.forEach((card) => {
-          const handleMouseMove = (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            gsap.to(card, {
-              rotationY: x * 0.04,
-              rotationX: -y * 0.04,
-              transformPerspective: 900,
-              duration: 0.3,
-              ease: 'power1.out',
-            });
-            const thumbBg = card.querySelector('.project-thumb-bg');
-            if (thumbBg) {
-              gsap.to(thumbBg, {
-                x: -x * 0.05,
-                y: -y * 0.05,
-                duration: 0.4,
-                ease: 'power1.out',
-              });
-            }
-          };
-
-          const handleMouseLeave = () => {
-            gsap.to(card, {
-              rotationY: 0,
-              rotationX: 0,
-              duration: 0.5,
-              ease: 'power2.out',
-            });
-            const thumbBg = card.querySelector('.project-thumb-bg');
-            if (thumbBg) {
-              gsap.to(thumbBg, {
-                x: 0,
-                y: 0,
-                duration: 0.5,
-                ease: 'power2.out',
-              });
-            }
-          };
-
-          card.addEventListener('mousemove', handleMouseMove);
-          card.addEventListener('mouseleave', handleMouseLeave);
-        });
+        // Staggered reveal for cards - cards stay fixed in place without hover tilt or wobble
       }
     }, sectionRef);
 
