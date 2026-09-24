@@ -2,7 +2,13 @@
   position: relative;
   overflow-x: hidden;
   min-height: 100vh;
-  background: var(--ink);
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 /* Initial hidden state */

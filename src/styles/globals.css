@@ -7,6 +7,17 @@
   box-sizing: border-box;
 }
 
+html {
+  overscroll-behavior: none !important;
+  overscroll-behavior-y: none !important;
+}
+
+body {
+  overscroll-behavior: none !important;
+  overscroll-behavior-y: none !important;
+  position: relative;
+}
+
 html, body, #root {
   width: 100%;
   margin: 0;
@@ -17,10 +28,12 @@ html, body, #root {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Ensure the root container doesn't limit the width */
+/* Ensure the root container doesn't limit the width and anchors cleanly */
 #root {
   max-width: none !important;
-  display: block !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh;
   text-align: left !important;
 }
 

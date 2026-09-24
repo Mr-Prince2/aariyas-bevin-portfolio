@@ -31,12 +31,15 @@ function App() {
     // Hide the default cursor site-wide
     document.body.style.cursor = 'none';
 
-    // Initialize Lenis for smooth, cinematic scrolling
+    // Initialize Lenis for smooth, cinematic scrolling with strict footer boundaries
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.0,
       lerp: 0.08,
       smoothWheel: true,
-      touchMultiplier: 1.8,
+      overscroll: false, // Prevents scrolling past the footer boundary
+      syncTouch: false,
+      touchMultiplier: 1.0,
+      wheelMultiplier: 1.0,
     });
 
     lenis.on('scroll', ScrollTrigger.update);
@@ -48,14 +51,22 @@ function App() {
     gsap.ticker.add(tickerCallback);
     gsap.ticker.lagSmoothing(0);
 
+    // Keep Lenis dimensions tightly synchronized with GSAP ScrollTrigger
+    const handleRefresh = () => {
+      lenis.resize();
+    };
+    ScrollTrigger.addEventListener('refresh', handleRefresh);
+
     // Refresh triggers once fonts & layouts settle
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
+      lenis.resize();
     }, 400);
 
     return () => { 
       document.body.style.cursor = '';
       clearTimeout(timer);
+      ScrollTrigger.removeEventListener('refresh', handleRefresh);
       lenis.destroy();
       gsap.ticker.remove(tickerCallback);
     };
@@ -95,8 +106,8 @@ function App() {
         toastOptions={{
           style: {
             background:    isLight ? '#ffffff' : 'var(--bg-card-solid, #121218)',
-            color:         isLight ? '#18171e' : 'var(--white, #ffffff)',
-            border:        isLight ? '1px solid rgba(179,50,37,0.3)' : '1px solid rgba(192,57,43,0.4)',
+            color:         isLight ? '#050508' : 'var(--white, #ffffff)',
+            border:        isLight ? '1px solid rgba(158,35,23,0.3)' : '1px solid rgba(192,57,43,0.4)',
             fontFamily:    'var(--font-mono, monospace)',
             fontSize:      '0.72rem',
             letterSpacing: '0.05em',

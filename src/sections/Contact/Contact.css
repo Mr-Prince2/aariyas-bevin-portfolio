@@ -187,42 +187,7 @@ textarea.form-input {
   pointer-events: none;
 }
 
-/* ====== FOOTER ====== */
-footer {
-  padding: 3rem 4rem; 
-  border-top: 1px solid var(--footer-border, rgba(255, 255, 255, 0.05));
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center;
-  position: relative; 
-  z-index: 2;
-  transition: border-color 0.3s ease;
-}
-
-.footer-copy { 
-  font-family: 'Space Mono', monospace; 
-  font-size: 0.72rem; 
-  font-weight: 600;
-  color: var(--text-dim); 
-  transition: color 0.3s ease;
-}
-
-.footer-kanji { 
-  font-family: 'Noto Serif JP', serif; 
-  color: var(--footer-kanji-color, rgba(192, 57, 43, 0.3)); 
-  font-size: 1.2rem; 
-  font-weight: 700;
-  transition: color 0.3s ease;
-}
-
-/* RESPONSIVE */
 @media (max-width: 900px) {
   #contact { padding: 4rem 2rem; }
   .contact-inner { grid-template-columns: 1fr; gap: 4rem; }
-  footer { 
-    flex-direction: column; 
-    gap: 1.5rem; 
-    text-align: center; 
-    padding: 3rem 2rem;
-  }
 }

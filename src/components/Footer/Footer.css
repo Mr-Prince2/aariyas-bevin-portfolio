@@ -1,5 +1,9 @@
 /* ====== FOOTER ====== */
 .main-footer {
+  flex-shrink: 0;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
   padding: 3rem 4rem; 
   border-top: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.05));
   display: flex; 
@@ -7,13 +11,14 @@
   align-items: center;
   position: relative; 
   z-index: 2;
-  background: transparent;
-  transition: border-color 0.3s ease;
+  background: var(--bg-page);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .footer-copy { 
   font-family: 'Space Mono', monospace; 
-  font-size: 0.7rem; 
+  font-size: 0.72rem; 
+  font-weight: 600;
   color: var(--text-dim); 
   letter-spacing: 0.05em;
   transition: color 0.3s ease;
@@ -30,6 +35,7 @@
   font-family: 'Noto Serif JP', serif; 
   color: var(--footer-kanji-color, rgba(192, 57, 43, 0.3)); 
   font-size: 1.1rem; 
+  font-weight: 700;
   letter-spacing: 0.3em;
   transition: color 0.3s ease;
 }
