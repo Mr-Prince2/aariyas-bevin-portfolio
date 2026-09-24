@@ -40,8 +40,8 @@ function Cursor() {
     let rafId
     const tick = () => {
       // Fluid spring interpolation for outer follower ring
-      ringPos.current.x += (mousePos.current.x - ringPos.current.x) * 0.15
-      ringPos.current.y += (mousePos.current.y - ringPos.current.y) * 0.15
+      ringPos.current.x += (mousePos.current.x - ringPos.current.x) * 0.18
+      ringPos.current.y += (mousePos.current.y - ringPos.current.y) * 0.18
       
       if (dotRef.current) {
         dotRef.current.style.transform = `translate3d(${mousePos.current.x}px, ${mousePos.current.y}px, 0)`

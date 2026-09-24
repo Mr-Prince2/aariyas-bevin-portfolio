@@ -1,0 +1,227 @@
+/* ═══════════════════════════════════════════════════════════
+   ANIMATED EDITORIAL CHESS PRELOADER
+   - Zero-background alpha canvas character
+   - Silky theater curtain slide transition
+   - Full dark/light theme synergy
+   ═══════════════════════════════════════════════════════════ */
+
+.portfolio-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--loader-bg, #0a0a0f);
+  user-select: none;
+  will-change: transform;
+  
+  /* Theme tokens */
+  --loader-bg: #0a0a0f;
+  --loader-grid: rgba(255, 255, 255, 0.055);
+  --loader-text: #ffffff;
+  --loader-dim: #a0a0b0;
+  --loader-accent: #c0392b;
+  --loader-gold: #d4af37;
+  --loader-jade: #52b788;
+  --stage-scale: 1;
+
+  /* Smooth curtain lift physics */
+  transition: transform 0.82s cubic-bezier(0.76, 0, 0.24, 1),
+              background-color 0.3s ease;
+}
+
+[data-theme="light"] .portfolio-preloader {
+  --loader-bg: #f7f4ee;
+  --loader-grid: rgba(0, 0, 0, 0.065);
+  --loader-text: #050508;
+  --loader-dim: #2c2a36;
+  --loader-accent: #9e2317;
+  --loader-gold: #8f5c00;
+  --loader-jade: #166534;
+}
+
+/* ── Phase Transitions ── */
+/* 1. Content softly dissolves out */
+.portfolio-preloader.phase-exiting-content .preloader__stage,
+.portfolio-preloader.phase-curtain-up .preloader__stage {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.38s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.38s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.portfolio-preloader.phase-exiting-content .preloader__hud-top,
+.portfolio-preloader.phase-exiting-content .preloader__hud-bottom,
+.portfolio-preloader.phase-curtain-up .preloader__hud-top,
+.portfolio-preloader.phase-curtain-up .preloader__hud-bottom {
+  opacity: 0;
+  transition: opacity 0.32s ease;
+}
+
+/* 2. Curtain effortlessly lifts up into the ceiling */
+.portfolio-preloader.phase-curtain-up {
+  transform: translateY(-100%);
+  pointer-events: none;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 2px 0 var(--loader-accent);
+}
+
+/* ── Fullscreen Chess / Graph Matrix Grid ── */
+.preloader__grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, var(--loader-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--loader-grid) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: center center;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* ── Center Stage ── */
+.preloader__stage {
+  position: relative;
+  width: 0;
+  height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  will-change: transform, opacity;
+}
+
+/* ── Character Canvas with Transparent Background ── */
+.preloader__canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: calc(18.5rem * var(--stage-scale));
+  width: auto;
+  pointer-events: none;
+  will-change: transform, opacity;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.preloader__canvas.is-ready {
+  opacity: 1;
+}
+
+/* ── Handwritten Floating Chess Moves ── */
+.preloader__move {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: 'Liu Jian Mao Cao', 'Caveat', cursive, sans-serif;
+  font-size: calc(3rem * var(--stage-scale));
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--loader-text);
+  opacity: 0;
+  transform: translate(calc(-50% + var(--mx, 0rem) * var(--stage-scale)), calc(-50% + var(--my, 0rem) * var(--stage-scale))) 
+             rotate(var(--mr, 0deg)) 
+             scale(0.65);
+  transition: opacity 0.28s ease,
+              transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+.preloader__move.is-in {
+  opacity: var(--mo, 1);
+  transform: translate(calc(-50% + var(--mx, 0rem) * var(--stage-scale)), calc(-50% + var(--my, 0rem) * var(--stage-scale))) 
+             rotate(var(--mr, 0deg)) 
+             scale(1);
+}
+
+.preloader__move.is-out {
+  opacity: 0;
+  transform: translate(calc(-50% + var(--mx, 0rem) * var(--stage-scale)), calc(-50% + var(--my, 0rem) * var(--stage-scale))) 
+             rotate(var(--mr, 0deg)) 
+             scale(0.85);
+}
+
+/* Move highlight accents */
+.preloader__move.accent-gold {
+  color: var(--loader-gold);
+}
+
+.preloader__move.accent-jade {
+  color: var(--loader-jade);
+}
+
+.preloader__move.accent-crimson {
+  color: var(--loader-accent);
+}
+
+/* ── Minimalist HUD Status & Framing ── */
+.preloader__hud-top {
+  position: absolute;
+  top: 2.2rem;
+  left: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--loader-dim);
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+}
+
+.preloader__hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--loader-accent);
+  box-shadow: 0 0 10px var(--loader-accent);
+  animation: hudPulse 1.2s ease-in-out infinite alternate;
+}
+
+.preloader__hud-bottom {
+  position: absolute;
+  bottom: 2.2rem;
+  right: 2.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  color: var(--loader-dim);
+  transition: opacity 0.3s ease;
+}
+
+.preloader__hud-progress {
+  color: var(--loader-text);
+  font-weight: 700;
+  margin-left: 0.4rem;
+}
+
+@keyframes hudPulse {
+  0% { opacity: 0.35; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ── Responsive Viewport Scaling ── */
+@media (max-width: 768px) {
+  .portfolio-preloader {
+    --stage-scale: 0.78;
+  }
+  .preloader__grid {
+    background-size: 42px 42px;
+  }
+  .preloader__hud-top {
+    top: 1.5rem;
+    left: 1.5rem;
+    font-size: 0.6rem;
+  }
+  .preloader__hud-bottom {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    font-size: 0.6rem;
+  }
+}

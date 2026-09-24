@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Toaster } from 'react-hot-toast'
 import Cursor        from '@components/Cursor/Cursor'
+import Preloader     from '@components/Preloader/Preloader'
 import CyberGrid     from '@components/CyberGrid/CyberGrid'
 import SakuraPetals  from '@components/SakuraPetals/SakuraPetals'
 import Navbar        from '@components/Navbar/Navbar'
@@ -25,6 +26,7 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   useFadeUp();
   const { isLight } = useTheme();
+  const lenisRef = useRef(null);
 
   useEffect(() => {
     // Hide the default cursor site-wide
@@ -40,6 +42,8 @@ function App() {
       touchMultiplier: 1.0,
       wheelMultiplier: 1.0,
     });
+
+    lenisRef.current = lenis;
 
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -71,8 +75,16 @@ function App() {
     };
   }, []);
 
+  const handlePreloaderComplete = () => {
+    ScrollTrigger.refresh();
+    lenisRef.current?.resize();
+  };
+
   return (
     <div className="app">
+      {/* ── Animated Preloader (z-index 10000) ── */}
+      <Preloader onComplete={handlePreloaderComplete} />
+
       {/* ── Background layers (z-index 0–1) ── */}
       <CyberGrid />
       <SakuraPetals />

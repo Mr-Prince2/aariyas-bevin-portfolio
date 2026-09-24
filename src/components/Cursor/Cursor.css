@@ -1,3 +1,8 @@
+/* ═══════════════════════════════════════════════════════════
+   PREMIUM DUAL-ELEMENT CURSOR
+   High visibility, tactile feedback, Japanese luxury aesthetic
+   ═══════════════════════════════════════════════════════════ */
+
 /* Container that holds both elements */
 .cursor-wrapper {
   position: fixed;
@@ -23,39 +28,43 @@
   pointer-events: none;
 }
 
-/* 1. Precision Center Dot */
+/* 1. Precision Center Dot - Highly Visible Core */
 .cursor__dot {
-  width: 6px;
-  height: 6px;
+  width: 9px;
+  height: 9px;
   background: var(--crimson, #c0392b);
   border-radius: 50%;
-  margin-left: -3px;
-  margin-top: -3px;
-  box-shadow: 0 0 8px rgba(192, 57, 43, 0.45);
+  margin-left: -4.5px;
+  margin-top: -4.5px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 10px rgba(192, 57, 43, 0.85), 0 0 3px rgba(255, 255, 255, 0.9);
   transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               margin 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               background 0.22s ease,
+              border-color 0.22s ease,
               box-shadow 0.22s ease,
               transform 0.15s ease;
 }
 
 [data-theme="light"] .cursor__dot {
   background: #9e2317;
-  box-shadow: 0 0 6px rgba(158, 35, 23, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 10px rgba(158, 35, 23, 0.75), 0 0 2px rgba(5, 5, 8, 0.6);
 }
 
-/* 2. Minimalist Luxury Follower Ring */
+/* 2. Follower Ring - Crisply Defined & Luminous */
 .cursor__ring {
-  width: 36px;
-  height: 36px;
-  border: 1.25px solid rgba(242, 238, 230, 0.35);
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(242, 238, 230, 0.72);
   border-radius: 50%;
-  margin-left: -18px;
-  margin-top: -18px;
-  background: rgba(242, 238, 230, 0.02);
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+  margin-left: -20px;
+  margin-top: -20px;
+  background: radial-gradient(circle, rgba(192, 57, 43, 0.08) 0%, rgba(242, 238, 230, 0.03) 70%, transparent 100%);
+  box-shadow: 0 0 14px rgba(192, 57, 43, 0.25), inset 0 0 8px rgba(242, 238, 230, 0.08);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
   transition: width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
               height 0.32s cubic-bezier(0.16, 1, 0.3, 1),
               margin 0.32s cubic-bezier(0.16, 1, 0.3, 1),
@@ -66,55 +75,60 @@
 }
 
 [data-theme="light"] .cursor__ring {
-  border-color: rgba(5, 5, 8, 0.32);
-  background: rgba(5, 5, 8, 0.02);
+  border-color: rgba(5, 5, 8, 0.68);
+  background: radial-gradient(circle, rgba(158, 35, 23, 0.06) 0%, rgba(5, 5, 8, 0.02) 70%, transparent 100%);
+  box-shadow: 0 0 12px rgba(158, 35, 23, 0.2), inset 0 0 6px rgba(5, 5, 8, 0.06);
 }
 
-/* 3. Interactive Hover State (Magnetic luxury expansion) */
+/* 3. Interactive Hover State (Magnetic Luxury Halo) */
 .cursor--hover {
-  width: 10px;
-  height: 10px;
-  margin-left: -5px;
-  margin-top: -5px;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
   background: var(--gold, #d4af37);
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+  border-color: #ffffff;
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.95), 0 0 4px #ffffff;
 }
 
 [data-theme="light"] .cursor--hover {
   background: #b45309;
-  box-shadow: 0 0 8px rgba(180, 83, 9, 0.4);
+  border-color: #ffffff;
+  box-shadow: 0 0 14px rgba(180, 83, 9, 0.85), 0 0 3px #ffffff;
 }
 
 .ring--hover {
-  width: 54px;
-  height: 54px;
-  margin-left: -27px;
-  margin-top: -27px;
+  width: 58px;
+  height: 58px;
+  margin-left: -29px;
+  margin-top: -29px;
   border-color: var(--crimson, #c0392b);
-  border-width: 1.5px;
-  background-color: rgba(192, 57, 43, 0.07);
-  box-shadow: 0 0 20px rgba(192, 57, 43, 0.16);
+  border-width: 1.75px;
+  background-color: rgba(192, 57, 43, 0.12);
+  box-shadow: 0 0 25px rgba(192, 57, 43, 0.38), inset 0 0 12px rgba(212, 175, 55, 0.12);
 }
 
 [data-theme="light"] .ring--hover {
   border-color: #9e2317;
-  background-color: rgba(158, 35, 23, 0.06);
-  box-shadow: 0 0 16px rgba(158, 35, 23, 0.12);
+  border-width: 1.75px;
+  background-color: rgba(158, 35, 23, 0.09);
+  box-shadow: 0 0 20px rgba(158, 35, 23, 0.28), inset 0 0 10px rgba(143, 92, 0, 0.1);
 }
 
-/* 4. Click / Active tactile impulse */
+/* 4. Click / Active Tactile Impulse */
 .cursor--click {
-  transform: scale(0.7);
+  transform: scale(0.65);
 }
 
 .ring--click {
-  width: 28px;
-  height: 28px;
-  margin-left: -14px;
-  margin-top: -14px;
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
   border-color: var(--gold, #d4af37);
-  background-color: rgba(212, 175, 55, 0.15);
-  box-shadow: 0 0 14px rgba(212, 175, 55, 0.35);
+  border-width: 2px;
+  background-color: rgba(212, 175, 55, 0.22);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.6);
 }
 
 /* 5. Clean system pointer hiding on fine-pointer devices */
