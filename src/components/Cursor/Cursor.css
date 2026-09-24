@@ -1,9 +1,9 @@
 /* ═══════════════════════════════════════════════════════════
-   PREMIUM DUAL-ELEMENT CURSOR
-   High visibility, tactile feedback, Japanese luxury aesthetic
+   BESPOKE LUXURY DUAL-ELEMENT CURSOR
+   Japanese precision instrument, high-visibility jewel core
    ═══════════════════════════════════════════════════════════ */
 
-/* Container that holds both elements */
+/* ── Container ── */
 .cursor-wrapper {
   position: fixed;
   top: 0;
@@ -20,7 +20,8 @@
   opacity: 1;
 }
 
-.cursor__dot, .cursor__ring {
+.cursor__dot, 
+.cursor__ring {
   position: absolute;
   top: 0;
   left: 0;
@@ -28,16 +29,19 @@
   pointer-events: none;
 }
 
-/* 1. Precision Center Dot - Highly Visible Core */
+/* ── 1. High-Visibility Ruby Core Dot ── */
 .cursor__dot {
-  width: 9px;
-  height: 9px;
-  background: var(--crimson, #c0392b);
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  background: #e63946;
   border-radius: 50%;
-  margin-left: -4.5px;
-  margin-top: -4.5px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  box-shadow: 0 0 10px rgba(192, 57, 43, 0.85), 0 0 3px rgba(255, 255, 255, 0.9);
+  border: 1.5px solid #ffffff;
+  box-shadow: 
+    0 0 12px rgba(230, 57, 70, 0.95),
+    0 0 4px #ffffff,
+    0 0 20px rgba(230, 57, 70, 0.45);
   transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               margin 0.22s cubic-bezier(0.16, 1, 0.3, 1),
@@ -48,21 +52,25 @@
 }
 
 [data-theme="light"] .cursor__dot {
-  background: #9e2317;
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 0 10px rgba(158, 35, 23, 0.75), 0 0 2px rgba(5, 5, 8, 0.6);
+  background: #b91c1c;
+  border: 1.5px solid #ffffff;
+  box-shadow: 
+    0 0 10px rgba(185, 28, 28, 0.85),
+    0 0 3px rgba(5, 5, 8, 0.7);
 }
 
-/* 2. Follower Ring - Crisply Defined & Luminous */
+/* ── 2. Fluid Luxury Precision Ring ── */
 .cursor__ring {
-  width: 40px;
-  height: 40px;
-  border: 1.5px solid rgba(242, 238, 230, 0.72);
+  width: 44px;
+  height: 44px;
+  margin-left: -22px;
+  margin-top: -22px;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
   border-radius: 50%;
-  margin-left: -20px;
-  margin-top: -20px;
-  background: radial-gradient(circle, rgba(192, 57, 43, 0.08) 0%, rgba(242, 238, 230, 0.03) 70%, transparent 100%);
-  box-shadow: 0 0 14px rgba(192, 57, 43, 0.25), inset 0 0 8px rgba(242, 238, 230, 0.08);
+  background: radial-gradient(circle, rgba(230, 57, 70, 0.12) 0%, rgba(255, 255, 255, 0.04) 55%, transparent 100%);
+  box-shadow: 
+    0 0 16px rgba(230, 57, 70, 0.3),
+    inset 0 0 10px rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(1.5px);
   -webkit-backdrop-filter: blur(1.5px);
   transition: width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
@@ -71,73 +79,141 @@
               border-color 0.25s ease,
               background-color 0.25s ease,
               box-shadow 0.25s ease,
-              transform 0.15s ease;
+              transform 0.18s ease;
 }
 
 [data-theme="light"] .cursor__ring {
-  border-color: rgba(5, 5, 8, 0.68);
-  background: radial-gradient(circle, rgba(158, 35, 23, 0.06) 0%, rgba(5, 5, 8, 0.02) 70%, transparent 100%);
-  box-shadow: 0 0 12px rgba(158, 35, 23, 0.2), inset 0 0 6px rgba(5, 5, 8, 0.06);
+  border-color: rgba(10, 10, 15, 0.82);
+  background: radial-gradient(circle, rgba(185, 28, 28, 0.08) 0%, rgba(10, 10, 15, 0.03) 55%, transparent 100%);
+  box-shadow: 
+    0 0 12px rgba(185, 28, 28, 0.22),
+    inset 0 0 8px rgba(10, 10, 15, 0.06);
 }
 
-/* 3. Interactive Hover State (Magnetic Luxury Halo) */
+/* ── 3. Precision Micro-Notches (Japanese Watchmaker Aesthetic) ── */
+.cursor__notch {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1px;
+  pointer-events: none;
+  transition: background 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
+}
+
+[data-theme="light"] .cursor__notch {
+  background: rgba(10, 10, 15, 0.85);
+}
+
+.notch-top {
+  top: -3.5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 6px;
+}
+
+.notch-bottom {
+  bottom: -3.5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 6px;
+}
+
+.notch-left {
+  left: -3.5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 2px;
+}
+
+.notch-right {
+  right: -3.5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 2px;
+}
+
+/* ── 4. Interactive Magnetic Hover State ── */
 .cursor--hover {
-  width: 12px;
-  height: 12px;
-  margin-left: -6px;
-  margin-top: -6px;
-  background: var(--gold, #d4af37);
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  margin-top: -7px;
+  background: #d4af37;
   border-color: #ffffff;
-  box-shadow: 0 0 16px rgba(212, 175, 55, 0.95), 0 0 4px #ffffff;
+  box-shadow: 
+    0 0 20px rgba(212, 175, 55, 1),
+    0 0 5px #ffffff,
+    0 0 35px rgba(212, 175, 55, 0.5);
 }
 
 [data-theme="light"] .cursor--hover {
   background: #b45309;
   border-color: #ffffff;
-  box-shadow: 0 0 14px rgba(180, 83, 9, 0.85), 0 0 3px #ffffff;
+  box-shadow: 
+    0 0 16px rgba(180, 83, 9, 0.9),
+    0 0 4px #ffffff;
 }
 
 .ring--hover {
-  width: 58px;
-  height: 58px;
-  margin-left: -29px;
-  margin-top: -29px;
+  width: 64px;
+  height: 64px;
+  margin-left: -32px;
+  margin-top: -32px;
   border-color: var(--crimson, #c0392b);
-  border-width: 1.75px;
-  background-color: rgba(192, 57, 43, 0.12);
-  box-shadow: 0 0 25px rgba(192, 57, 43, 0.38), inset 0 0 12px rgba(212, 175, 55, 0.12);
+  border-width: 2px;
+  background-color: rgba(192, 57, 43, 0.14);
+  box-shadow: 
+    0 0 30px rgba(192, 57, 43, 0.45),
+    inset 0 0 16px rgba(212, 175, 55, 0.16);
+  transform: rotate(45deg);
+}
+
+.ring--hover .cursor__notch {
+  background: var(--gold, #d4af37);
+  box-shadow: 0 0 6px var(--gold, #d4af37);
 }
 
 [data-theme="light"] .ring--hover {
   border-color: #9e2317;
-  border-width: 1.75px;
-  background-color: rgba(158, 35, 23, 0.09);
-  box-shadow: 0 0 20px rgba(158, 35, 23, 0.28), inset 0 0 10px rgba(143, 92, 0, 0.1);
+  border-width: 2px;
+  background-color: rgba(158, 35, 23, 0.1);
+  box-shadow: 
+    0 0 22px rgba(158, 35, 23, 0.32),
+    inset 0 0 12px rgba(180, 83, 9, 0.12);
 }
 
-/* 4. Click / Active Tactile Impulse */
+[data-theme="light"] .ring--hover .cursor__notch {
+  background: #b45309;
+}
+
+/* ── 5. Tactile Click Impulse ── */
 .cursor--click {
   transform: scale(0.65);
 }
 
 .ring--click {
-  width: 30px;
-  height: 30px;
-  margin-left: -15px;
-  margin-top: -15px;
-  border-color: var(--gold, #d4af37);
+  width: 28px;
+  height: 28px;
+  margin-left: -14px;
+  margin-top: -14px;
+  border-color: #d4af37;
   border-width: 2px;
-  background-color: rgba(212, 175, 55, 0.22);
-  box-shadow: 0 0 18px rgba(212, 175, 55, 0.6);
+  background-color: rgba(212, 175, 55, 0.28);
+  box-shadow: 0 0 22px rgba(212, 175, 55, 0.7);
 }
 
-/* 5. Clean system pointer hiding on fine-pointer devices */
+/* ── 6. Reliable Global Pointer Hiding on Fine Pointer Devices ── */
 @media (hover: hover) and (pointer: fine) {
-  body, a, button, input, textarea, select, label, [role="button"] {
+  *, *::before, *::after {
     cursor: none !important;
   }
 }
 
 @media (hover: none) {
-  .cursor-wrapper { display: none; }
+  .cursor-wrapper { 
+    display: none; 
+  }
 }

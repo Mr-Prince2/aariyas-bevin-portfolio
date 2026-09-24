@@ -75,7 +75,12 @@ function Cursor() {
       <div 
         ref={ringRef}
         className={`cursor__ring ${isHovered ? 'ring--hover' : ''} ${isClicking ? 'ring--click' : ''}`} 
-      />
+      >
+        <span className="cursor__notch notch-top" />
+        <span className="cursor__notch notch-right" />
+        <span className="cursor__notch notch-bottom" />
+        <span className="cursor__notch notch-left" />
+      </div>
     </div>
   )
 }
