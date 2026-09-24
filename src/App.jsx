@@ -4,7 +4,6 @@ import Cursor        from '@components/Cursor/Cursor'
 import CyberGrid     from '@components/CyberGrid/CyberGrid'
 import SakuraPetals  from '@components/SakuraPetals/SakuraPetals'
 import Navbar        from '@components/Navbar/Navbar'
-import ScrollProgress from '@components/ScrollProgress/ScrollProgress'
 import Marquee       from '@components/Marquee/Marquee'
 import Footer        from '@components/Footer/Footer'
 import Hero          from '@sections/Hero/Hero'
@@ -74,9 +73,6 @@ function App() {
 
   return (
     <div className="app">
-      {/* ── Cyber Scroll Progress Bar (z-index 1001) ── */}
-      <ScrollProgress />
-
       {/* ── Background layers (z-index 0–1) ── */}
       <CyberGrid />
       <SakuraPetals />
