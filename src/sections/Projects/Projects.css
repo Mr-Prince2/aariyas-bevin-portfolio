@@ -74,9 +74,13 @@
 .project-thumb-icon {
   font-family: 'Noto Serif JP', serif; 
   font-size: 4rem;
-  color: rgba(255, 255, 255, 0.15); 
+  color: rgba(255, 255, 255, 0.25); 
   position: relative; 
   z-index: 1;
+}
+
+[data-theme="light"] .project-thumb-icon {
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .project-thumb-num {
@@ -84,9 +88,14 @@
   bottom: 0.75rem; 
   right: 1rem;
   font-family: 'Space Mono', monospace; 
-  font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.25); 
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4); 
   letter-spacing: 0.2em;
+}
+
+[data-theme="light"] .project-thumb-num {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* CARD BODY */
@@ -99,7 +108,8 @@
 
 .project-category {
   font-family: 'Space Mono', monospace; 
-  font-size: 0.65rem;
+  font-size: 0.68rem;
+  font-weight: 700;
   letter-spacing: 0.3em; 
   color: var(--crimson); 
   text-transform: uppercase; 
@@ -108,7 +118,8 @@
 
 .project-title {
   font-family: 'Cinzel', serif; 
-  font-size: 1.1rem; 
+  font-size: 1.15rem; 
+  font-weight: 700;
   color: var(--white);
   margin-bottom: 0.75rem; 
   line-height: 1.4;
@@ -116,11 +127,16 @@
 }
 
 .project-desc { 
-  font-size: 0.85rem; 
+  font-size: 0.88rem; 
+  font-weight: 450;
   color: var(--text-dim); 
   line-height: 1.7; 
   margin-bottom: 1.5rem; 
   transition: color 0.3s ease;
+}
+
+[data-theme="light"] .project-desc {
+  font-weight: 500;
 }
 
 .project-stack { 
@@ -131,10 +147,11 @@
 }
 
 .stack-pill {
-  padding: 0.2rem 0.6rem; 
+  padding: 0.22rem 0.65rem; 
   background: rgba(255, 255, 255, 0.04);
   font-family: 'Space Mono', monospace; 
-  font-size: 0.6rem;
+  font-size: 0.62rem;
+  font-weight: 700;
   letter-spacing: 0.1em; 
   color: var(--text-dim);
   border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.07));
@@ -142,8 +159,9 @@
 }
 
 [data-theme="light"] .stack-pill {
-  background: rgba(24, 23, 30, 0.05);
-  border-color: rgba(24, 23, 30, 0.12);
+  background: rgba(5, 5, 8, 0.08);
+  border-color: rgba(5, 5, 8, 0.22);
+  color: #050508;
 }
 
 .project-links { 
@@ -187,7 +205,7 @@
 }
 
 .project-link.is-disabled {
-  opacity: 0.35;
+  opacity: 0.45;
   cursor: not-allowed;
   pointer-events: none;
   filter: grayscale(1);

@@ -67,6 +67,7 @@ a.nav-logo span {
   text-decoration: none;
   font-family: 'Space Mono', monospace;
   font-size: 0.78rem;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   transition: color 0.3s ease;
@@ -99,10 +100,6 @@ a.nav-logo span {
   color: var(--gold);
 }
 
-[data-theme="light"] .nav-links a.active {
-  color: var(--crimson);
-}
-
 /* Right-side container (ThemeToggle + Kanji + Mobile Hamburger) */
 .nav-right {
   display: flex;
@@ -114,6 +111,7 @@ a.nav-logo span {
 .nav-kanji {
   font-family: 'Noto Serif JP', serif;
   font-size: 1.4rem;
+  font-weight: 700;
   color: rgba(192, 57, 43, 0.45);
   letter-spacing: 0.1em;
   pointer-events: none;
@@ -155,16 +153,38 @@ nav.nav-scrolled .nav-kanji {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   LIGHT THEME OVERRIDES FOR NAVBAR
+   LIGHT THEME OVERRIDES FOR NAVBAR (HIGH CONTRAST)
    ───────────────────────────────────────────────────────────── */
 
+[data-theme="light"] a.nav-logo {
+  color: #050508 !important;
+}
+
+[data-theme="light"] .nav-links a {
+  color: #1a1824;
+  font-weight: 700;
+}
+
+[data-theme="light"] .nav-links a:hover {
+  color: #000000;
+}
+
+[data-theme="light"] .nav-links a.active {
+  color: var(--crimson);
+  font-weight: 700;
+}
+
 [data-theme="light"] .nav-kanji {
-  color: var(--footer-kanji-color, rgba(179, 50, 37, 0.55));
+  color: var(--footer-kanji-color, rgba(158, 35, 23, 0.75));
 }
 
 [data-theme="light"] nav.nav-scrolled .nav-kanji {
-  color: rgba(179, 50, 37, 0.85);
-  text-shadow: 0 0 10px rgba(179, 131, 24, 0.25);
+  color: rgba(158, 35, 23, 0.95);
+  text-shadow: 0 0 10px rgba(143, 92, 0, 0.25);
+}
+
+[data-theme="light"] .hamburger div {
+  background-color: #050508;
 }
 
 /* --- Mobile View --- */
@@ -206,7 +226,7 @@ nav.nav-scrolled .nav-kanji {
   [data-theme="light"] .nav-links {
     background: rgba(247, 244, 238, 0.98);
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.12);
-    border-left: 1px solid rgba(179, 50, 37, 0.2);
+    border-left: 1px solid rgba(158, 35, 23, 0.25);
   }
 
   .nav-links.nav-open {

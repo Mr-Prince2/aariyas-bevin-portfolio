@@ -28,6 +28,7 @@
 .hero-eyebrow {
   font-family: 'Space Mono', monospace;
   font-size: 0.75rem;
+  font-weight: 700;
   letter-spacing: 0.4em;
   color: var(--crimson);
   text-transform: uppercase;
@@ -41,7 +42,7 @@
   content: '';
   display: inline-block;
   width: 40px;
-  height: 1px;
+  height: 1.5px;
   background: var(--crimson);
 }
 
@@ -67,6 +68,7 @@
 .hero-name-jp {
   font-family: 'Noto Serif JP', serif;
   font-size: 1.2rem;
+  font-weight: 600;
   color: var(--hero-name-jp-color, rgba(212,175,55,0.6));
   letter-spacing: 0.5em;
   margin-bottom: 1.5rem;
@@ -77,21 +79,27 @@
 .hero-role {
   font-size: 1.1rem;
   color: var(--text-dim);
+  font-weight: 450;
   line-height: 1.8;
   margin-bottom: 2.5rem;
   max-width: 500px;
   transition: color 0.3s ease;
 }
 
+[data-theme="light"] .hero-role {
+  font-weight: 500;
+}
+
 .hero-role em {
   color: var(--jade-light);
   font-style: normal;
+  font-weight: 700;
   transition: color 0.3s ease;
 }
 
 .typing {
   color: var(--jade-light);
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .hero-cta {
@@ -151,6 +159,7 @@
   color: var(--text-dim);
   font-family: 'Space Mono', monospace;
   font-size: 0.65rem;
+  font-weight: 700;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   animation: bounce 2s ease-in-out infinite;

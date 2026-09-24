@@ -94,86 +94,87 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
-   LIGHT THEME: JAPANESE WASHI & TORII CINNABAR PALETTE
-   Invokes authentic calligraphy paper, cinnabar seals, and matcha.
+   LIGHT THEME: HIGH-VISIBILITY JAPANESE WASHI & TORII CINNABAR
+   High-contrast Sumi ink (#050508), rich graphite (#2c2a36),
+   deep cinnabar (#9e2317), and forest matcha (#166534).
    ───────────────────────────────────────────────────────────── */
 
 [data-theme="light"] {
   color-scheme: light;
 
-  /* ── Core Japanese Palette (Light / Washi Parchment) ── */
+  /* ── Core Japanese Palette (Light / High Contrast Washi) ── */
   --ink: #f7f4ee;              /* Warm washi parchment paper background */
-  --paper: #18171e;            /* Deep sumi calligraphy ink */
-  --crimson: #b33225;          /* Japanese Torii vermilion / Cinnabar stamp */
-  --crimson-hover: #c93b2d;
-  --crimson-border: #d94838;
-  --crimson-glow: rgba(179, 50, 37, 0.25);
-  --gold: #b38318;             /* Antique Kintsugi gold — strong light contrast */
-  --gold-glow: rgba(179, 131, 24, 0.2);
-  --jade-light: #257a50;       /* Rich Kyoto matcha green */
-  --white: #18171e;            /* Primary text maps to deep sumi ink */
-  --text-dim: #555263;         /* Refined charcoal graphite */
-  --text-subtle: #878496;
+  --paper: #050508;            /* Pure solid Sumi calligraphy ink */
+  --crimson: #9e2317;          /* Rich Japanese Torii cinnabar (punchy & dark) */
+  --crimson-hover: #b52d20;
+  --crimson-border: #c43324;
+  --crimson-glow: rgba(158, 35, 23, 0.28);
+  --gold: #8f5c00;             /* Deep burnished antique bronze gold (high contrast) */
+  --gold-glow: rgba(143, 92, 0, 0.25);
+  --jade-light: #166534;       /* Rich Kyoto matcha forest green (AAA contrast) */
+  --white: #050508;            /* Primary headings & strong text: deepest Sumi ink */
+  --text-dim: #2c2a36;         /* Secondary body & description text: dark crisp graphite */
+  --text-subtle: #4a4759;      /* Tertiary & metadata labels: clearly legible charcoal */
 
   /* ── Semantic Backgrounds & Surfaces ── */
   --bg-page: #f7f4ee;
-  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card: rgba(255, 255, 255, 0.94);
   --bg-card-solid: #ffffff;
-  --bg-card-hover: rgba(255, 255, 255, 0.98);
-  --bg-nav: rgba(247, 244, 238, 0.92);
-  --bg-nav-initial: linear-gradient(to bottom, rgba(247, 244, 238, 0.96), rgba(247, 244, 238, 0.4) 60%, transparent);
-  --bg-marquee: rgba(242, 237, 227, 0.78);
+  --bg-card-hover: #ffffff;
+  --bg-nav: rgba(247, 244, 238, 0.96);
+  --bg-nav-initial: linear-gradient(to bottom, rgba(247, 244, 238, 0.98), rgba(247, 244, 238, 0.7) 60%, transparent);
+  --bg-marquee: rgba(240, 235, 224, 0.85);
   --bg-input: #ffffff;
 
   /* ── Borders & Outlines ── */
-  --border-subtle: rgba(24, 23, 30, 0.08);
-  --border-card: rgba(179, 50, 37, 0.22);
-  --border-card-hover: rgba(179, 50, 37, 0.55);
-  --border-input: rgba(179, 50, 37, 0.28);
+  --border-subtle: rgba(5, 5, 8, 0.12);
+  --border-card: rgba(158, 35, 23, 0.28);
+  --border-card-hover: rgba(158, 35, 23, 0.7);
+  --border-input: rgba(158, 35, 23, 0.38);
 
   /* ── Shadows & Depth ── */
-  --shadow-card: 0 12px 32px rgba(40, 30, 20, 0.07);
-  --shadow-nav: 0 8px 25px rgba(30, 20, 10, 0.06), 0 0 15px rgba(179, 50, 37, 0.04);
+  --shadow-card: 0 12px 30px rgba(30, 20, 10, 0.09);
+  --shadow-nav: 0 8px 25px rgba(20, 15, 10, 0.08), 0 0 15px rgba(158, 35, 23, 0.06);
 
   /* ── HUD & Japanese UI Brackets ── */
-  --card-bracket-color: #b38318;
-  --card-bracket-hover: #b33225;
-  --hud-tag-bg: rgba(179, 131, 24, 0.1);
-  --hud-tag-border: rgba(179, 131, 24, 0.35);
-  --hud-tag-color: #8c6307;
+  --card-bracket-color: #8f5c00;
+  --card-bracket-hover: #9e2317;
+  --hud-tag-bg: rgba(143, 92, 0, 0.12);
+  --hud-tag-border: rgba(143, 92, 0, 0.45);
+  --hud-tag-color: #784d00;
 
   /* ── Cyber Floor Grid & Screen Scanline ── */
-  --grid-line-x: rgba(179, 50, 37, 0.07);
-  --grid-line-y: rgba(179, 131, 24, 0.06);
-  --scanline-opacity: 0.07;
+  --grid-line-x: rgba(158, 35, 23, 0.08);
+  --grid-line-y: rgba(143, 92, 0, 0.07);
+  --scanline-opacity: 0.05;
 
   /* ── Hero & Japanese Calligraphy Elements ── */
-  --hero-name-gradient: linear-gradient(135deg, #18171e 0%, #b33225 50%, #b38318 100%);
-  --hero-name-jp-color: rgba(179, 131, 24, 0.9);
-  --hero-kanji-color: rgba(179, 50, 37, 0.14);
-  --hero-kanji-shadow: 0 0 40px rgba(179, 50, 37, 0.15), 0 0 60px rgba(179, 131, 24, 0.12);
-  --section-jp-color: rgba(24, 23, 30, 0.2);
+  --hero-name-gradient: linear-gradient(135deg, #050508 0%, #8f1b11 50%, #784d00 100%);
+  --hero-name-jp-color: #784d00;
+  --hero-kanji-color: rgba(158, 35, 23, 0.26);
+  --hero-kanji-shadow: 0 0 40px rgba(158, 35, 23, 0.18), 0 0 60px rgba(143, 92, 0, 0.14);
+  --section-jp-color: rgba(5, 5, 8, 0.38);
 
   /* ── Marquee & Badges ── */
-  --marquee-color: rgba(24, 23, 30, 0.12);
-  --marquee-accent: rgba(179, 50, 37, 0.5);
+  --marquee-color: rgba(5, 5, 8, 0.35);
+  --marquee-accent: rgba(158, 35, 23, 0.85);
 
   /* ── Form Inputs ── */
-  --input-color: #18171e;
-  --input-placeholder: rgba(24, 23, 30, 0.4);
+  --input-color: #050508;
+  --input-placeholder: #5f5c6e;
   --input-focus-bg: #ffffff;
-  --input-focus-shadow: 0 0 0 3px rgba(179, 50, 37, 0.15);
+  --input-focus-shadow: 0 0 0 3px rgba(158, 35, 23, 0.2);
 
   /* ── Footer ── */
-  --footer-border: rgba(24, 23, 30, 0.08);
-  --footer-kanji-color: rgba(179, 50, 37, 0.5);
+  --footer-border: rgba(5, 5, 8, 0.12);
+  --footer-kanji-color: rgba(158, 35, 23, 0.7);
 
-  /* ── Retro-Brutalist Secondary Button (Crisp washi paper + vermilion slab) ── */
+  /* ── Retro-Brutalist Secondary Button ── */
   --btn-sec-bg: #ffffff;
-  --btn-sec-color: #18171e;
-  --btn-sec-border: #b33225;
-  --btn-sec-shadow: #b33225;
-  --btn-sec-hover-bg: #fcf8f3;
-  --btn-sec-hover-border: #c93b2d;
-  --btn-sec-hover-color: #b33225;
+  --btn-sec-color: #050508;
+  --btn-sec-border: #9e2317;
+  --btn-sec-shadow: #9e2317;
+  --btn-sec-hover-bg: #f8f3eb;
+  --btn-sec-hover-border: #b52d20;
+  --btn-sec-hover-color: #9e2317;
 }

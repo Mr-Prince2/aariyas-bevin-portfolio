@@ -28,9 +28,20 @@
   user-select: none;
 }
 
+[data-theme="light"] .marquee__item {
+  color: var(--marquee-color);
+  font-weight: 600;
+}
+
 .marquee__item--accent {
   color: var(--marquee-accent, rgba(192, 57, 43, 0.3));
   text-shadow: 0 0 10px rgba(192, 57, 43, 0.2);
+}
+
+[data-theme="light"] .marquee__item--accent {
+  color: var(--marquee-accent);
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(158, 35, 23, 0.25);
 }
 
 /* Gradient side masks for edge fade */
