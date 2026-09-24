@@ -63,15 +63,12 @@ const About = () => {
         const aboutTl = gsap.timeline({
           scrollTrigger: {
             trigger: textRef.current,
-            start: 'top 55%',
-            end: 'bottom 35%',
+            start: 'top 70%',
+            end: 'bottom 40%',
             scrub: 0.5,
             invalidateOnRefresh: true,
           },
         });
-
-        // Initial delay buffer so outline is visible first before fill begins
-        aboutTl.to({}, { duration: 0.12 });
 
         aboutTl.fromTo(
           fillWords,
@@ -85,7 +82,7 @@ const About = () => {
         );
 
         // Buffer hold: ensures 100% completion before leaving scroll range
-        aboutTl.to({}, { duration: 0.2 });
+        aboutTl.to({}, { duration: 0.15 });
       }
 
       // 3. Cyber Card entrance (stays fixed in place without tilt or wobble)

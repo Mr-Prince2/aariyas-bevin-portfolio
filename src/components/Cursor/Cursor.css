@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════
-   BESPOKE LUXURY DUAL-ELEMENT CURSOR
-   Japanese precision instrument, high-visibility jewel core
+   MINIMALIST MONOCHROME CURSOR
+   Clean, modern, frosted white / deep ink aesthetic
    ═══════════════════════════════════════════════════════════ */
 
 /* ── Container ── */
@@ -13,7 +13,7 @@
   pointer-events: none;
   z-index: 99999;
   opacity: 0;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.3s ease;
 }
 
 .cursor-wrapper.cursor-visible {
@@ -27,185 +27,111 @@
   left: 0;
   will-change: transform;
   pointer-events: none;
+  border-radius: 50%;
 }
 
-/* ── 1. High-Visibility Ruby Core Dot ── */
+/* ── 1. Minimalist Center Dot (5px) ── */
 .cursor__dot {
-  width: 10px;
-  height: 10px;
-  margin-left: -5px;
-  margin-top: -5px;
-  background: #e63946;
-  border-radius: 50%;
-  border: 1.5px solid #ffffff;
-  box-shadow: 
-    0 0 12px rgba(230, 57, 70, 0.95),
-    0 0 4px #ffffff,
-    0 0 20px rgba(230, 57, 70, 0.45);
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  margin-top: -2.5px;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.75), 0 0 2px rgba(255, 255, 255, 0.9);
   transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
               margin 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.22s ease,
-              border-color 0.22s ease,
-              box-shadow 0.22s ease,
+              background 0.2s ease,
+              box-shadow 0.2s ease,
               transform 0.15s ease;
 }
 
 [data-theme="light"] .cursor__dot {
-  background: #b91c1c;
-  border: 1.5px solid #ffffff;
-  box-shadow: 
-    0 0 10px rgba(185, 28, 28, 0.85),
-    0 0 3px rgba(5, 5, 8, 0.7);
+  background: #050508;
+  box-shadow: 0 0 6px rgba(5, 5, 8, 0.35);
 }
 
-/* ── 2. Fluid Luxury Precision Ring ── */
+/* ── 2. Sleek Compact Follower Ring (28px) ── */
 .cursor__ring {
-  width: 44px;
-  height: 44px;
-  margin-left: -22px;
-  margin-top: -22px;
-  border: 1.5px solid rgba(255, 255, 255, 0.85);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(230, 57, 70, 0.12) 0%, rgba(255, 255, 255, 0.04) 55%, transparent 100%);
-  box-shadow: 
-    0 0 16px rgba(230, 57, 70, 0.3),
-    inset 0 0 10px rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
-  transition: width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
-              height 0.32s cubic-bezier(0.16, 1, 0.3, 1),
-              margin 0.32s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.25s ease,
-              background-color 0.25s ease,
-              box-shadow 0.25s ease,
-              transform 0.18s ease;
-}
-
-[data-theme="light"] .cursor__ring {
-  border-color: rgba(10, 10, 15, 0.82);
-  background: radial-gradient(circle, rgba(185, 28, 28, 0.08) 0%, rgba(10, 10, 15, 0.03) 55%, transparent 100%);
-  box-shadow: 
-    0 0 12px rgba(185, 28, 28, 0.22),
-    inset 0 0 8px rgba(10, 10, 15, 0.06);
-}
-
-/* ── 3. Precision Micro-Notches (Japanese Watchmaker Aesthetic) ── */
-.cursor__notch {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 1px;
-  pointer-events: none;
-  transition: background 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
-}
-
-[data-theme="light"] .cursor__notch {
-  background: rgba(10, 10, 15, 0.85);
-}
-
-.notch-top {
-  top: -3.5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 6px;
-}
-
-.notch-bottom {
-  bottom: -3.5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 6px;
-}
-
-.notch-left {
-  left: -3.5px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 2px;
-}
-
-.notch-right {
-  right: -3.5px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 2px;
-}
-
-/* ── 4. Interactive Magnetic Hover State ── */
-.cursor--hover {
-  width: 14px;
-  height: 14px;
-  margin-left: -7px;
-  margin-top: -7px;
-  background: #d4af37;
-  border-color: #ffffff;
-  box-shadow: 
-    0 0 20px rgba(212, 175, 55, 1),
-    0 0 5px #ffffff,
-    0 0 35px rgba(212, 175, 55, 0.5);
-}
-
-[data-theme="light"] .cursor--hover {
-  background: #b45309;
-  border-color: #ffffff;
-  box-shadow: 
-    0 0 16px rgba(180, 83, 9, 0.9),
-    0 0 4px #ffffff;
-}
-
-.ring--hover {
-  width: 64px;
-  height: 64px;
-  margin-left: -32px;
-  margin-top: -32px;
-  border-color: var(--crimson, #c0392b);
-  border-width: 2px;
-  background-color: rgba(192, 57, 43, 0.14);
-  box-shadow: 
-    0 0 30px rgba(192, 57, 43, 0.45),
-    inset 0 0 16px rgba(212, 175, 55, 0.16);
-  transform: rotate(45deg);
-}
-
-.ring--hover .cursor__notch {
-  background: var(--gold, #d4af37);
-  box-shadow: 0 0 6px var(--gold, #d4af37);
-}
-
-[data-theme="light"] .ring--hover {
-  border-color: #9e2317;
-  border-width: 2px;
-  background-color: rgba(158, 35, 23, 0.1);
-  box-shadow: 
-    0 0 22px rgba(158, 35, 23, 0.32),
-    inset 0 0 12px rgba(180, 83, 9, 0.12);
-}
-
-[data-theme="light"] .ring--hover .cursor__notch {
-  background: #b45309;
-}
-
-/* ── 5. Tactile Click Impulse ── */
-.cursor--click {
-  transform: scale(0.65);
-}
-
-.ring--click {
   width: 28px;
   height: 28px;
   margin-left: -14px;
   margin-top: -14px;
-  border-color: #d4af37;
-  border-width: 2px;
-  background-color: rgba(212, 175, 55, 0.28);
-  box-shadow: 0 0 22px rgba(212, 175, 55, 0.7);
+  border: 1.25px solid rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              margin 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease,
+              background-color 0.2s ease,
+              box-shadow 0.2s ease,
+              transform 0.15s ease;
 }
 
-/* ── 6. Reliable Global Pointer Hiding on Fine Pointer Devices ── */
+[data-theme="light"] .cursor__ring {
+  border-color: rgba(5, 5, 8, 0.55);
+  background: rgba(5, 5, 8, 0.025);
+  box-shadow: 0 0 8px rgba(5, 5, 8, 0.08);
+}
+
+/* ── 3. Interactive Hover State ── */
+.cursor--hover {
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  background: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.95), 0 0 3px #ffffff;
+}
+
+[data-theme="light"] .cursor--hover {
+  background: #050508;
+  box-shadow: 0 0 10px rgba(5, 5, 8, 0.6);
+}
+
+.ring--hover {
+  width: 44px;
+  height: 44px;
+  margin-left: -22px;
+  margin-top: -22px;
+  border-color: rgba(255, 255, 255, 0.9);
+  border-width: 1.5px;
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] .ring--hover {
+  border-color: rgba(5, 5, 8, 0.85);
+  border-width: 1.5px;
+  background-color: rgba(5, 5, 8, 0.06);
+  box-shadow: 0 0 14px rgba(5, 5, 8, 0.15);
+}
+
+/* ── 4. Tactile Click Impulse ── */
+.cursor--click {
+  transform: scale(0.6);
+}
+
+.ring--click {
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -10px;
+  border-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="light"] .ring--click {
+  border-color: #050508;
+  background-color: rgba(5, 5, 8, 0.15);
+  box-shadow: 0 0 10px rgba(5, 5, 8, 0.25);
+}
+
+/* ── 5. Reliable Global Pointer Hiding on Fine Pointer Devices ── */
 @media (hover: hover) and (pointer: fine) {
   *, *::before, *::after {
     cursor: none !important;
