@@ -117,46 +117,34 @@ const Skills = () => {
           }
         });
 
-        // 3D Tilt interaction for each skill card
+        // Hover interaction: skill cards stay still, only skill-icons move
         cards.forEach((card) => {
+          const icon = card.querySelector('.skill-icon');
+          if (!icon) return;
+
           const handleMouseMove = (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            gsap.to(card, {
-              rotationY: x * 0.05,
-              rotationX: -y * 0.05,
-              transformPerspective: 800,
+            gsap.to(icon, {
+              x: x * 0.15,
+              y: y * 0.15,
+              rotation: x * 0.05,
+              scale: 1.1,
               duration: 0.3,
               ease: 'power1.out',
             });
-            const icon = card.querySelector('.skill-icon');
-            if (icon) {
-              gsap.to(icon, {
-                x: x * 0.08,
-                y: y * 0.08,
-                duration: 0.3,
-                ease: 'power1.out',
-              });
-            }
           };
 
           const handleMouseLeave = () => {
-            gsap.to(card, {
-              rotationY: 0,
-              rotationX: 0,
+            gsap.to(icon, {
+              x: 0,
+              y: 0,
+              rotation: 0,
+              scale: 1,
               duration: 0.5,
               ease: 'power2.out',
             });
-            const icon = card.querySelector('.skill-icon');
-            if (icon) {
-              gsap.to(icon, {
-                x: 0,
-                y: 0,
-                duration: 0.5,
-                ease: 'power2.out',
-              });
-            }
           };
 
           card.addEventListener('mousemove', handleMouseMove);
