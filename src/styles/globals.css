@@ -12,8 +12,9 @@ html, body, #root {
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* Prevents unwanted horizontal scroll */
-  background-color: var(--ink);
+  background-color: var(--bg-page);
   color: var(--white);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Ensure the root container doesn't limit the width */
@@ -30,10 +31,25 @@ body {
   font-size: var(--base-font);
 }
 
+/* Smooth transition when toggling themes */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: 
+    background-color 0.3s ease, 
+    border-color 0.3s ease, 
+    color 0.3s ease, 
+    box-shadow 0.3s ease, 
+    fill 0.3s ease, 
+    stroke 0.3s ease !important;
+  transition-delay: 0s !important;
+}
+
 /* Selection color for Japanese aesthetic */
 ::selection {
   background: var(--crimson);
-  color: var(--white);
+  color: #ffffff;
 }
 
 /* Custom Scrollbar */
@@ -42,7 +58,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--ink);
+  background: var(--bg-page);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -57,15 +73,17 @@ body {
 /* Reusable Cyber Card with HUD brackets */
 .cyber-card {
   position: relative;
-  background: rgba(15, 15, 22, 0.7);
-  border: 1px solid rgba(192, 57, 43, 0.2);
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
   backdrop-filter: blur(8px);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
 }
 
 .cyber-card:hover {
-  border-color: rgba(192, 57, 43, 0.6);
-  box-shadow: 0 0 25px rgba(192, 57, 43, 0.15), inset 0 0 15px rgba(212, 175, 55, 0.05);
+  border-color: var(--border-card-hover);
+  box-shadow: 0 0 25px var(--crimson-glow), inset 0 0 15px var(--gold-glow);
 }
 
 /* Cyber Corner Brackets */
@@ -75,11 +93,11 @@ body {
   position: absolute;
   width: 8px;
   height: 8px;
-  border-color: var(--gold);
+  border-color: var(--card-bracket-color);
   border-style: solid;
   pointer-events: none;
   transition: all 0.3s ease;
-  opacity: 0.6;
+  opacity: 0.75;
 }
 
 /* Top-Left & Bottom-Right Brackets */
@@ -100,8 +118,8 @@ body {
   opacity: 1;
   width: 14px;
   height: 14px;
-  border-color: var(--crimson);
-  box-shadow: 0 0 8px var(--crimson);
+  border-color: var(--card-bracket-hover);
+  box-shadow: 0 0 8px var(--card-bracket-hover);
 }
 
 /* HUD Badge */
@@ -113,11 +131,12 @@ body {
   font-size: 0.65rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--gold);
-  background: rgba(212, 175, 55, 0.08);
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--hud-tag-color);
+  background: var(--hud-tag-bg);
+  border: 1px solid var(--hud-tag-border);
   padding: 0.2rem 0.6rem;
   border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
 .hud-tag-dot {
@@ -197,15 +216,15 @@ body {
 
 /* ── Retro-Brutalist Primary (Theme Crimson Body + Hard Ink Slab) ── */
 .btn-primary {
-  background-color: var(--crimson, #c0392b);
+  background-color: var(--crimson);
   color: #ffffff !important;
-  border: 2px solid #e74c3c;
+  border: 2px solid var(--crimson-border);
   box-shadow: 4px 4px 0px #000000;
 }
 
 .btn-primary:hover {
-  background-color: #d63031;
-  border-color: #ff6b6b;
+  background-color: var(--crimson-hover);
+  border-color: var(--crimson-border);
   color: #ffffff !important;
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0px #000000;
@@ -216,23 +235,23 @@ body {
   box-shadow: 0px 0px 0px #000000;
 }
 
-/* ── Retro-Brutalist Secondary (Theme Ink Body + Hard Crimson Slab) ── */
+/* ── Retro-Brutalist Secondary (Adapts between Ink & Washi) ── */
 .btn-secondary {
-  background-color: #12121a;
-  color: var(--paper, #f5f0e8) !important;
-  border: 2px solid var(--crimson, #c0392b);
-  box-shadow: 4px 4px 0px var(--crimson, #c0392b);
+  background-color: var(--btn-sec-bg);
+  color: var(--btn-sec-color) !important;
+  border: 2px solid var(--btn-sec-border);
+  box-shadow: 4px 4px 0px var(--btn-sec-shadow);
 }
 
 .btn-secondary:hover {
-  background-color: #1a1a26;
-  border-color: #e74c3c;
-  color: #ffffff !important;
+  background-color: var(--btn-sec-hover-bg);
+  border-color: var(--btn-sec-hover-border);
+  color: var(--btn-sec-hover-color) !important;
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px #e74c3c;
+  box-shadow: 6px 6px 0px var(--btn-sec-hover-border);
 }
 
 .btn-secondary:active {
   transform: translate(4px, 4px);
-  box-shadow: 0px 0px 0px var(--crimson, #c0392b);
+  box-shadow: 0px 0px 0px var(--btn-sec-border);
 }

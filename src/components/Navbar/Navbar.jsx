@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -34,13 +35,6 @@ const Navbar = () => {
       <a href="#hero" className="nav-logo" onClick={() => setIsOpen(false)}>
         A<span>•</span>B
       </a>
-
-      {/* Hamburger icon */}
-      <div className={`hamburger ${isOpen ? 'toggle' : ''}`} onClick={toggleMenu} aria-label="Toggle navigation menu">
-        <div className="line1"></div>
-        <div className="line2"></div>
-        <div className="line3"></div>
-      </div>
 
       {/* Links */}
       <ul className={`nav-links ${isOpen ? 'nav-open' : ''}`}>
@@ -82,7 +76,25 @@ const Navbar = () => {
         </li>
       </ul>
 
-      <div className="nav-kanji">ビン</div>
+      {/* Right controls: Theme toggle & Kanji seal */}
+      <div className="nav-right">
+        <ThemeToggle />
+        <div className="nav-kanji">ビン</div>
+
+        {/* Hamburger icon for mobile */}
+        <div 
+          className={`hamburger ${isOpen ? 'toggle' : ''}`} 
+          onClick={toggleMenu} 
+          aria-label="Toggle navigation menu"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') toggleMenu(); }}
+        >
+          <div className="line1"></div>
+          <div className="line2"></div>
+          <div className="line3"></div>
+        </div>
+      </div>
     </nav>
   );
 };

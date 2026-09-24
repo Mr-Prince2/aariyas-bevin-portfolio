@@ -1,4 +1,7 @@
-/* --- Desktop (Default) View --- */
+/* ─────────────────────────────────────────────────────────────
+   NAVBAR (DESKTOP & MOBILE) — DUAL THEME SUPPORT
+   ───────────────────────────────────────────────────────────── */
+
 nav {
   position: fixed;
   top: 0;
@@ -8,7 +11,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to bottom, rgba(10, 10, 15, 0.9), transparent);
+  background: var(--bg-nav-initial, linear-gradient(to bottom, rgba(10, 10, 15, 0.9), transparent));
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -18,11 +21,11 @@ nav {
 /* Scrolled state for richer cyber depth */
 nav.nav-scrolled {
   padding: 1rem 4rem;
-  background: rgba(10, 10, 15, 0.88);
+  background: var(--bg-nav, rgba(10, 10, 15, 0.88));
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(192, 57, 43, 0.25);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(192, 57, 43, 0.08);
+  border-bottom: 1px solid var(--border-card, rgba(192, 57, 43, 0.25));
+  box-shadow: var(--shadow-nav, 0 10px 30px rgba(0, 0, 0, 0.5));
 }
 
 /* Logo */
@@ -30,7 +33,7 @@ a.nav-logo {
   display: flex !important;
   align-items: center !important;
   text-decoration: none !important; 
-  color: #ffffff !important; 
+  color: var(--white, #ffffff) !important; 
   font-family: 'Cinzel', serif !important;
   font-size: 1.2rem;
   font-weight: 900;
@@ -50,34 +53,6 @@ a.nav-logo span {
   color: var(--crimson, #c0392b) !important;
   margin: 0 0.2rem;
   animation: pulseDot 1.8s infinite alternate;
-}
-
-/* Hamburger for mobile */
-.hamburger {
-  display: none;
-  cursor: pointer;
-}
-
-.hamburger div {
-  width: 25px;
-  height: 2px;
-  background-color: var(--white);
-  margin: 5px;
-  transition: all 0.3s ease;
-}
-
-.hamburger.toggle .line1 {
-  transform: rotate(-45deg) translate(-5px, 5px);
-  background-color: var(--crimson);
-}
-
-.hamburger.toggle .line2 {
-  opacity: 0;
-}
-
-.hamburger.toggle .line3 {
-  transform: rotate(45deg) translate(-5px, -5px);
-  background-color: var(--crimson);
 }
 
 /* Nav links */
@@ -124,6 +99,17 @@ a.nav-logo span {
   color: var(--gold);
 }
 
+[data-theme="light"] .nav-links a.active {
+  color: var(--crimson);
+}
+
+/* Right-side container (ThemeToggle + Kanji + Mobile Hamburger) */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 /* Japanese Kanji Seal on the right */
 .nav-kanji {
   font-family: 'Noto Serif JP', serif;
@@ -140,10 +126,55 @@ nav.nav-scrolled .nav-kanji {
   text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
+/* Hamburger for mobile */
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 2px;
+  background-color: var(--white);
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.toggle .line1 {
+  transform: rotate(-45deg) translate(-5px, 5px);
+  background-color: var(--crimson);
+}
+
+.hamburger.toggle .line2 {
+  opacity: 0;
+}
+
+.hamburger.toggle .line3 {
+  transform: rotate(45deg) translate(-5px, -5px);
+  background-color: var(--crimson);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LIGHT THEME OVERRIDES FOR NAVBAR
+   ───────────────────────────────────────────────────────────── */
+
+[data-theme="light"] .nav-kanji {
+  color: var(--footer-kanji-color, rgba(179, 50, 37, 0.55));
+}
+
+[data-theme="light"] nav.nav-scrolled .nav-kanji {
+  color: rgba(179, 50, 37, 0.85);
+  text-shadow: 0 0 10px rgba(179, 131, 24, 0.25);
+}
+
 /* --- Mobile View --- */
 @media (max-width: 900px) {
   nav, nav.nav-scrolled {
     padding: 1.2rem 2rem;
+  }
+
+  .nav-right {
+    gap: 1rem;
   }
 
   .hamburger {
@@ -170,6 +201,12 @@ nav.nav-scrolled .nav-kanji {
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
     border-left: 1px solid rgba(192, 57, 43, 0.3);
     z-index: 101;
+  }
+
+  [data-theme="light"] .nav-links {
+    background: rgba(247, 244, 238, 0.98);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.12);
+    border-left: 1px solid rgba(179, 50, 37, 0.2);
   }
 
   .nav-links.nav-open {

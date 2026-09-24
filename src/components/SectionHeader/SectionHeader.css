@@ -19,14 +19,16 @@
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 600;
   color: var(--white);
+  transition: color 0.3s ease;
 }
 
 .section-header__jp {
   font-family: var(--font-jp);
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.18);
+  color: var(--section-jp-color, rgba(255, 255, 255, 0.18));
   letter-spacing: 0.3em;
   margin-left: auto;
+  transition: color 0.3s ease;
 }
 
 @media (max-width: 600px) {

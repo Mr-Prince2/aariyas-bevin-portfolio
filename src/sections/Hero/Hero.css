@@ -8,7 +8,6 @@
   background: transparent;
 }
 
-
 .hero-content-wrapper {
   position: relative;
   z-index: 2;
@@ -52,7 +51,7 @@
   font-weight: 900;
   line-height: 1;
   margin-bottom: 0.3rem;
-  background: linear-gradient(135deg, #ffffff 0%, #d4af37 50%, #c0392b 100%);
+  background: var(--hero-name-gradient, linear-gradient(135deg, #ffffff 0%, #d4af37 50%, #c0392b 100%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -68,10 +67,11 @@
 .hero-name-jp {
   font-family: 'Noto Serif JP', serif;
   font-size: 1.2rem;
-  color: rgba(212,175,55,0.6);
+  color: var(--hero-name-jp-color, rgba(212,175,55,0.6));
   letter-spacing: 0.5em;
   margin-bottom: 1.5rem;
   display: block;
+  transition: color 0.3s ease;
 }
 
 .hero-role {
@@ -80,11 +80,13 @@
   line-height: 1.8;
   margin-bottom: 2.5rem;
   max-width: 500px;
+  transition: color 0.3s ease;
 }
 
 .hero-role em {
   color: var(--jade-light);
   font-style: normal;
+  transition: color 0.3s ease;
 }
 
 .typing {
@@ -124,11 +126,12 @@
   writing-mode: vertical-rl;
   font-size: clamp(5rem, 10vw, 9rem);
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.2);
+  color: var(--hero-kanji-color, rgba(255, 255, 255, 0.2));
   line-height: 1;
   letter-spacing: 0.1em;
-  text-shadow: 0 0 40px rgba(192, 57, 43, 0.4), 0 0 80px rgba(212, 175, 55, 0.2);
+  text-shadow: var(--hero-kanji-shadow, 0 0 40px rgba(192, 57, 43, 0.4), 0 0 80px rgba(212, 175, 55, 0.2));
   animation: float 8s ease-in-out infinite;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 @keyframes float {
@@ -151,6 +154,7 @@
   letter-spacing: 0.3em;
   text-transform: uppercase;
   animation: bounce 2s ease-in-out infinite;
+  transition: color 0.3s ease;
 }
 
 .scroll-hint::after {
@@ -172,7 +176,7 @@
   50% { transform: scaleY(1); opacity: 1; } 
 }
 
-/* Responsive adjustments[cite: 4] */
+/* Responsive adjustments */
 @media (max-width: 900px) {
   #hero { padding: 6rem 2rem; }
   .hero-right { display: none; }

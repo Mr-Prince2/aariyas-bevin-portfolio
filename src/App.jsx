@@ -13,10 +13,11 @@ import Skills        from '@sections/Skills/Skills'
 import Projects      from '@sections/Projects/Projects'
 import Divider       from '@sections/Divider/Divider'
 import Contact       from '@sections/Contact/Contact'
-import useFadeUp from './hooks/useFadeUp';
-import Lenis from 'lenis';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import useFadeUp     from './hooks/useFadeUp'
+import useTheme      from './hooks/useTheme'
+import Lenis from 'lenis'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './App.css'
 import './styles/globals.css'
 
@@ -24,6 +25,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   useFadeUp();
+  const { isLight } = useTheme();
 
   useEffect(() => {
     // Hide the default cursor site-wide
@@ -87,17 +89,18 @@ function App() {
 
       <Footer />
 
-      {/* ── Toast notifications ── */}
+      {/* ── Toast notifications (adapts to light/dark theme) ── */}
       <Toaster
         position="bottom-right"
         toastOptions={{
           style: {
-            background:  'var(--ash, #121218)',
-            color:       'var(--white, #ffffff)',
-            border:      '1px solid rgba(192,57,43,0.4)',
-            fontFamily:  'var(--font-mono, monospace)',
-            fontSize:    '0.72rem',
+            background:    isLight ? '#ffffff' : 'var(--bg-card-solid, #121218)',
+            color:         isLight ? '#18171e' : 'var(--white, #ffffff)',
+            border:        isLight ? '1px solid rgba(179,50,37,0.3)' : '1px solid rgba(192,57,43,0.4)',
+            fontFamily:    'var(--font-mono, monospace)',
+            fontSize:      '0.72rem',
             letterSpacing: '0.05em',
+            boxShadow:     isLight ? '0 10px 25px rgba(0,0,0,0.08)' : '0 10px 25px rgba(0,0,0,0.5)',
           },
         }}
       />

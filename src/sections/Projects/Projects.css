@@ -10,11 +10,12 @@
 }
 
 .project-card {
-  border: 1px solid rgba(255, 255, 255, 0.08); 
+  border: 1px solid var(--border-card, rgba(255, 255, 255, 0.08)); 
   position: relative;
   overflow: hidden; 
-  background: rgba(15, 15, 22, 0.7);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: var(--bg-card, rgba(15, 15, 22, 0.7));
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -23,8 +24,8 @@
 
 .project-card:hover { 
   transform: none !important;
-  border-color: rgba(192, 57, 43, 0.6); 
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(192, 57, 43, 0.2);
+  border-color: var(--border-card-hover, rgba(192, 57, 43, 0.6)); 
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px var(--crimson-glow, rgba(192, 57, 43, 0.2));
 }
 
 /* THUMBNAILS */
@@ -53,6 +54,11 @@
   opacity: 0.6;
 }
 
+[data-theme="light"] .project-thumb-scanlines {
+  background: linear-gradient(to bottom, transparent 50%, rgba(20, 15, 25, 0.1) 51%);
+  opacity: 0.3;
+}
+
 .project-card:hover .project-thumb-bg { 
   transform: scale(1.08); 
 }
@@ -68,7 +74,7 @@
 .project-thumb-icon {
   font-family: 'Noto Serif JP', serif; 
   font-size: 4rem;
-  color: rgba(255, 255, 255, 0.1); 
+  color: rgba(255, 255, 255, 0.15); 
   position: relative; 
   z-index: 1;
 }
@@ -79,7 +85,7 @@
   right: 1rem;
   font-family: 'Space Mono', monospace; 
   font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.15); 
+  color: rgba(255, 255, 255, 0.25); 
   letter-spacing: 0.2em;
 }
 
@@ -106,6 +112,7 @@
   color: var(--white);
   margin-bottom: 0.75rem; 
   line-height: 1.4;
+  transition: color 0.3s ease;
 }
 
 .project-desc { 
@@ -113,6 +120,7 @@
   color: var(--text-dim); 
   line-height: 1.7; 
   margin-bottom: 1.5rem; 
+  transition: color 0.3s ease;
 }
 
 .project-stack { 
@@ -129,14 +137,20 @@
   font-size: 0.6rem;
   letter-spacing: 0.1em; 
   color: var(--text-dim);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.07));
+  transition: all 0.3s ease;
+}
+
+[data-theme="light"] .stack-pill {
+  background: rgba(24, 23, 30, 0.05);
+  border-color: rgba(24, 23, 30, 0.12);
 }
 
 .project-links { 
   display: flex; 
-  align-items: center;
+  align-items: center; 
   gap: 0.75rem; 
-  margin-top: auto;
+  margin-top: auto; 
   padding-top: 1.5rem;
   width: 100%;
   flex-wrap: wrap;
@@ -178,7 +192,7 @@
   pointer-events: none;
   filter: grayscale(1);
   outline: none !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: var(--border-subtle) !important;
   color: var(--text-dim) !important;
   background: rgba(255, 255, 255, 0.02) !important;
   box-shadow: none !important;

@@ -1,0 +1,154 @@
+/* ─────────────────────────────────────────────────────────────
+   CYBER-JAPANESE THEME TOGGLE (日 / 月)
+   Interactive micro-switch blending Retro-Brutalist HUD framing
+   with celestial Sun & Moon animations and authentic Kanji.
+   ───────────────────────────────────────────────────────────── */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  height: 38px;
+  padding: 0 0.85rem;
+  background: var(--hud-tag-bg, rgba(212, 175, 55, 0.08));
+  border: 1px solid var(--border-card, rgba(192, 57, 43, 0.3));
+  border-radius: 2px;
+  color: var(--white);
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  font-family: var(--font-mono, 'Space Mono', monospace);
+  user-select: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: 
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.15s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.theme-toggle:hover {
+  border-color: var(--crimson);
+  box-shadow: 0 0 14px var(--crimson-glow, rgba(192, 57, 43, 0.3));
+  transform: translateY(-1px);
+}
+
+.theme-toggle:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--crimson);
+  outline-offset: 2px;
+}
+
+/* Corner HUD Bracket accents */
+.theme-toggle__bracket-tl,
+.theme-toggle__bracket-br {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-color: var(--card-bracket-color, var(--gold));
+  border-style: solid;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  opacity: 0.7;
+}
+
+.theme-toggle__bracket-tl {
+  top: -1px;
+  left: -1px;
+  border-width: 1.5px 0 0 1.5px;
+}
+
+.theme-toggle__bracket-br {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1.5px 1.5px 0;
+}
+
+.theme-toggle:hover .theme-toggle__bracket-tl,
+.theme-toggle:hover .theme-toggle__bracket-br {
+  border-color: var(--crimson);
+  opacity: 1;
+  width: 7px;
+  height: 7px;
+}
+
+/* Icon Container & Morph Animation */
+.theme-toggle__icon-wrapper {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle__icon {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  transition: 
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.3s ease,
+    color 0.25s ease;
+}
+
+/* Dark Mode Icon States (Moon visible, Sun hidden) */
+.theme-toggle--dark .theme-toggle__icon--moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  color: var(--gold, #d4af37);
+  filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.5));
+}
+
+.theme-toggle--dark .theme-toggle__icon--sun {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.3);
+  color: var(--crimson, #c0392b);
+}
+
+/* Light Mode Icon States (Sun visible, Moon hidden) */
+.theme-toggle--light .theme-toggle__icon--sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  color: var(--crimson, #b33225);
+  filter: drop-shadow(0 0 4px rgba(179, 50, 37, 0.4));
+}
+
+.theme-toggle--light .theme-toggle__icon--moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.3);
+  color: var(--gold, #b38318);
+}
+
+/* Kanji Seal Character: 日 (Sun) or 月 (Moon) */
+.theme-toggle__kanji {
+  font-family: var(--font-jp, 'Noto Serif JP', serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.theme-toggle--dark .theme-toggle__kanji {
+  color: var(--gold, #d4af37);
+  text-shadow: 0 0 6px rgba(212, 175, 55, 0.3);
+}
+
+.theme-toggle--light .theme-toggle__kanji {
+  color: var(--crimson, #b33225);
+  text-shadow: 0 0 6px rgba(179, 50, 37, 0.25);
+}
+
+/* In navbar container alignment */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}

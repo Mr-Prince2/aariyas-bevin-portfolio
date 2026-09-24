@@ -1,14 +1,89 @@
-:root {
-  /* Colors */
+/* ─────────────────────────────────────────────────────────────
+   AARIYAS BEVIN PORTFOLIO — THEME DESIGN SYSTEM
+   Japanese Cyber-Aesthetic (Sumi Ink Dark & Washi Cinnabar Light)
+   ───────────────────────────────────────────────────────────── */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* ── Core Japanese Palette (Dark / Sumi Ink) ── */
   --ink: #0a0a0f;
   --paper: #f5f0e8;
   --crimson: #c0392b;
+  --crimson-hover: #d63031;
+  --crimson-border: #e74c3c;
+  --crimson-glow: rgba(192, 57, 43, 0.4);
   --gold: #d4af37;
+  --gold-glow: rgba(212, 175, 55, 0.3);
   --jade-light: #52b788;
   --white: #ffffff;
   --text-dim: #a0a0b0;
+  --text-subtle: #707085;
 
-  /* Fonts */
+  /* ── Semantic Backgrounds & Surfaces ── */
+  --bg-page: #0a0a0f;
+  --bg-card: rgba(15, 15, 22, 0.75);
+  --bg-card-solid: #121218;
+  --bg-card-hover: rgba(22, 22, 32, 0.85);
+  --bg-nav: rgba(10, 10, 15, 0.88);
+  --bg-nav-initial: linear-gradient(to bottom, rgba(10, 10, 15, 0.9), transparent);
+  --bg-marquee: rgba(10, 10, 15, 0.6);
+  --bg-input: rgba(10, 10, 15, 0.6);
+
+  /* ── Borders & Outlines ── */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-card: rgba(192, 57, 43, 0.2);
+  --border-card-hover: rgba(192, 57, 43, 0.6);
+  --border-input: rgba(192, 57, 43, 0.2);
+
+  /* ── Shadows & Depth ── */
+  --shadow-card: 0 15px 35px rgba(0, 0, 0, 0.5);
+  --shadow-nav: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(192, 57, 43, 0.08);
+
+  /* ── HUD & Japanese UI Brackets ── */
+  --card-bracket-color: #d4af37;
+  --card-bracket-hover: #c0392b;
+  --hud-tag-bg: rgba(212, 175, 55, 0.08);
+  --hud-tag-border: rgba(212, 175, 55, 0.3);
+  --hud-tag-color: #d4af37;
+
+  /* ── Cyber Floor Grid & Screen Scanline ── */
+  --grid-line-x: rgba(192, 57, 43, 0.07);
+  --grid-line-y: rgba(212, 175, 55, 0.05);
+  --scanline-opacity: 0.25;
+
+  /* ── Hero & Japanese Calligraphy Elements ── */
+  --hero-name-gradient: linear-gradient(135deg, #ffffff 0%, #d4af37 50%, #c0392b 100%);
+  --hero-name-jp-color: rgba(212, 175, 55, 0.6);
+  --hero-kanji-color: rgba(255, 255, 255, 0.2);
+  --hero-kanji-shadow: 0 0 40px rgba(192, 57, 43, 0.4), 0 0 80px rgba(212, 175, 55, 0.2);
+  --section-jp-color: rgba(255, 255, 255, 0.18);
+
+  /* ── Marquee & Badges ── */
+  --marquee-color: rgba(255, 255, 255, 0.08);
+  --marquee-accent: rgba(192, 57, 43, 0.3);
+
+  /* ── Form Inputs ── */
+  --input-color: #ffffff;
+  --input-placeholder: rgba(255, 255, 255, 0.25);
+  --input-focus-bg: rgba(192, 57, 43, 0.08);
+  --input-focus-shadow: 0 0 15px rgba(192, 57, 43, 0.3);
+
+  /* ── Footer ── */
+  --footer-border: rgba(255, 255, 255, 0.05);
+  --footer-kanji-color: rgba(192, 57, 43, 0.3);
+
+  /* ── Retro-Brutalist Secondary Button ── */
+  --btn-sec-bg: #12121a;
+  --btn-sec-color: #f5f0e8;
+  --btn-sec-border: var(--crimson);
+  --btn-sec-shadow: var(--crimson);
+  --btn-sec-hover-bg: #1a1a26;
+  --btn-sec-hover-border: #e74c3c;
+  --btn-sec-hover-color: #ffffff;
+
+  /* ── Typography Tokens ── */
   --font-jp: 'Noto Serif JP', serif;
   --font-display: 'Cinzel', serif;
   --font-body: 'Zen Kaku Gothic New', sans-serif;
@@ -16,4 +91,89 @@
   --base-font: 0.5rem;
   --heading-font: 2rem;
   --nav-font: 0.7rem;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LIGHT THEME: JAPANESE WASHI & TORII CINNABAR PALETTE
+   Invokes authentic calligraphy paper, cinnabar seals, and matcha.
+   ───────────────────────────────────────────────────────────── */
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* ── Core Japanese Palette (Light / Washi Parchment) ── */
+  --ink: #f7f4ee;              /* Warm washi parchment paper background */
+  --paper: #18171e;            /* Deep sumi calligraphy ink */
+  --crimson: #b33225;          /* Japanese Torii vermilion / Cinnabar stamp */
+  --crimson-hover: #c93b2d;
+  --crimson-border: #d94838;
+  --crimson-glow: rgba(179, 50, 37, 0.25);
+  --gold: #b38318;             /* Antique Kintsugi gold — strong light contrast */
+  --gold-glow: rgba(179, 131, 24, 0.2);
+  --jade-light: #257a50;       /* Rich Kyoto matcha green */
+  --white: #18171e;            /* Primary text maps to deep sumi ink */
+  --text-dim: #555263;         /* Refined charcoal graphite */
+  --text-subtle: #878496;
+
+  /* ── Semantic Backgrounds & Surfaces ── */
+  --bg-page: #f7f4ee;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card-solid: #ffffff;
+  --bg-card-hover: rgba(255, 255, 255, 0.98);
+  --bg-nav: rgba(247, 244, 238, 0.92);
+  --bg-nav-initial: linear-gradient(to bottom, rgba(247, 244, 238, 0.96), rgba(247, 244, 238, 0.4) 60%, transparent);
+  --bg-marquee: rgba(242, 237, 227, 0.78);
+  --bg-input: #ffffff;
+
+  /* ── Borders & Outlines ── */
+  --border-subtle: rgba(24, 23, 30, 0.08);
+  --border-card: rgba(179, 50, 37, 0.22);
+  --border-card-hover: rgba(179, 50, 37, 0.55);
+  --border-input: rgba(179, 50, 37, 0.28);
+
+  /* ── Shadows & Depth ── */
+  --shadow-card: 0 12px 32px rgba(40, 30, 20, 0.07);
+  --shadow-nav: 0 8px 25px rgba(30, 20, 10, 0.06), 0 0 15px rgba(179, 50, 37, 0.04);
+
+  /* ── HUD & Japanese UI Brackets ── */
+  --card-bracket-color: #b38318;
+  --card-bracket-hover: #b33225;
+  --hud-tag-bg: rgba(179, 131, 24, 0.1);
+  --hud-tag-border: rgba(179, 131, 24, 0.35);
+  --hud-tag-color: #8c6307;
+
+  /* ── Cyber Floor Grid & Screen Scanline ── */
+  --grid-line-x: rgba(179, 50, 37, 0.07);
+  --grid-line-y: rgba(179, 131, 24, 0.06);
+  --scanline-opacity: 0.07;
+
+  /* ── Hero & Japanese Calligraphy Elements ── */
+  --hero-name-gradient: linear-gradient(135deg, #18171e 0%, #b33225 50%, #b38318 100%);
+  --hero-name-jp-color: rgba(179, 131, 24, 0.9);
+  --hero-kanji-color: rgba(179, 50, 37, 0.14);
+  --hero-kanji-shadow: 0 0 40px rgba(179, 50, 37, 0.15), 0 0 60px rgba(179, 131, 24, 0.12);
+  --section-jp-color: rgba(24, 23, 30, 0.2);
+
+  /* ── Marquee & Badges ── */
+  --marquee-color: rgba(24, 23, 30, 0.12);
+  --marquee-accent: rgba(179, 50, 37, 0.5);
+
+  /* ── Form Inputs ── */
+  --input-color: #18171e;
+  --input-placeholder: rgba(24, 23, 30, 0.4);
+  --input-focus-bg: #ffffff;
+  --input-focus-shadow: 0 0 0 3px rgba(179, 50, 37, 0.15);
+
+  /* ── Footer ── */
+  --footer-border: rgba(24, 23, 30, 0.08);
+  --footer-kanji-color: rgba(179, 50, 37, 0.5);
+
+  /* ── Retro-Brutalist Secondary Button (Crisp washi paper + vermilion slab) ── */
+  --btn-sec-bg: #ffffff;
+  --btn-sec-color: #18171e;
+  --btn-sec-border: #b33225;
+  --btn-sec-shadow: #b33225;
+  --btn-sec-hover-bg: #fcf8f3;
+  --btn-sec-hover-border: #c93b2d;
+  --btn-sec-hover-color: #b33225;
 }

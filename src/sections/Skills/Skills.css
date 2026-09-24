@@ -18,6 +18,20 @@
   font-family: 'Zen Kaku Gothic New', sans-serif;
   position: relative;
   overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="light"] #skills {
+  --washi: #f7f4ee;
+  --washi-card: #ffffff;
+  --sumi: #18171e;
+  --sumi-soft: rgba(24, 23, 30, 0.72);
+  --sumi-faint: rgba(24, 23, 30, 0.42);
+  --hairline: rgba(24, 23, 30, 0.1);
+  --ai: #18171e;
+  --ai-soft: rgba(24, 23, 30, 0.06);
+  --shu: #b33225;
+  --moss: rgba(24, 23, 30, 0.6);
 }
 
 #skills::before {
@@ -29,6 +43,11 @@
   background-image:
     radial-gradient(rgba(242,238,230,0.04) 0.5px, transparent 0.5px);
   background-size: 3px 3px;
+}
+
+[data-theme="light"] #skills::before {
+  background-image:
+    radial-gradient(rgba(24, 23, 30, 0.04) 0.5px, transparent 0.5px);
 }
 
 .skills-inner {
@@ -65,6 +84,7 @@
   font-size: clamp(2.4rem, 4vw, 3.2rem);
   letter-spacing: 0.02em;
   color: var(--sumi);
+  transition: color 0.3s ease;
 }
 
 .sk-title-jp {
@@ -72,6 +92,7 @@
   font-size: 1.1rem;
   color: var(--sumi-faint);
   letter-spacing: 0.3em;
+  transition: color 0.3s ease;
 }
 
 .sk-seal {
@@ -84,7 +105,7 @@
   align-items: center;
   justify-content: center;
   transform: rotate(-4deg);
-  box-shadow: 0 2px 0 rgba(38,36,30,0.08);
+  box-shadow: 0 4px 12px rgba(179, 50, 37, 0.3);
 }
 .sk-seal span {
   font-family: 'Shippori Mincho', serif;
@@ -116,7 +137,10 @@
   padding: 2.5rem;
   position: relative; 
   overflow: hidden;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
   display: flex;
   flex-direction: column;
   transform-style: preserve-3d;
@@ -130,14 +154,14 @@
   font-family: 'Space Mono', monospace;
   font-size: 0.65rem;
   color: var(--gold);
-  opacity: 0.7;
+  opacity: 0.85;
   letter-spacing: 0.1em;
 }
 
 .skill-card:hover {
   transform: translateY(-10px);
-  border-color: rgba(192, 57, 43, 0.3);
-  box-shadow: 0 15px 30px rgba(192, 57, 43, 0.1), inset 0 0 0 1px rgba(192, 57, 43, 0.05);
+  border-color: var(--border-card-hover);
+  box-shadow: 0 15px 30px var(--crimson-glow), inset 0 0 0 1px rgba(192, 57, 43, 0.05);
 }
 
 .skill-icon {
@@ -153,14 +177,21 @@
   height: 70px;
   background: rgba(192, 57, 43, 0.1);
   border-radius: 16px;
-  border: 1px solid rgba(192, 57, 43, 0.3);
+  border: 1px solid var(--border-card);
   transition: all 0.4s ease;
+}
+
+[data-theme="light"] .skill-icon {
+  color: var(--crimson);
+  text-shadow: none;
+  background: rgba(179, 50, 37, 0.08);
+  border-color: rgba(179, 50, 37, 0.25);
 }
 
 .skill-card:hover .skill-icon {
   transform: scale(1.1) rotate(5deg);
   background: rgba(192, 57, 43, 0.15);
-  box-shadow: 0 0 15px rgba(192, 57, 43, 0.2);
+  box-shadow: 0 0 15px var(--crimson-glow);
 }
 
 .skill-name {
@@ -169,6 +200,7 @@
   color: var(--sumi); 
   margin-bottom: 1rem;
   letter-spacing: 0.05em;
+  transition: color 0.3s ease;
 }
 
 .skill-desc { 
@@ -177,6 +209,7 @@
   line-height: 1.6; 
   margin-bottom: 2rem; 
   flex-grow: 1;
+  transition: color 0.3s ease;
 }
 
 /* TAGS */
@@ -195,8 +228,14 @@
   font-family: 'Space Mono', monospace; 
   font-size: 0.7rem;
   letter-spacing: 0.1em; 
-  color: rgba(212, 175, 55, 0.9);
+  color: rgba(212, 175, 55, 0.95);
   transition: all 0.3s ease;
+}
+
+[data-theme="light"] .tag {
+  background: rgba(179, 131, 24, 0.12);
+  border-color: rgba(179, 131, 24, 0.35);
+  color: #8c6307;
 }
 
 .tag:hover {
@@ -209,6 +248,11 @@
   border-color: rgba(192, 57, 43, 0.3); 
   color: rgba(192, 57, 43, 0.9); 
 }
+[data-theme="light"] .tag.crimson {
+  background: rgba(179, 50, 37, 0.1);
+  border-color: rgba(179, 50, 37, 0.3);
+  color: #a8291c;
+}
 .tag.crimson:hover { background: rgba(192, 57, 43, 0.2); }
 
 .tag.jade { 
@@ -216,12 +260,22 @@
   border-color: rgba(82, 183, 136, 0.3); 
   color: rgba(82, 183, 136, 0.9); 
 }
+[data-theme="light"] .tag.jade {
+  background: rgba(37, 122, 80, 0.1);
+  border-color: rgba(37, 122, 80, 0.3);
+  color: #1d6e44;
+}
 .tag.jade:hover { background: rgba(82, 183, 136, 0.2); }
 
 .tag.mist { 
   background: rgba(139, 143, 168, 0.1);
   border-color: rgba(139, 143, 168, 0.3); 
   color: rgba(139, 143, 168, 0.9); 
+}
+[data-theme="light"] .tag.mist {
+  background: rgba(90, 95, 120, 0.1);
+  border-color: rgba(90, 95, 120, 0.25);
+  color: #4a4d61;
 }
 .tag.mist:hover { background: rgba(139, 143, 168, 0.2); }
 
@@ -258,12 +312,15 @@
   font-family: 'Shippori Mincho', serif;
   font-size: 1rem;
   letter-spacing: 0.03em;
+  color: var(--sumi);
+  transition: color 0.3s ease;
 }
 
 .sk-cat-list {
   font-size: 0.82rem;
   color: var(--sumi-soft);
   line-height: 1.6;
+  transition: color 0.3s ease;
 }
 .sk-cat-list span:not(:last-child)::after {
   content: '・';

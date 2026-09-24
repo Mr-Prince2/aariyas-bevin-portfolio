@@ -17,8 +17,8 @@
   top: 40%;
   left: -50%;
   background-image: 
-    linear-gradient(to right, rgba(192, 57, 43, 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line-x, rgba(192, 57, 43, 0.07)) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-y, rgba(212, 175, 55, 0.05)) 1px, transparent 1px);
   background-size: 50px 50px;
   transform: perspective(600px) rotateX(75deg);
   animation: gridMove 20s linear infinite;
@@ -50,5 +50,16 @@
     rgba(10, 10, 15, 0.3)
   );
   background-size: 100% 4px;
-  opacity: 0.25;
+  opacity: var(--scanline-opacity, 0.25);
+  transition: opacity 0.3s ease;
+}
+
+[data-theme="light"] .cyber-scanline {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(24, 23, 30, 0.12) 50%,
+    rgba(24, 23, 30, 0.12)
+  );
 }
