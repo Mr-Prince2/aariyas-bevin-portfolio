@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 const STORAGE_KEY = 'portfolio-theme';
 
@@ -20,8 +20,6 @@ export function applyTheme(theme) {
   if (typeof document === 'undefined') return;
   const root = document.documentElement;
 
-  // Add smooth transition class temporarily
-  root.classList.add('theme-transition');
   root.setAttribute('data-theme', theme);
   root.style.colorScheme = theme;
 
@@ -29,12 +27,6 @@ export function applyTheme(theme) {
   if (metaColorScheme) {
     metaColorScheme.setAttribute('content', theme);
   }
-
-  const timer = setTimeout(() => {
-    root.classList.remove('theme-transition');
-  }, 350);
-
-  return () => clearTimeout(timer);
 }
 
 export function useTheme() {
@@ -46,6 +38,8 @@ export function useTheme() {
     return getInitialTheme();
   });
 
+  const isTransitioningRef = useRef(false);
+
   const setTheme = useCallback((newTheme) => {
     setThemeState(newTheme);
     try {
@@ -56,8 +50,67 @@ export function useTheme() {
     applyTheme(newTheme);
   }, []);
 
-  const toggleTheme = useCallback(() => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+  const toggleTheme = useCallback((event) => {
+    if (isTransitioningRef.current) return;
+    const nextTheme = theme === 'light' ? 'dark' : 'light';
+
+    const prefersReducedMotion = typeof window !== 'undefined' && 
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Fallback if View Transitions API is not supported or user prefers reduced motion
+    if (typeof document === 'undefined' || !document.startViewTransition || prefersReducedMotion) {
+      setTheme(nextTheme);
+      return;
+    }
+
+    isTransitioningRef.current = true;
+
+    // Calculate origin coordinate (center of clicked trigger element or center of screen)
+    let x = window.innerWidth / 2;
+    let y = window.innerHeight / 2;
+
+    if (event) {
+      const target = event.currentTarget || event.target;
+      if (target && target.getBoundingClientRect) {
+        const rect = target.getBoundingClientRect();
+        x = rect.left + rect.width / 2;
+        y = rect.top + rect.height / 2;
+      } else if (typeof event.clientX === 'number' && typeof event.clientY === 'number') {
+        x = event.clientX;
+        y = event.clientY;
+      }
+    }
+
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = document.startViewTransition(() => {
+      setTheme(nextTheme);
+    });
+
+    transition.ready.then(() => {
+      const clipPath = [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`
+      ];
+
+      document.documentElement.animate(
+        {
+          clipPath,
+        },
+        {
+          duration: 650,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+          pseudoElement: '::view-transition-new(root)',
+        }
+      );
+    });
+
+    transition.finished.finally(() => {
+      isTransitioningRef.current = false;
+    });
   }, [theme, setTheme]);
 
   useEffect(() => {
