@@ -44,22 +44,29 @@ const Skills = () => {
       // 2. Editorial Outline-to-Fill Scroll-Driven Text Reveal (reference style)
       const fillWords = revealContainerRef.current?.querySelectorAll('.reveal-word-fill');
       if (fillWords && fillWords.length > 0) {
-        gsap.fromTo(
+        const revealTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: revealContainerRef.current,
+            start: 'top 82%',
+            end: 'bottom 45%',
+            scrub: 0.5,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        revealTl.fromTo(
           fillWords,
           { opacity: 0 },
           {
             opacity: 1,
-            stagger: 0.12,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: revealContainerRef.current,
-              start: 'top 75%',
-              end: 'bottom 35%',
-              scrub: 0.8,
-              invalidateOnRefresh: true,
-            },
+            stagger: 0.06,
+            duration: 0.1,
+            ease: 'power1.out',
           }
         );
+
+        // Buffer hold: ensures all words reach 100% solid opacity well before the scroll trigger finishes
+        revealTl.to({}, { duration: 0.25 });
       }
 
       // 3. Japanese Divider Rule expand
@@ -101,22 +108,27 @@ const Skills = () => {
         cards.forEach((card) => {
           const cardWords = card.querySelectorAll('.sk-card-scrub-word');
           if (cardWords.length > 0) {
-            gsap.fromTo(
+            const cardTl = gsap.timeline({
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 92%',
+                end: 'top 65%',
+                scrub: 0.5,
+                invalidateOnRefresh: true,
+              },
+            });
+
+            cardTl.fromTo(
               cardWords,
               { opacity: 0.2 },
               {
                 opacity: 1,
-                stagger: 0.08,
-                ease: 'none',
-                scrollTrigger: {
-                  trigger: card,
-                  start: 'top 88%',
-                  end: 'top 55%',
-                  scrub: 0.6,
-                  invalidateOnRefresh: true,
-                },
+                stagger: 0.05,
+                duration: 0.1,
+                ease: 'power1.out',
               }
             );
+            cardTl.to({}, { duration: 0.15 });
           }
         });
 
