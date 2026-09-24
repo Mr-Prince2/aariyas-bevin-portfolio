@@ -43,7 +43,7 @@ const About = () => {
         });
       }
 
-      // 3. Cyber Card 3D entrance
+      // 3. Cyber Card entrance (stays fixed in place without tilt or wobble)
       if (cardRef.current) {
         gsap.from(cardRef.current, {
           scrollTrigger: {
@@ -52,44 +52,11 @@ const About = () => {
             toggleActions: 'play none none reverse',
           },
           opacity: 0,
-          scale: 0.92,
-          y: 50,
-          rotationY: 12,
-          duration: 1,
-          ease: 'power3.out',
+          scale: 0.95,
+          y: 40,
+          duration: 0.85,
+          ease: 'power2.out',
         });
-
-        // 4. Subtle 3D Card mouse tilt interaction
-        const card = cardRef.current;
-        const handleMouseMove = (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          gsap.to(card, {
-            rotationY: x * 0.04,
-            rotationX: -y * 0.04,
-            transformPerspective: 900,
-            duration: 0.4,
-            ease: 'power1.out',
-          });
-        };
-
-        const handleMouseLeave = () => {
-          gsap.to(card, {
-            rotationY: 0,
-            rotationX: 0,
-            duration: 0.6,
-            ease: 'power2.out',
-          });
-        };
-
-        card.addEventListener('mousemove', handleMouseMove);
-        card.addEventListener('mouseleave', handleMouseLeave);
-
-        return () => {
-          card.removeEventListener('mousemove', handleMouseMove);
-          card.removeEventListener('mouseleave', handleMouseLeave);
-        };
       }
     }, sectionRef);
 
@@ -121,7 +88,6 @@ const About = () => {
         </div>
 
         <div className="about-card cyber-card" ref={cardRef}>
-          <div className="cyber-card-scanline" />
           <span className="about-card-header">自己</span>
           <div className="info-row">
             <span className="info-label">Name</span>

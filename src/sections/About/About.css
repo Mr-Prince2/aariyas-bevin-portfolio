@@ -78,32 +78,17 @@
   margin: 2rem 0;
 }
 
-/* The Profile Card */
+/* The Profile Card - Fixed in place without tilt or wobble */
 .about-card {
   padding: 2.5rem; 
-  position: relative;
-  transform-style: preserve-3d;
-  will-change: transform;
+  position: sticky;
+  top: 100px;
+  align-self: start;
+  will-change: opacity;
 }
 
-.cyber-card-scanline {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), var(--crimson), transparent);
-  box-shadow: 0 0 10px var(--gold);
-  opacity: 0.6;
-  animation: scanlineMove 4s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes scanlineMove {
-  0% { top: 0%; opacity: 0; }
-  10% { opacity: 0.8; }
-  90% { opacity: 0.8; }
-  100% { top: 100%; opacity: 0; }
+.about-card:hover {
+  transform: none !important;
 }
 
 .about-card-badge {
@@ -158,5 +143,6 @@
 @media (max-width: 900px) {
   #about { padding: 4rem 2rem; }
   .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .about-card { position: relative; top: auto; }
   .section-title-jp { display: none; }
 }
