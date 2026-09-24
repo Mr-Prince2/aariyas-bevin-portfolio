@@ -6,7 +6,13 @@
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 99999; /* Higher than everything */
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.cursor-wrapper.cursor-visible {
+  opacity: 1;
 }
 
 .cursor__dot, .cursor__ring {
@@ -17,81 +23,105 @@
   pointer-events: none;
 }
 
-/* Inner Cyber Core Dot */
+/* 1. Precision Center Dot */
 .cursor__dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background: var(--crimson, #c0392b);
   border-radius: 50%;
-  margin-left: -4px;
-  margin-top: -4px;
-  box-shadow: 0 0 10px var(--crimson, #c0392b);
-  transition: width 0.3s, height 0.3s, background 0.3s, box-shadow 0.3s;
+  margin-left: -3px;
+  margin-top: -3px;
+  box-shadow: 0 0 8px rgba(192, 57, 43, 0.45);
+  transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              margin 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.22s ease,
+              box-shadow 0.22s ease,
+              transform 0.15s ease;
 }
 
-/* Sci-Fi Reticle HUD Ring */
+[data-theme="light"] .cursor__dot {
+  background: #9e2317;
+  box-shadow: 0 0 6px rgba(158, 35, 23, 0.35);
+}
+
+/* 2. Minimalist Luxury Follower Ring */
 .cursor__ring {
-  width: 40px;
-  height: 40px;
-  border: 1px dashed rgba(192, 57, 43, 0.7);
+  width: 36px;
+  height: 36px;
+  border: 1.25px solid rgba(242, 238, 230, 0.35);
   border-radius: 50%;
-  margin-left: -20px;
-  margin-top: -20px;
-  opacity: 0.85;
-  transition: all 0.3s ease-out;
-  animation: reticleSpin 12s linear infinite;
+  margin-left: -18px;
+  margin-top: -18px;
+  background: rgba(242, 238, 230, 0.02);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  transition: width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              margin 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              background-color 0.25s ease,
+              box-shadow 0.25s ease,
+              transform 0.15s ease;
 }
 
-.cursor__ring::before,
-.cursor__ring::after {
-  content: '';
-  position: absolute;
-  background: var(--crimson, #c0392b);
+[data-theme="light"] .cursor__ring {
+  border-color: rgba(5, 5, 8, 0.32);
+  background: rgba(5, 5, 8, 0.02);
 }
 
-/* Crosshair Reticle Ticks */
-.cursor__ring::before {
-  top: 50%;
-  left: -4px;
-  width: 48px;
-  height: 1px;
-  transform: translateY(-50%);
-  background: linear-gradient(90deg, var(--crimson), transparent 40%, transparent 60%, var(--crimson));
-}
-
-.cursor__ring::after {
-  left: 50%;
-  top: -4px;
-  height: 48px;
-  width: 1px;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, var(--crimson), transparent 40%, transparent 60%, var(--crimson));
-}
-
-@keyframes reticleSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Hover States */
+/* 3. Interactive Hover State (Magnetic luxury expansion) */
 .cursor--hover {
-  width: 12px !important;
-  height: 12px !important;
-  margin-left: -6px !important;
-  margin-top: -6px !important;
-  background: var(--gold, #d4af37) !important;
-  box-shadow: 0 0 16px var(--gold, #d4af37);
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  background: var(--gold, #d4af37);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+}
+
+[data-theme="light"] .cursor--hover {
+  background: #b45309;
+  box-shadow: 0 0 8px rgba(180, 83, 9, 0.4);
 }
 
 .ring--hover {
-  width: 56px !important;
-  height: 56px !important;
-  margin-left: -28px !important;
-  margin-top: -28px !important;
-  border-color: var(--gold, #d4af37) !important;
-  border-style: solid !important;
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-  opacity: 1;
+  width: 54px;
+  height: 54px;
+  margin-left: -27px;
+  margin-top: -27px;
+  border-color: var(--crimson, #c0392b);
+  border-width: 1.5px;
+  background-color: rgba(192, 57, 43, 0.07);
+  box-shadow: 0 0 20px rgba(192, 57, 43, 0.16);
+}
+
+[data-theme="light"] .ring--hover {
+  border-color: #9e2317;
+  background-color: rgba(158, 35, 23, 0.06);
+  box-shadow: 0 0 16px rgba(158, 35, 23, 0.12);
+}
+
+/* 4. Click / Active tactile impulse */
+.cursor--click {
+  transform: scale(0.7);
+}
+
+.ring--click {
+  width: 28px;
+  height: 28px;
+  margin-left: -14px;
+  margin-top: -14px;
+  border-color: var(--gold, #d4af37);
+  background-color: rgba(212, 175, 55, 0.15);
+  box-shadow: 0 0 14px rgba(212, 175, 55, 0.35);
+}
+
+/* 5. Clean system pointer hiding on fine-pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  body, a, button, input, textarea, select, label, [role="button"] {
+    cursor: none !important;
+  }
 }
 
 @media (hover: none) {

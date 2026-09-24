@@ -11,6 +11,37 @@ const About = () => {
   const textRef = useRef(null);
   const headerRef = useRef(null);
 
+  const aboutParagraphs = [
+    [
+      "I'm",
+      { text: "Aariyas", type: "strong" },
+      { text: "Bevin,", type: "strong" },
+      "a", "final-year", "B.Tech", "student", "in",
+      { text: "Artificial", type: "em" },
+      { text: "Intelligence", type: "em" },
+      { text: "&", type: "em" },
+      { text: "Data", type: "em" },
+      { text: "Science,", type: "em" },
+      "where", "code", "meets", "creativity", "and", "logic", "dances", "with", "art."
+    ],
+    [
+      "My", "world", "exists", "at", "the", "intersection", "of",
+      { text: "animated", type: "strong" },
+      { text: "web", type: "strong" },
+      { text: "development", type: "strong" },
+      "and",
+      { text: "Japanese", type: "em" },
+      { text: "culture", type: "em" },
+      "—", "I", "believe", "interfaces", "should", "not", "just", "function,", "but", "breathe."
+    ],
+    [
+      "Deeply", "influenced", "by", "the", "philosophy", "of",
+      { text: "monozukuri", type: "em" },
+      "(ものづくり),", "I", "approach", "every", "project", "as", "a", "craft.",
+      "From", "pixel-perfect", "UI", "to", "AI-powered", "systems,", "I", "build", "with", "intention."
+    ]
+  ];
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       // 1. Header reveal
@@ -26,21 +57,35 @@ const About = () => {
         ease: 'power3.out',
       });
 
-      // 2. Text paragraphs staggered cascade
-      const paragraphs = textRef.current?.querySelectorAll('p, .cyber-laser-divider');
-      if (paragraphs && paragraphs.length > 0) {
-        gsap.from(paragraphs, {
+      // 2. Editorial Outline-to-Solid-Fill Scroll-Driven Text Reveal (matching Skills section design)
+      const fillWords = textRef.current?.querySelectorAll('.about-reveal-fill');
+      if (fillWords && fillWords.length > 0) {
+        const aboutTl = gsap.timeline({
           scrollTrigger: {
             trigger: textRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            start: 'top 55%',
+            end: 'bottom 35%',
+            scrub: 0.5,
+            invalidateOnRefresh: true,
           },
-          opacity: 0,
-          y: 35,
-          stagger: 0.18,
-          duration: 0.8,
-          ease: 'power2.out',
         });
+
+        // Initial delay buffer so outline is visible first before fill begins
+        aboutTl.to({}, { duration: 0.12 });
+
+        aboutTl.fromTo(
+          fillWords,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            stagger: 0.04,
+            duration: 0.1,
+            ease: 'power1.out',
+          }
+        );
+
+        // Buffer hold: ensures 100% completion before leaving scroll range
+        aboutTl.to({}, { duration: 0.2 });
       }
 
       // 3. Cyber Card entrance (stays fixed in place without tilt or wobble)
@@ -73,18 +118,26 @@ const About = () => {
 
       <div className="about-grid">
         <div className="about-text" ref={textRef}>
-          <p>
-            I'm <strong>Aariyas Bevin</strong>, a final-year B.Tech student in <em>Artificial Intelligence & Data Science</em>, where code meets creativity and logic dances with art.
-          </p>
-          <p>
-            My world exists at the intersection of <strong>animated web development</strong> and <em>Japanese culture</em> — I believe interfaces should not just function, but breathe.
-          </p>
-          
-          <div className="cyber-laser-divider"></div>
-          
-          <p>
-            Deeply influenced by the philosophy of <em>monozukuri</em> (ものづくり), I approach every project as a craft. From pixel-perfect UI to AI-powered systems, I build with intention.
-          </p>
+          {aboutParagraphs.map((para, pIdx) => (
+            <React.Fragment key={pIdx}>
+              <p className="about-reveal-para">
+                {para.map((item, wIdx) => {
+                  const word = typeof item === 'string' ? item : item.text;
+                  const type = typeof item === 'string' ? '' : (item.type || '');
+                  const typeClass = type ? ` is-${type}` : '';
+                  return (
+                    <span key={wIdx} className={`about-reveal-word${typeClass}`}>
+                      <span className={`about-reveal-stroke${typeClass}`} aria-hidden="true">{word}</span>
+                      <span className={`about-reveal-fill${typeClass}`}>{word}</span>
+                    </span>
+                  );
+                })}
+              </p>
+              {pIdx === 1 && (
+                <div className="about-laser-divider" />
+              )}
+            </React.Fragment>
+          ))}
         </div>
 
         <div className="about-card cyber-card" ref={cardRef}>
