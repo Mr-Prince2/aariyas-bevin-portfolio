@@ -68,7 +68,7 @@
   --input-color: #ffffff;
   --input-placeholder: rgba(255, 255, 255, 0.25);
   --input-focus-bg: rgba(192, 57, 43, 0.08);
-  --input-focus-shadow: 0 0 15px rgba(192, 57, 43, 0.3);
+  --input-focus-shadow: none;
 
   /* ── Footer ── */
   --footer-border: rgba(255, 255, 255, 0.05);
