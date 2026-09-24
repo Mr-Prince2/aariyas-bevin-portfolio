@@ -11,14 +11,17 @@ const kanjiNumeral = (i) => ['一', '二', '三', '四', '五', '六', '七', '�
 const Skills = () => {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
-  const scrubContainerRef = useRef(null);
+  const revealContainerRef = useRef(null);
   const ruleRef = useRef(null);
   const gridRef = useRef(null);
   const catRef = useRef(null);
 
-  const scrubStatement =
-    'Mastering modern full-stack development, intelligent AI models, and fluid interactive motion to forge high-impact digital experiences.';
-  const scrubWords = scrubStatement.split(' ');
+  const revealLines = [
+    ['Mastering', 'modern', 'full-stack', 'development,'],
+    ['intelligent', 'AI', 'models,'],
+    ['and', 'fluid', 'interactive', 'motion'],
+    ['to', 'forge', 'high-impact', 'digital', 'experiences.'],
+  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -38,20 +41,20 @@ const Skills = () => {
         });
       }
 
-      // 2. Apple-style Karaoke Scrub Text Reveal for Skill Card Header
-      const scrubWordEls = scrubContainerRef.current?.querySelectorAll('.sk-scrub-word');
-      if (scrubWordEls && scrubWordEls.length > 0) {
+      // 2. Editorial Outline-to-Fill Scroll-Driven Text Reveal (reference style)
+      const fillWords = revealContainerRef.current?.querySelectorAll('.reveal-word-fill');
+      if (fillWords && fillWords.length > 0) {
         gsap.fromTo(
-          scrubWordEls,
-          { opacity: 0.15 },
+          fillWords,
+          { opacity: 0 },
           {
             opacity: 1,
-            stagger: 0.08,
+            stagger: 0.12,
             ease: 'none',
             scrollTrigger: {
-              trigger: scrubContainerRef.current,
-              start: 'top 82%',
-              end: 'bottom 45%',
+              trigger: revealContainerRef.current,
+              start: 'top 75%',
+              end: 'bottom 35%',
               scrub: 0.8,
               invalidateOnRefresh: true,
             },
@@ -176,7 +179,7 @@ const Skills = () => {
   return (
     <section id="skills" ref={sectionRef}>
       <div className="skills-inner">
-        <div className="sk-header skill-card-header" ref={headerRef}>
+        <div className="sk-header" ref={headerRef}>
           <div className="sk-header-top">
             <div className="sk-header-left">
               <span className="sk-eyebrow">02 // CYBER MATRIX</span>
@@ -187,16 +190,21 @@ const Skills = () => {
             </div>
             <div className="sk-seal" aria-hidden="true"><span>技</span></div>
           </div>
+        </div>
 
-          <div className="sk-scrub-container" ref={scrubContainerRef}>
-            <p className="sk-scrub-text" aria-label={scrubStatement}>
-              {scrubWords.map((word, idx) => (
-                <span key={idx} className="sk-word-wrap">
-                  <span className="sk-scrub-word">{word}</span>
-                  {idx < scrubWords.length - 1 ? ' ' : ''}
-                </span>
-              ))}
-            </p>
+        {/* ── Editorial Outline-to-Fill Scroll Reveal (Reference Layout) ── */}
+        <div className="sk-reveal-container" ref={revealContainerRef}>
+          <div className="sk-reveal-text">
+            {revealLines.map((line, lineIdx) => (
+              <div key={lineIdx} className="reveal-line">
+                {line.map((word, wordIdx) => (
+                  <span key={wordIdx} className="reveal-word">
+                    <span className="reveal-word-stroke" aria-hidden="true">{word}</span>
+                    <span className="reveal-word-fill">{word}</span>
+                  </span>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
 
