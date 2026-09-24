@@ -59,14 +59,70 @@
 /* HEADER */
 .sk-header {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: 1.75rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.25rem;
   will-change: opacity, transform;
 }
 
+.sk-header-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+}
+
 .sk-header-left { display: flex; flex-direction: column; gap: 0.6rem; }
+
+/* APPLE-STYLE SCROLL-DRIVEN KARAOKE SCRUB TEXT REVEAL */
+.sk-scrub-container {
+  width: 100%;
+  max-width: 980px;
+  margin-top: 0.25rem;
+}
+
+.sk-scrub-text {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(1.3rem, 2.4vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1.48;
+  letter-spacing: 0.015em;
+  color: var(--sumi);
+  margin: 0;
+  word-spacing: 0.02em;
+}
+
+.sk-word-wrap {
+  display: inline;
+  white-space: normal;
+}
+
+.sk-scrub-word {
+  display: inline-block;
+  opacity: 0.15;
+  color: var(--sumi);
+  transition: opacity 0.08s ease-out, color 0.25s ease;
+  will-change: opacity;
+}
+
+[data-theme="light"] .sk-scrub-word {
+  opacity: 0.15;
+  color: var(--sumi);
+}
+
+/* Individual card title scrub words */
+.sk-card-word-wrap {
+  display: inline;
+  white-space: normal;
+}
+
+.sk-card-scrub-word {
+  display: inline-block;
+  opacity: 0.2;
+  will-change: opacity;
+  transition: color 0.3s ease;
+}
 
 .sk-eyebrow {
   font-family: 'Space Mono', monospace;
